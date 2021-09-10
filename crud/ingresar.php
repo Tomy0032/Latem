@@ -79,7 +79,9 @@
 			</table>
 			<input type='submit' value='Guardar'>
 			<p>
-				<a href="mostrar.php">Volver</a>
+				<a href="mostrar.php">
+					<i class="fas fa-long-arrow-alt-left"></i>
+				</a>
 			</p>
 			
 		</form> 

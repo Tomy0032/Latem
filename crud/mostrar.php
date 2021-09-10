@@ -29,43 +29,46 @@ $listaProductos=$crud->mostrar();
 </head>
 <body>
 
-	<!--=====================================
-	=          Barra de navegación          =
-	======================================-->
-	
-	<nav id="menu">
-		<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
-		<form action="" id="buscador">
-			<input type="text" id="buscar" placeholder="Buscar">
-			<i class="fas fa-search"></i>
-		</form>
-		<ul id="menu_lista">
-			<li>
-				<a href="ingresar.php">Ingresar producto</a>
-			</li>
-			<li>
-				<a href="">Productos</a>
-			</li>
-			<li>
-				<a href="">Cursos</a>
-			</li>
-			<li>
-				<a href="">Sobre nosotros</a>
-			</li>
-			<li>
-				<a href="" class="icon">
-					<i class="fas fa-sign-in-alt"></i>
-				</a>
-			</li>
-			<li>
-				<a href="" class="icon">
-					<i class="fas fa-shopping-cart"></i>
-				</a>
-			</li>
-		</ul>
-	</nav>
-	
-	<!--====  End of Barra de navegación  ====-->
+	<header>	
+			<!--=====================================
+			=          Barra de navegación          =
+			======================================-->
+			
+			<div id="menu">
+				<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
+				<div id="buscador">
+					<input type="text" placeholder="Buscar" required>
+					<div id="btn-buscar">
+						<i class="fas fa-search"></i>
+					</div>
+				</div>
+				<nav>
+					<ul>
+						<li>
+							<a href="">Productos</a>
+						</li>
+						<li>
+							<a href="">Cursos</a>
+						</li>
+						<li>
+							<a href="">Sobre nosotros</a>
+						</li>
+						<li>
+							<a href="" class="icon">
+								<i class="fas fa-sign-in-alt"></i>
+							</a>
+						</li>
+						<li>
+							<a href="ingresar.php" class="icon">
+								<i class="fas fa-plus"></i>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			
+			<!--====  End of Barra de navegación  ====-->
+	</header>
 
 	<!--=====================================
 	=            Mostrar productos            =
