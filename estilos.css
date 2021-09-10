@@ -1,0 +1,351 @@
+/*
+	Colores: 
+
+	violeta #702F8A
+  	gris    #888B8D
+ 	gris2   #D6D6D6
+ 	azul    #006EB3
+
+ */
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+a, input[type="submit"]{
+	transition: .3s ease all;
+}
+/*===========================================
+=            Barra de navegación            =
+===========================================*/
+
+header{
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	background: #FFFFFF;
+	width: 100%;
+	clear: both;
+	display: table;
+}
+#menu {
+	width:  1200px;
+	margin: 0 auto;
+}
+#menu img{
+	float: left;
+	padding: 9px 0;
+}
+#menu nav{
+	float: right;
+}
+#menu ul{
+	margin: 0;
+}
+#menu ul li{
+	list-style: none;
+	float: left;
+	margin-left: 25px;
+	padding: 25px 0;
+}
+#menu ul li a{
+	text-decoration: none;
+	padding: 13px 13px;
+	border-radius: 5px;
+}
+#menu ul li a:hover{
+	background: #702F8A;
+	color: #FFFFFF;
+}
+#buscador{
+	float: left;
+	margin-left: 75px;
+	margin-top: 18px;
+	display: table;
+}
+#buscador input{
+	height: 20px;
+	width: 270px;
+	padding: 5px;
+	border-radius: 0;
+	border: 1px solid #702F8A;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	outline: none;
+}
+#btn-buscar{
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #702F8A;
+	color: #FFFFFF;
+	border: 1px solid #702F8A;	
+	border-radius: 0;
+	border-left: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	float: right;
+	cursor: pointer;
+}
+#btn-buscar:hover{
+	background: #FFFFFF;
+	color: #702F8A;
+}
+/*=====  End of Barra de navegación  ======*/
+
+/*=================================================
+=            Navegación Login/Registro            =
+=================================================*/
+
+#nav_login ul{
+	width: 100%;
+	list-style: none;
+	display: flex;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+#nav_login li{
+	width: 50%;
+	padding: 20px 0;
+	font-size: 22px;
+	letter-spacing: 1px;
+}
+#nav_login li:not(.click):hover{
+	background: #D6D6D6;
+	cursor: pointer;
+}
+#btn-iniciar{
+	border-right: 2px solid #888B8D;
+	border-bottom: 2px solid #888B8D;
+	border-top-left-radius: 5px;
+}
+#btn-iniciar.click{
+	border-right: none;
+	border-bottom: none;
+	background: #ffffff;
+	color: #006EB3;
+	font-weight: bold;
+}
+#login.click{
+	display: none;
+}
+#btn-registrar{
+	border-left: 2px solid #888B8D;
+	border-bottom: 2px solid #888B8D;
+	border-top-right-radius: 5px;
+}
+#btn-registrar.click{
+	border-left: none;
+	border-bottom: none;
+	background: #ffffff;
+	color: #702F8A;
+	font-weight: bold;
+}
+#registro.click{
+	display: none;
+}
+
+/*=====  End of Navegación Login/Registro  ======*/
+
+#contenedor{
+	width: 400px;
+	height: 560px;
+	margin-top: 5%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid #888B8D;
+	border-radius: 5px;
+}
+#login, #registro{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+#login label, #registro label, #ingProd label{
+	font-size: 12px;
+}
+#login input, #registro input, #ingProd input{
+	width: 220px;
+	margin: 5px;
+	padding: 5px;
+	border-bottom: 2px solid;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	border-radius: 0;
+	outline: none;
+}
+.error{
+	font-size: 8px;
+	padding: 0;
+	margin: 0;
+	color: #FF0000;
+	visibility: hidden;
+}
+#login input[type="submit"], #registro input[type="submit"], #ingProd input[type="submit"]{
+	border-radius: 5px;
+	border: none;
+	padding: 10px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/*=============================
+=            Login            =
+=============================*/
+
+#login{
+	color: #006EB3;
+	padding-top: 130px;
+}
+#login input{
+	color: #702F8A;
+	border-color: #006EB3;
+}
+#login input:focus{
+	border-bottom: 2px solid #702F8A;
+}
+#login input[type="submit"]{
+	color: #ffffff;
+	background: #006EB3; 
+}
+#login input[type="submit"]:hover{
+	background: #702F8A;
+}
+
+/*=====  End of Login  ======*/
+
+/*================================
+=            Registro            =
+================================*/
+
+#registro{
+	color: #702F8A;
+	padding-top: 25px;
+}
+#registro input{
+	color: #006EB3;
+	border-color: #702F8A;
+}
+#registro input:focus{
+	border-bottom: 2px solid #006EB3;
+}
+#registro input[type="submit"]{
+	color: #FFFFFF;
+	background: #702F8A;
+
+}
+#registro input[type="submit"]:hover{
+	background: #006EB3;
+}
+
+/*=====  End of Registro  ======*/
+
+/*=====================================
+=            Tabla mostrar            =
+=====================================*/
+
+#mostrar{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 70px;
+	border: 0.5px solid #702F8A;
+	border-radius: 5px;
+	text-align: center;
+	border-spacing: 0;
+}
+#mostrar td{
+	border: 0.5px solid #702F8A;
+}
+#mostrar thead{
+	background: #702F8A;
+	color: #FFFFFF;
+}
+#mostrar td{
+	padding: 10px;
+}
+#mostrar a{
+	padding: 8px 25px;
+	color: #702f8a;
+	text-decoration: none;
+	font-size: 16px;
+	border-radius: 5px;
+}
+#mostrar .icon{
+	padding: 0 0;
+}
+#mostrar td a:hover{
+	background: #702f8a;
+	color:  #ffffff;
+	cursor: pointer;
+}
+/*=====  End of Tabla mostrar  ======*/
+
+/*===============================================
+=          Ingresar/Modificar articulo          =
+===============================================*/
+
+#ingProd{
+	width: 400px;
+	border: 1px solid #888B8D;
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 200px;
+	color: #006EB3;
+}
+#ingProd form table{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#ingProd input{
+	color: #702F8A;
+	border-color: #006EB3;
+}
+#ingProd input:focus{
+	border-bottom: 2px solid #702F8A;
+}
+#ingProd input[type="submit"]{
+	color: #ffffff;
+	background: #006EB3; 
+}
+#ingProd input[type="submit"]:hover{
+	background: #702F8A;
+}
+#ingProd select{
+	width: 220px;
+	margin: 5px;
+	padding: 5px;
+	border-bottom: 2px solid #006EB3;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	border-radius: 0;
+	outline: none;
+	color: #702F8A;
+}
+#ingProd textarea{
+	width: 220px;
+	height: 90px;
+	border: 2px solid #006EB3;
+	border-radius: 5px;
+	padding: 5px;
+	outline-color: #702F8A;
+	font-family: 'Roboto', sans-serif;
+}
+#ingProd a{
+	color: #ffffff;
+	background: #006EB3;
+	text-decoration: none;
+	border-radius: 5px;
+	border: none;
+	padding: 10px;
+	font-size: 14px;
+	cursor: pointer;
+}
+#ingProd a:hover{
+	background: #702F8A;
+}
+/*=====  End of Ingresar/Modificar articulo  ======*/

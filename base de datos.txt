@@ -1,0 +1,20 @@
+create database robotech;
+use robotech;
+create table usuario(
+	ci int primary key,
+    nombre varchar(12),
+    apellido varchar(12),
+    correo varchar(30),
+    contraseña varchar(10),
+    permiso int(1)
+);
+create table producto(
+	id int primary key,
+    id_categoria int,
+    id_iva int(1),
+    id_proveedor int,
+    nombre varchar(30),
+    descripcion text,
+    precio int,
+    stock int
+);
