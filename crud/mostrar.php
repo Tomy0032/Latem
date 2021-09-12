@@ -35,13 +35,17 @@ $listaProductos=$crud->mostrar();
 			======================================-->
 			
 			<div id="menu">
-				<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
-				<div id="buscador">
-					<input type="text" placeholder="Buscar" required>
-					<div id="btn-buscar">
-						<i class="fas fa-search"></i>
+				<a href="">
+					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
+				</a>
+				<form action="">
+					<div id="buscador">
+						<input type="text" placeholder="Buscar" required>
+						<button type="submit" id="btn-buscar">
+							<i class="fas fa-search"></i>
+						</button>
 					</div>
-				</div>
+				</form>
 				<nav>
 					<ul>
 						<li>

@@ -11,7 +11,7 @@
 body{
 	font-family: 'Roboto', sans-serif;
 }
-a, input[type="submit"]{
+a, input[type="submit"], button{
 	transition: .3s ease all;
 }
 /*===========================================
@@ -27,7 +27,7 @@ header{
 	display: table;
 }
 #menu {
-	width:  1200px;
+	width:  1300px;
 	margin: 0 auto;
 }
 #menu img{
@@ -62,9 +62,9 @@ header{
 	display: table;
 }
 #buscador input{
-	height: 20px;
-	width: 270px;
-	padding: 5px;
+	height: 32px;
+	width: 350px;
+	padding: 0px 10px;
 	border-radius: 0;
 	border: 1px solid #702F8A;
 	border-top-left-radius: 5px;
@@ -74,7 +74,7 @@ header{
 #buscador button{
 	height: 32px;
 	width: 32px;
-	line-height: 30px;
+	line-height: 32px;
 	text-align: center;
 	background: #702F8A;
 	color: #FFFFFF;
