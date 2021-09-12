@@ -71,9 +71,9 @@ header{
 	border-bottom-left-radius: 5px;
 	outline: none;
 }
-#btn-buscar{
-	height: 30px;
-	width: 30px;
+#buscador button{
+	height: 32px;
+	width: 32px;
 	line-height: 30px;
 	text-align: center;
 	background: #702F8A;
@@ -86,7 +86,7 @@ header{
 	float: right;
 	cursor: pointer;
 }
-#btn-buscar:hover{
+#buscador button:hover{
 	background: #FFFFFF;
 	color: #702F8A;
 }
