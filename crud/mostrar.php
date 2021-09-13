@@ -40,7 +40,7 @@ $listaProductos=$crud->mostrar();
 				</a>
 				<form action="">
 					<div id="buscador">
-						<input type="text" placeholder="Buscar" required>
+						<input type="text" class="a" placeholder="Buscar" required>
 						<button type="submit" id="btn-buscar">
 							<i class="fas fa-search"></i>
 						</button>
@@ -48,8 +48,13 @@ $listaProductos=$crud->mostrar();
 				</form>
 				<nav>
 					<ul>
-						<li>
-							<a href="">Productos</a>
+						<li id="productos">
+							<button id="btn-productos" class="noEncima">
+								Productos
+							</button>
+							<div id="menu-productos">
+								
+							</div>
 						</li>
 						<li>
 							<a href="">Cursos</a>
@@ -58,7 +63,7 @@ $listaProductos=$crud->mostrar();
 							<a href="">Sobre nosotros</a>
 						</li>
 						<li>
-							<a href="" class="icon">
+							<a href="login/login.html" class="icon">
 								<i class="fas fa-sign-in-alt"></i>
 							</a>
 						</li>

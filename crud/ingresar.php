@@ -11,50 +11,6 @@
 	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
 </head>
 <body>
-	<header>	
-			<!--=====================================
-			=          Barra de navegación          =
-			======================================-->
-			
-			<div id="menu">
-				<a href="">
-					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
-				</a>
-				<form action="">
-					<div id="buscador">
-						<input type="text" placeholder="Buscar" required>
-						<button type="submit" id="btn-buscar">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</form>
-				<nav>
-					<ul>
-						<li>
-							<a href="">Productos</a>
-						</li>
-						<li>
-							<a href="">Cursos</a>
-						</li>
-						<li>
-							<a href="">Sobre nosotros</a>
-						</li>
-						<li>
-							<a href="" class="icon">
-								<i class="fas fa-sign-in-alt"></i>
-							</a>
-						</li>
-						<li>
-							<a href="" class="icon">
-								<i class="fas fa-shopping-cart"></i>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-			
-			<!--====  End of Barra de navegación  ====-->
-	</header>
 	<div id="ingProd">
 		<h2>Ingrese los datos del producto</h2>
 
