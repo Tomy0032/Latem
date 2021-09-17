@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 	<link rel="stylesheet" href="/utu/Latem/estilos.css">
+	<script src="/utu/Latem/scripts.js"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -16,17 +17,22 @@
 			======================================-->
 			
 			<div id="menu">
+
+				<!---Logo--->
 				<a href="">
 					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
 				</a>
-				<form action="">
-					<div id="buscador">
-						<input type="text" class="a" placeholder="Buscar" required>
-						<button type="submit" id="btn-buscar">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
+				<!---Logo--->
+
+				<!---Buscador--->
+				<form action="" id="buscador">
+					<input type="text" class="a" placeholder="Buscar" required>
+					<button type="submit" id="btn-buscar">
+						<i class="fas fa-search"></i>
+					</button>
 				</form>
+				<!---Buscador--->
+
 				<nav>
 					<ul>
 						<li id="productos">
@@ -34,7 +40,76 @@
 								Productos
 							</button>
 							<div id="menu-productos">
-								
+								<div id="categorias">
+									<div>
+										<h4>Robótica</h4>
+										<ul>
+											<li>
+												<a href="">Tarjetas de desarrollo</a>
+											</li>
+											<li>
+												<a href="">Módulos</a>
+											</li>
+											<li>
+												<a href="">Accesorios</a>
+											</li>
+											<li>
+												<a href="">Fuentes de alimentación</a>
+											</li>
+										</ul>
+									</div>
+									<div>
+										<h4>Componentes</h4>
+										<ul>
+											<li>
+												<a href="">Diodos y Tristores</a>
+											</li>
+											<li>
+												<a href="">Cables y Conectores</a>
+											</li>
+											<li>
+												<a href="">Transistores</a>
+											</li>
+											<li>
+												<a href="">Interruptores y Reles</a>
+											</li>
+											<li>
+												<a href="">Resistivos</a>
+											</li>
+										</ul>
+									</div>
+									<div>
+										<h4>Instrumentos</h4>
+										<ul>
+											<li>
+												<a href="">Soldadores y Desoldadores</a>
+											</li>
+											<li>
+												<a href="">Equipamiento antiestático</a>
+											</li>
+											<li>
+												<a href="">Medidores</a>
+											</li>
+										</ul>
+									</div>
+									<div>
+										<h4>Sensores</h4>
+										<ul>
+											<li>
+												<a href="">Sonido</a>
+											</li>
+											<li>
+												<a href="">Humedad</a>
+											</li>
+											<li>
+												<a href="">Luminosidad</a>
+											</li>
+											<li>
+												<a href="">Temperatura</a>
+											</li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</li>
 						<li>
@@ -59,6 +134,5 @@
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	<script src="/utu/Latem/scripts.js"></script>
 </body>
 </html>

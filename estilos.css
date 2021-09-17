@@ -11,7 +11,7 @@
 body{
 	font-family: 'Roboto', sans-serif;
 }
-a, input[type="submit"], button{
+a:not(#categorias div ul li a), input[type="submit"], button{
 	transition: .15s ease all;
 }
 /*===========================================
@@ -25,6 +25,7 @@ header{
 	width: 100%;
 	clear: both;
 	display: table;
+	font-size: 18px;
 }
 #menu {
 	width:  1300px;
@@ -37,10 +38,10 @@ header{
 #menu nav{
 	float: right;
 }
-#menu ul{
+#menu ul:not(#menu-productos ul){
 	margin: 0;
 }
-#menu ul li:not(#productos){
+#menu ul li:not(#productos, #menu-productos ul li){
 	list-style: none;
 	float: left;
 	margin-left: 25px;
@@ -54,8 +55,8 @@ header{
 }
 #productos button{
 	padding: 13px;
+	font-size: 18px;
 	padding-bottom: 26px;
-	font-size: 16px;
 	font-family: 'Roboto', sans-serif;
 	border-radius: 0;
 	border-top-right-radius: 5px;
@@ -78,12 +79,13 @@ header{
 #productos button:hover + #menu-productos{
 	visibility: visible;
 }
-#menu ul li a{
+#menu ul li a:not(#categorias div ul li a){
 	text-decoration: none;
 	padding: 13px;
 	border-radius: 5px;
+	color: #702F8A;
 }
-#menu ul li a:hover{
+#menu ul li a:hover:not(#categorias a:hover) {
 	background: #702F8A;
 	color: #FFFFFF;
 }
@@ -125,11 +127,11 @@ header{
 #menu-productos{
 	position: absolute;
 	margin: 0 auto;
-	width: 80%;
-	height: 500px;
-	background: #D6D6D6;
-	top: 79px;
-	left: 10%;
+	width: 70%;
+	height: 300px;
+	background: #FFFFFF;
+	top: 82px;
+	left: 17.5%;
 	visibility: hidden;
 	border: 1px solid #702F8A;
 	border-radius: 0;
@@ -139,7 +141,61 @@ header{
 #menu-productos:hover{
 	visibility: visible;
 }
+#categorias{
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+#categorias div{
+	float: left;
+	padding: 0 30px;
+}
+#menu-productos h4, #menu-productos ul{
+	margin: 0;
+	padding: 0;
+}
+#menu-productos ul li{
+	list-style: none;
+	padding: 8px 0;
+}
+#categorias h4{
+	color: #006EB3;
+	margin-bottom: 10px;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+#categorias a{
+	font-size: 14px;
+	color: #000000;
+	text-decoration: none;
+	border-radius: 5px;
+}
+#categorias a:after{
+	content: "";
+	display: block;
+	width: 0;
+	height: 1px;
+	background: #006EB3;
+	transition: .25s all;
+}
+#categorias a:hover:after{
+	width: 100%;
+}
+
 /*=====  End of Barra de navegación  ======*/
+
+/*=================================================
+=                Página principal                =
+=================================================*/
+
+#banner{
+	width: 100%;
+	height: 350px;
+	margin-top: 10px;
+	background: #888B8D;
+}
+
+/*=====     End of Página principal        ======*/
 
 /*=================================================
 =            Navegación Login/Registro            =
