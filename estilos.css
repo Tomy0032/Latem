@@ -12,7 +12,7 @@ body{
 	font-family: 'Roboto', sans-serif;
 }
 a:not(#categorias div ul li a), input[type="submit"], button{
-	transition: .15s ease all;
+	transition: .12s ease all;
 }
 /*===========================================
 =            Barra de navegación            =
@@ -127,11 +127,11 @@ header{
 #menu-productos{
 	position: absolute;
 	margin: 0 auto;
-	width: 70%;
+	width: 50%;
 	height: 300px;
 	background: #FFFFFF;
 	top: 82px;
-	left: 17.5%;
+	left: 25%;
 	visibility: hidden;
 	border: 1px solid #702F8A;
 	border-radius: 0;
@@ -147,7 +147,7 @@ header{
 	margin-right: auto;
 	margin-top: 50px;
 }
-#categorias div{
+#categorias > div{
 	float: left;
 	padding: 0 30px;
 }
