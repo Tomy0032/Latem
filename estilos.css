@@ -266,7 +266,7 @@ header{
 	margin-left: auto;
 	margin-right: auto;
 }
-#login input, #registro input, #ingProd input{
+#login input, #registro input, #ingProd input, #actProd input{
 	height: 32px;
 	width: 65%;
 	padding: 0px 10px;
@@ -301,7 +301,7 @@ header{
 	color: #FF0000;
 	visibility: hidden;
 }
-#login input[type="submit"], #registro input[type="submit"], #ingProd input[type="submit"]{
+#login input[type="submit"], #registro input[type="submit"], #ingProd input[type="submit"], #actProd input[type="submit"]{
 	border-radius: 5px;
 	border: none;
 	padding: 10px;
@@ -362,18 +362,22 @@ header{
 
 /*=====  End of Registro  ======*/
 
+#crud{
+	display: flex;
+	justify-content: center;
+}
+
 /*=====================================
 =            Tabla mostrar            =
 =====================================*/
 
 #mostrar{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 70px;
+	width: 1000px;
 	border: 0.5px solid #702F8A;
 	border-radius: 5px;
 	text-align: center;
 	border-spacing: 0;
+	margin: 30px;
 }
 #mostrar td{
 	border: 0.5px solid #702F8A;
@@ -406,37 +410,36 @@ header{
 =          Ingresar/Modificar articulo          =
 ===============================================*/
 
-#ingProd{
+#ingProd, #actProd{
 	width: 400px;
-	border: 1px solid #888B8D;
-	border-radius: 5px;
-	margin-left: auto;
-	margin-right: auto;
+	border-right: 1px solid #888B8D;
+	padding-right: 50px;
 	text-align: center;
-	margin-top: 200px;
+	margin: 30px;
+}
+#ingProd h2, #actProd h2{
 	color: #006EB3;
 }
-#ingProd form table{
-	margin-right: auto;
-	margin-left: auto;
+#ingProd label, #actProd label{
+	display: flex;
+	justify-content: right;
+	align-items: center;
 }
-
-#ingProd input{
+#ingProd input, #actProd input{
 	color: #702F8A;
 	border-color: #006EB3;
+	margin-left: 5px;
+	border-radius: 5px;
 }
-#ingProd input:focus{
-	border-bottom: 2px solid #702F8A;
-}
-#ingProd input[type="submit"]{
+#ingProd input[type="submit"], #actProd input[type="submit"]{
 	color: #ffffff;
 	background: #006EB3; 
 }
-#ingProd input[type="submit"]:hover{
+#ingProd input[type="submit"]:hover, #actProd input[type="submit"]:hover{
 	background: #702F8A;
 }
-#ingProd select{
-	width: 220px;
+#ingProd select, #actProd select{
+	width: 65%;
 	margin: 5px;
 	padding: 5px;
 	border-bottom: 2px solid #006EB3;
@@ -445,27 +448,32 @@ header{
 	border-top: none;
 	border-radius: 0;
 	outline: none;
-	color: #702F8A;
 }
-#ingProd textarea{
-	width: 220px;
+#ingProd textarea, #actProd textarea{
+	width: 65%;
 	height: 90px;
-	border: 2px solid #006EB3;
+	border: 1px solid #006EB3;
 	border-radius: 5px;
 	padding: 5px;
 	outline-color: #702F8A;
 	font-family: 'Roboto', sans-serif;
+	margin-left: 5px;
 }
-#ingProd a{
+#ingProd button, #actProd button{
 	color: #ffffff;
 	background: #006EB3;
-	text-decoration: none;
 	border-radius: 5px;
 	border: none;
 	padding: 10px;
+	font-size: 20px;
 	cursor: pointer;
+	margin-right: -100px;
 }
-#ingProd a:hover{
+#actProd a{
+	color: #FFFFFF;
+	margin: 0 2px;
+}
+#ingProd button:hover, #actProd button:hover{
 	background: #702F8A;
 }
 /*=====  End of Ingresar/Modificar articulo  ======*/
