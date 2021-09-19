@@ -266,19 +266,33 @@ header{
 	margin-left: auto;
 	margin-right: auto;
 }
-#login label, #registro label, #ingProd label{
-	font-size: 12px;
-}
 #login input, #registro input, #ingProd input{
-	width: 220px;
-	margin: 5px;
-	padding: 5px;
-	border-bottom: 2px solid;
-	border-right: none;
-	border-left: none;
-	border-top: none;
+	height: 32px;
+	width: 65%;
+	padding: 0px 10px;
 	border-radius: 0;
+	border: 1px solid #702F8A;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	outline: none;
+	top: 0;
+
+}
+#login label, #registro label{
+	display: flex;
+	justify-content: center;
+}
+#login i, #registro i{
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid;	
+	border-radius: 0;
+	border-right: none;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #FFFFFF;
 }
 .error{
 	font-size: 8px;
@@ -307,15 +321,16 @@ header{
 	color: #702F8A;
 	border-color: #006EB3;
 }
-#login input:focus{
-	border-bottom: 2px solid #702F8A;
-}
 #login input[type="submit"]{
 	color: #ffffff;
 	background: #006EB3; 
 }
 #login input[type="submit"]:hover{
 	background: #702F8A;
+}
+#login i{
+	background: #006EB3;
+	border-color: #006EB3;
 }
 
 /*=====  End of Login  ======*/
@@ -332,9 +347,6 @@ header{
 	color: #006EB3;
 	border-color: #702F8A;
 }
-#registro input:focus{
-	border-bottom: 2px solid #006EB3;
-}
 #registro input[type="submit"]{
 	color: #FFFFFF;
 	background: #702F8A;
@@ -342,6 +354,10 @@ header{
 }
 #registro input[type="submit"]:hover{
 	background: #006EB3;
+}
+#registro i{
+	background: #702F8A;
+	border-color: #702F8A;
 }
 
 /*=====  End of Registro  ======*/
