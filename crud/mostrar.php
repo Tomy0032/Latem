@@ -375,5 +375,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			<!--====  End of Mostrar productos  ====-->
 		</div>
 	</div>
+	<script src="/utu/Latem/scripts.js"></script>
 </body>
 </html>
