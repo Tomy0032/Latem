@@ -43,12 +43,11 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mostrar Productos</title>
-	<link rel="stylesheet" href="/utu/Latem/estilos.css">
-	<link rel="stylesheet" href="/utu/Latem/scripts.js">
+	<link rel="stylesheet" href="/var/www/html/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
+	<link rel="stylesheet" href="/var/www/html/recursos/iconos/css/all.min.css">
 </head>
 <body>
 	<header>	
@@ -60,7 +59,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 
 				<!---Logo--->
 				<a href="">
-					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
+					<img src="/var/www/html/recursos/RoboTech logo.png" alt="">
 				</a>
 				<!---Logo--->
 
@@ -375,5 +374,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			<!--====  End of Mostrar productos  ====-->
 		</div>
 	</div>
+	<link rel="stylesheet" href="/var/www/html/scripts.js">
 </body>
 </html>
