@@ -43,11 +43,11 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mostrar Productos</title>
-	<link rel="stylesheet" href="/estilos.css">
+	<link rel="stylesheet" href="/utu/Latem/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
+	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
 </head>
 <body>
 	<header>	
@@ -59,7 +59,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 
 				<!---Logo--->
 				<a href="">
-					<img src="/RoboTech logo.png" alt="">
+					<img src="/utu/Latem/Recursos/RoboTech logo.png" alt="">
 				</a>
 				<!---Logo--->
 
@@ -182,7 +182,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			=            Formulario ingresar            =
 			==========================================-->
 
-			<form action='administrar_producto.php' method='post'>
+			<form action='administrar_producto.php' method='post' enctype="multipart/form-data">
 
 				<input type="hidden" name="id">
 				<p>
@@ -239,7 +239,13 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						Cantidad:
 						<input type="number" name="stock" required>
 					</label>
-				</p>	
+				</p>
+				<p>
+					<label for="imagen">
+						Imágen:
+						<input type="file" name="imagen" required/>
+					</label>
+				</p>
 				<p>
 					<input type='hidden' name='insertar' value='insertar'>
 					<button type="submit" id="btn-ingProd">
@@ -346,6 +352,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					<td>Categoría</td>
 					<td>IVA</td>
 					<td>Proveedor</td>
+					<td>Imágen</td>
 					<td>Nombre</td>
 					<td>Descripción</td>
 					<td>Precio</td>
@@ -360,6 +367,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td><?php echo $producto->getId_categoria() ?></td>
 						<td><?php echo $producto->getId_iva() ?></td>
 						<td><?php echo $producto->getId_proveedor() ?></td>
+						<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($producto->getImagen())?>"></td>
 						<td><?php echo $producto->getNombre() ?></td>
 						<td><?php echo $producto->getDescripcion() ?></td>
 						<td><?php echo $producto->getPrecio()?> </td>
@@ -369,6 +377,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					</tr>
 					<?php }?>
 				</tbody>
+
 			</table>
 			
 			<!--====  End of Mostrar productos  ====-->
