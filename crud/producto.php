@@ -5,7 +5,6 @@ class Producto{
 	private $id_categoria;
 	private $id_iva;
 	private $id_proveedor;
-	private $imagen;
 	private $nombre;
 	private $descripcion;
 	private $precio;
@@ -44,15 +43,6 @@ class Producto{
  
 	public function setId_proveedor($id_proveedor){
 		$this->id_proveedor = $id_proveedor;
-	}
-
-	public function getImagen(){
-		return $this->imagen;
-
-	}
-	
-	public function setImagen($imagen){
-		$this->imagen = $imagen;
 	}
 
 	public function getNombre(){

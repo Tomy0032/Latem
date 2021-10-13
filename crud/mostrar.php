@@ -9,7 +9,20 @@ $db=Db::conectar();
 $crud=new CrudProducto();
 $producto= new producto();
 //obtiene todos los libros con el método mostrar de la clase crud
-$listaProductos=$crud->mostrar();
+
+if (isset($_POST['busqueda'])) {
+	if ($_POST['tipo-busqueda'] == 1) {
+		$producto=$crud->obtenerProducto($_POST['busqueda']);
+	}elseif ($_POST['tipo-busqueda'] == 2) {
+		$listaProductos=$crud->buscarNombre($_POST['busqueda'].'%');
+	}
+	
+}else{
+	$listaProductos=$crud->mostrar();
+}
+
+
+
 
 
 if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
@@ -18,8 +31,8 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 	<style>
 		#ingProd{
 		 	display: none;
-		 }
-	</style>
+		}
+		</style>
 	<?php
 	//busca el producto utilizando el id, que es enviado por GET desde la vista mostrar.php
 	$producto=$crud->obtenerProducto($_GET['id']);
@@ -29,7 +42,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 	<style>
 		#actProd{
 		 	display: none;
-		 }
+		}
 	</style>
 	<?php
 }
@@ -240,12 +253,12 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<input type="number" name="stock" required>
 					</label>
 				</p>
-				<p>
+				<!--<p>
 					<label for="imagen">
 						Imágen:
 						<input type="file" name="imagen" required/>
 					</label>
-				</p>
+				</p>-->
 				<p>
 					<input type='hidden' name='insertar' value='insertar'>
 					<button type="submit" id="btn-ingProd">
@@ -323,29 +336,42 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<input type="number" name="stock" value='<?php echo $producto->getStock()?>' required>
 					</label>
 				</p>
-						
-				<input type='hidden' name='actualizar' value='actualizar'>
-			<p>
-				<button type="submit">
+					<input type='hidden' name='actualizar' value='actualizar'>
+				<p>
+					<button type="submit">
 						<i class="fas fa-save"></i>
-				</button>
-				<button>
+					</button>
+					<button>
 						<a href="mostrar.php">
 							<i class="fas fa-times"></i>
 						</a>
-				</button>
-			</p>			
-		</form>
+					</button>
+					</p>			
+				</form>
 
-		<!--====  End of Formulario modificar  ====-->
+				<!--====  End of Formulario modificar  ====-->
 		
-	</div>
+			</div>
 
-		<div id="mostProd">
+			<div id="mostProd">
 			<!--=====================================
 			=            Mostrar productos            =
 			======================================-->
-
+				<div id="buscar-producto">
+					<form action="mostrar.php" id="buscador-crud" method="POST">
+						<section id="barra">
+							<button type="submit" id="btn-buscar">
+								<i class="fas fa-search"></i>
+							</button>
+							<input type="text" name="busqueda" placeholder="buscar..." required>
+						</section>
+						<section id="selectores">
+							<input type="radio" name="tipo-busqueda" value="1" checked>Buscar por ID
+							<input type="radio" name="tipo-busqueda" value="2">Buscar por Nombre
+						</section>
+					</form>
+				</div>					
+		
 			<table id="mostrar">
 				<thead>
 					<td>ID</td>
@@ -361,21 +387,65 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					<td>Eliminar</td>
 				</thead>
 				<tbody>
-					<?php foreach ($listaProductos as $producto) {?>
+					<?php
+					if ($producto->getId() == 0 && $_POST['tipo-busqueda'] == 1){ ?>
+						
+						<tr>
+							<td colspan="11">No se a encontrado el producto</td>
+						</tr>
+
+					<?php
+					}elseif ($listaProductos == null && $_POST['tipo-busqueda'] == 2) {
+						?>
+						
+						<tr>
+							<td colspan="11">No se a encontrado el producto</td>
+						</tr>
+
+					<?php
+					}
+					 	
+			
+					elseif (isset($_POST['busqueda']) && $_POST['tipo-busqueda'] == 1){ 
+
+					?>
 					<tr>
 						<td><?php echo $producto->getId() ?></td>
 						<td><?php echo $producto->getId_categoria() ?></td>
 						<td><?php echo $producto->getId_iva() ?></td>
 						<td><?php echo $producto->getId_proveedor() ?></td>
-						<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($producto->getImagen())?>"></td>
+						<td class="icon">
+							<button id="imagenes"><i class="fas fa-images"></i></button>
+						</td>
 						<td><?php echo $producto->getNombre() ?></td>
 						<td><?php echo $producto->getDescripcion() ?></td>
 						<td><?php echo $producto->getPrecio()?> </td>
 						<td><?php echo $producto->getStock() ?></td>
-						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a"><i class="fas fa-edit"></i></a> </td>
-						<td  class="icon"><a  href="administrar_producto.php?id=<?php echo $producto->getId()?>&accion=e"><i class="fas fa-trash"></i></a>   </td>
+						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a"><i class="fas fa-edit"></i></a></td>
+						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=e"><i class="fas fa-trash"></i></a></td>
 					</tr>
-					<?php }?>
+					<?php }
+					else{ 
+					?>
+					<?php 
+					foreach ($listaProductos as $producto) {?>
+					<tr>
+						<td><?php echo $producto->getId() ?></td>
+						<td><?php echo $producto->getId_categoria() ?></td>
+						<td><?php echo $producto->getId_iva() ?></td>
+						<td><?php echo $producto->getId_proveedor() ?></td>
+						<td class="icon">
+							<button id="imagenes"><i class="fas fa-images"></i></button>
+						</td>
+						<td><?php echo $producto->getNombre() ?></td>
+						<td><?php echo $producto->getDescripcion() ?></td>
+						<td><?php echo $producto->getPrecio()?> </td>
+						<td><?php echo $producto->getStock() ?></td>
+						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a"><i class="fas fa-edit"></i></a></td>
+						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=e"><i class="fas fa-trash"></i></a></td>
+					</tr>
+					<?php }
+					}?>
 				</tbody>
 
 			</table>

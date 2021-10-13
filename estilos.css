@@ -371,8 +371,13 @@ header{
 =            Tabla mostrar            =
 =====================================*/
 
+#mostProd{
+	width: 60%;
+	text-align: center;
+}
+
 #mostrar{
-	width: 1000px;
+	width: 100%;
 	border: 0.5px solid #702F8A;
 	border-radius: 5px;
 	text-align: center;
@@ -389,22 +394,102 @@ header{
 #mostrar td{
 	padding: 10px;
 }
-#mostrar a{
+#mostrar a, #mostrar #imagenes{
 	padding: 8px 25px;
 	color: #702f8a;
+	background: #ffffff;
 	text-decoration: none;
 	font-size: 16px;
 	border-radius: 5px;
+	border: none;
 }
 #mostrar .icon{
 	padding: 0 0;
 }
-#mostrar td a:hover{
+#mostrar td a:hover, #mostrar #imagenes:hover{
 	background: #702f8a;
 	color:  #ffffff;
 	cursor: pointer;
 }
+#buscar-producto{
+	width: 60%;
+	margin: 30px;
+	display: inline-block;
+}
+#buscador-crud{
+	width: 100%;
+}
+#buscador-crud #barra{
+	display: table;
+	float: left;
+}
+#buscador-crud #barra input{
+	height: 32px;
+	width: 350px;
+	padding: 0px 10px;
+	border-radius: 0;
+	border: 1px solid #702F8A;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	outline: none;
+}
+#buscador-crud #barra button{
+	height: 32px;
+	width: 32px;
+	line-height: 32px;
+	text-align: center;
+	background: #702F8A;
+	color: #FFFFFF;
+	border: 1px solid #702F8A;	
+	border-radius: 0;
+	border-left: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	float: right;
+	cursor: pointer;
+}
+#buscador-crud #barra button:hover{
+	background: #FFFFFF;
+	color: #702F8A;
+}
+#buscador-crud #selectores{
+	padding-top: 6px;
+}
+#buscador-crud #selectores input{
+	margin-left: 10px;
+}
+#buscador-crud input[type="radio"]{
+	border-radius: 0;
+}
 /*=====  End of Tabla mostrar  ======*/
+
+
+/*====================================
+=            Ver imágenes            =
+====================================*/
+
+
+#contenedor-imagenes{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.4);
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+#contenido-imagenes{
+	width: 500px;
+	height: 700px;
+	background: #ffffff;
+	border: 1px solid #888B8D;
+	border-radius: 5px;
+}
+
+/*=====  End of Ver imágenes  ======*/
+
 
 /*===============================================
 =          Ingresar/Modificar articulo          =

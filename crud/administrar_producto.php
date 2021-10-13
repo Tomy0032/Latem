@@ -8,11 +8,9 @@ $producto= new Producto();
  
 // si el elemento insertar no viene nulo llama al crud e inserta un producto
 if (isset($_POST['insertar'])) {
-	$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 	$producto->setId_categoria($_POST['id_categoria']);
 	$producto->setId_iva($_POST['id_iva']);
 	$producto->setId_proveedor($_POST['id_proveedor']);
-	$producto->setImagen($imagen);
 	$producto->setNombre($_POST['nombre']);
 	$producto->setDescripcion($_POST['descripcion']);
 	$producto->setPrecio($_POST['precio']);
@@ -24,12 +22,10 @@ if (isset($_POST['insertar'])) {
 
 // si el elemento de la vista con nombre actualizar no viene nulo, llama al crud y actualiza el producto
 }elseif(isset($_POST['actualizar'])){
-	$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 	$producto->setId($_POST['id']);
 	$producto->setId_categoria($_POST['id_categoria']);
 	$producto->setId_iva($_POST['id_iva']);
 	$producto->setId_proveedor($_POST['id_proveedor']);
-	$producto->setImagen($imagen);
 	$producto->setNombre($_POST['nombre']);
 	$producto->setDescripcion($_POST['descripcion']);
 	$producto->setPrecio($_POST['precio']);
