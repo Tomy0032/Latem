@@ -1,13 +1,10 @@
 <?php
-// incluye la clase Db
 require_once('conexion.php');
  
 class CrudProducto{
 
-// constructor de la clase
 public function __construct(){}
  
-// método para insertar, recibe como parámetro un objeto de tipo producto
 public function insertar($producto){
 	$db=Db::conectar();
 	$insert=$db->prepare("insert into producto(id_categoria, id_iva, id_proveedor, nombre, descripcion,precio, stock) values(:id_categoria,:id_iva,:id_proveedor,:nombre,:descripcion,:precio,:stock)");
@@ -22,7 +19,6 @@ public function insertar($producto){
  
 }
  
-// método para mostrar todos los productos
 public function mostrar(){
 	$db=Db::conectar();
 	$listaProductos=[];
@@ -43,15 +39,13 @@ public function mostrar(){
 	return $listaProductos;
 }
  
-// método para eliminar un producto, recibe como parámetro el id del producto
 public function eliminar($id){
 	$db=Db::conectar();
 	$eliminar=$db->prepare('DELETE FROM producto WHERE ID=:id');
 	$eliminar->bindValue('id',$id);
 	$eliminar->execute();
 }
- 
-// método para buscar un producto, recibe como parámetro el id del producto
+
 public function obtenerProducto($id){
 	$db=Db::conectar();
 	$select=$db->prepare('SELECT * FROM producto WHERE ID=:id');
@@ -75,8 +69,7 @@ public function obtenerProducto($id){
 	return $myProducto;
 	
 }
- 
-// método para actualizar un producto, recibe como parámetro el producto
+
 public function actualizar($producto){
 	$db=Db::conectar();
 	$actualizar=$db->prepare('UPDATE producto SET id_categoria=:id_categoria,id_iva=:id_iva,id_proveedor=:id_proveedor,nombre=:nombre, descripcion=:descripcion,precio=:precio,stock=:stock  WHERE ID=:id');

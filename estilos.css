@@ -394,7 +394,7 @@ header{
 #mostrar td{
 	padding: 10px;
 }
-#mostrar a, #mostrar #imagenes{
+#mostrar a, #mostrar .icon label{
 	padding: 8px 25px;
 	color: #702f8a;
 	background: #ffffff;
@@ -402,14 +402,44 @@ header{
 	font-size: 16px;
 	border-radius: 5px;
 	border: none;
+	transition: .12s ease all;
 }
 #mostrar .icon{
 	padding: 0 0;
 }
-#mostrar td a:hover, #mostrar #imagenes:hover{
+#mostrar input[type="checkbox"]{
+	display: none;
+}
+.imagenes{
+	width: 100%;
+ 	height: 100vh;
+ 	position: fixed;
+ 	top: 0; left: 0;
+ 	background-color: rgba(0,0,0,0.2);
+ 	display: none;
+ 	justify-content: center;
+ 	align-items: center;
+ 	z-index: 100;
+}
+.contenido{
+ 	width: 100%;
+ 	max-width: 600px;
+ 	padding: 10px;
+ 	background-color: white;
+ 	border: 1px solid #702f8A;
+ 	border-radius: 5px;
+ 	box-shadow: 1px 10px 25px rgba(0,0,0,0.6);
+}
+.contenido .cerrarImagenes label{
+	font-family: sans-serif;
+	color: green;
+	cursor: pointer;
+}
+#mostrar td a:hover, #mostrar .icon label:hover{
 	background: #702f8a;
 	color:  #ffffff;
 	cursor: pointer;
+
 }
 #buscar-producto{
 	width: 60%;
@@ -511,7 +541,6 @@ header{
 	align-items: center;
 }
 #ingProd input, #actProd input{
-	color: #702F8A;
 	border-color: #006EB3;
 	margin-left: 5px;
 	border-radius: 5px;

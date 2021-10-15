@@ -1,24 +1,26 @@
 <?php
 
-//incluye la clase producto y CrudProducto
 require_once('crud_producto.php');
 require_once('producto.php');
 require_once('conexion.php');
 require_once('categoria.php');
+require_once('crud_imagenes.php');
+require_once('imagenes.php');
 $db=Db::conectar();
-$crud=new CrudProducto();
+$crudP=new CrudProducto();
 $producto= new producto();
-//obtiene todos los libros con el método mostrar de la clase crud
+$crudI=new CrudImagenes();
+$imagenes= new Imagenes();
 
 if (isset($_POST['busqueda'])) {
 	if ($_POST['tipo-busqueda'] == 1) {
-		$producto=$crud->obtenerProducto($_POST['busqueda']);
+		$producto=$crudP->obtenerProducto($_POST['busqueda']);
 	}elseif ($_POST['tipo-busqueda'] == 2) {
-		$listaProductos=$crud->buscarNombre($_POST['busqueda'].'%');
+		$listaProductos=$crudP->buscarNombre($_POST['busqueda'].'%');
 	}
 	
 }else{
-	$listaProductos=$crud->mostrar();
+	$listaProductos=$crudP->mostrar();
 }
 
 
@@ -34,8 +36,8 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 		}
 		</style>
 	<?php
-	//busca el producto utilizando el id, que es enviado por GET desde la vista mostrar.php
-	$producto=$crud->obtenerProducto($_GET['id']);
+
+	$producto=$crudP->obtenerProducto($_GET['id']);
 
 }else{
 	?>
@@ -253,12 +255,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<input type="number" name="stock" required>
 					</label>
 				</p>
-				<!--<p>
-					<label for="imagen">
-						Imágen:
-						<input type="file" name="imagen" required/>
-					</label>
-				</p>-->
 				<p>
 					<input type='hidden' name='insertar' value='insertar'>
 					<button type="submit" id="btn-ingProd">
@@ -363,13 +359,22 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 							<button type="submit" id="btn-buscar">
 								<i class="fas fa-search"></i>
 							</button>
-							<input type="text" name="busqueda" placeholder="buscar..." required>
+							<input type="text" name="busqueda" placeholder="Buscar" value="<?php if(isset($_POST['busqueda'])){ echo $_POST['busqueda'];} ?>" required>
 						</section>
-						<section id="selectores">
-							<input type="radio" name="tipo-busqueda" value="1" checked>Buscar por ID
-							<input type="radio" name="tipo-busqueda" value="2">Buscar por Nombre
+						<section id="selectores">							
+							<?php if (isset($_POST['busqueda']) && $_POST['tipo-busqueda'] == 2){ ?>
+								<input type="radio" name="tipo-busqueda" value="1">Buscar por ID
+								<input type="radio" name="tipo-busqueda" value="2" checked>Buscar por Nombre
+							<?php }
+							else{?>
+								<input type="radio" name="tipo-busqueda" value="1" checked>Buscar por ID
+								<input type="radio" name="tipo-busqueda" value="2">Buscar por Nombre
+							<?php }?>
 						</section>
 					</form>
+					<?php if (isset($_POST['busqueda'])){ ?>
+						<a href="mostrar.php">Eliminar busqueda</a>
+					<?php } ?>
 				</div>					
 		
 			<table id="mostrar">
@@ -378,7 +383,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					<td>Categoría</td>
 					<td>IVA</td>
 					<td>Proveedor</td>
-					<td>Imágen</td>
+					<td>Imágenes</td>
 					<td>Nombre</td>
 					<td>Descripción</td>
 					<td>Precio</td>
@@ -388,14 +393,14 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 				</thead>
 				<tbody>
 					<?php
-					if ($producto->getId() == 0 && $_POST['tipo-busqueda'] == 1){ ?>
+					if (isset($_POST['busqueda']) && $producto->getId() == 0 && $_POST['tipo-busqueda'] == 1){ ?>
 						
 						<tr>
 							<td colspan="11">No se a encontrado el producto</td>
 						</tr>
 
 					<?php
-					}elseif ($listaProductos == null && $_POST['tipo-busqueda'] == 2) {
+					}elseif (isset($listaProductos) && $listaProductos == null && $_POST['tipo-busqueda'] == 2) {
 						?>
 						
 						<tr>
@@ -415,7 +420,32 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td><?php echo $producto->getId_iva() ?></td>
 						<td><?php echo $producto->getId_proveedor() ?></td>
 						<td class="icon">
-							<button id="imagenes"><i class="fas fa-images"></i></button>
+							<label for="btnImagenes<?php echo $producto->getId() ?>">
+								<i class="fas fa-images"></i>
+							</label>
+							<input type="checkbox" id="btnImagenes<?php echo $producto->getId() ?>">
+							
+							<div class="imagenes">
+								<div class="contenido">
+									
+									<div class="cerrarImagenes">
+										<label for="btnImagenes<?php echo $producto->getId() ?>">
+											<i class="fas fa-times"></i>
+										</label>
+									</div>									
+								<?php 
+								echo $producto->getId();
+								?>
+
+								</div>
+
+							</div>
+							<style>
+								#btnImagenes<?php echo $producto->getId() ?>:checked ~ .imagenes{
+									display: flex;
+	 								transform: translateY(0%);
+	 							}
+	 						</style>
 						</td>
 						<td><?php echo $producto->getNombre() ?></td>
 						<td><?php echo $producto->getDescripcion() ?></td>
@@ -435,7 +465,78 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td><?php echo $producto->getId_iva() ?></td>
 						<td><?php echo $producto->getId_proveedor() ?></td>
 						<td class="icon">
-							<button id="imagenes"><i class="fas fa-images"></i></button>
+							<label for="btnImagenes<?php echo $producto->getId() ?>">
+								<i class="fas fa-images"></i>
+							</label>
+							<input type="checkbox" id="btnImagenes<?php echo $producto->getId() ?>">
+							
+							<div class="imagenes">
+								<div class="contenido">
+									
+									<div class="cerrarImagenes">
+										<label for="btnImagenes<?php echo $producto->getId() ?>">
+											<i class="fas fa-times"></i>
+										</label>
+									</div>									
+									<table>
+										<?php 
+										$imagenes=$crudI->obtenerImagenes($producto->getId()); ?>
+										<tbody>
+											<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+												<input type="hidden" name="id_producto" value="<?php echo $producto->getId(); ?>" required/>
+												<br>
+												<input type="file" name="primera" required/>
+												<br>
+												<input type="file" name="primeraMin" required/>
+												<br>
+												<input type="file" name="segunda" required/>
+												<br>
+												<input type="file" name="segundaMin" required/>
+												<br>
+												<input type="file" name="tercera" required/>
+												<br>
+												<input type="file" name="terceraMin" required/>
+												<br>
+												<input type='hidden' name='actualizar' value='actualizar'>
+												<input type="submit" value="Aceptar">
+
+											</form>
+											<tr>
+
+												<td>Primera imágen</td>
+												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimera())?>"/></td>
+											</tr>
+											<tr>
+												<td>Miniatura primera imágen</td>
+												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimeraMin())?>"/></td>
+											</tr>
+											<tr>
+												<td>Segunda imágen</td>
+												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegunda())?>"/></td>
+											</tr>
+											<tr>
+												<td>Minuatura segunda imágen</td>
+												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegundaMin())?>"/></td>
+											</tr>
+											<tr>
+												<td>Tercera imágen</td>
+												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTercera())?>"/></td>
+											</tr>
+											<tr>
+												<td>Minuatura tercera imágen</td>
+												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTerceraMin())?>"/></td>
+											</tr>				
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+							<style>
+								#btnImagenes<?php echo $producto->getId() ?>:checked ~ .imagenes{
+									display: flex;
+	 								transform: translateY(0%);
+	 							}
+	 						</style>
 						</td>
 						<td><?php echo $producto->getNombre() ?></td>
 						<td><?php echo $producto->getDescripcion() ?></td>
