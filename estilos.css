@@ -417,6 +417,7 @@ header{
  	top: 0; left: 0;
  	background-color: rgba(0,0,0,0.2);
  	display: none;
+ 	transition: all ;
  	justify-content: center;
  	align-items: center;
  	z-index: 100;
@@ -541,6 +542,7 @@ header{
 	align-items: center;
 }
 #ingProd input, #actProd input{
+	height: 28px;
 	border-color: #006EB3;
 	margin-left: 5px;
 	border-radius: 5px;
@@ -556,7 +558,7 @@ header{
 	width: 65%;
 	margin: 5px;
 	padding: 5px;
-	border-bottom: 2px solid #006EB3;
+	border-bottom: 1px solid #006EB3;
 	border-right: none;
 	border-left: none;
 	border-top: none;
@@ -589,5 +591,36 @@ header{
 }
 #ingProd button:hover, #actProd button:hover{
 	background: #702F8A;
+}
+.file-select {
+  position: relative;
+  display: inline-block;
+}
+
+.file-select::before {
+  background-color: #FFFFFF;
+  width: 106px;
+  color: #006EB3;
+  display: flex;
+  border-right: 1px solid #006EB3;
+  justify-content: center;
+  align-items: center;
+  content: 'Seleccionar';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+  transition: .12s ease all;
+}
+.file-select:hover:before{
+	color: #FFFFFF;
+	background: #006EB3;
+}
+.file-select input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
 }
 /*=====  End of Ingresar/Modificar articulo  ======*/

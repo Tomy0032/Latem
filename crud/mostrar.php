@@ -11,6 +11,10 @@ $crudP=new CrudProducto();
 $producto= new producto();
 $crudI=new CrudImagenes();
 $imagenes= new Imagenes();
+$categorias=$db->query('select * from categoria');
+$proveedores=$db->query('select * from proveedor');
+$categorias2=$db->query('select * from categoria');
+$proveedores2=$db->query('select * from proveedor');
 
 if (isset($_POST['busqueda'])) {
 	if ($_POST['tipo-busqueda'] == 1) {
@@ -23,10 +27,6 @@ if (isset($_POST['busqueda'])) {
 	$listaProductos=$crudP->mostrar();
 }
 
-
-
-
-
 if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 
 	?>
@@ -36,7 +36,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 		}
 		</style>
 	<?php
-
 	$producto=$crudP->obtenerProducto($_GET['id']);
 
 }else{
@@ -200,35 +199,39 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			<form action='administrar_producto.php' method='post' enctype="multipart/form-data">
 
 				<input type="hidden" name="id">
-				<p>
 					<label for="nombre">
 						Nombre Producto:
 						<input type='text' name='nombre' required>
 					</label>
-				</p>
-				<p>
+				<br>
 					<label for="id_categoria">
 						Categoría:
+
 						<select name="id_categoria" required>
-						    <option value="1">Robótica</option>
-							<option value="2">Instrumentos</option>
-							<option value="3">Componentes</option>
+							<option value="">Selecione una categoría</option>
+						    <?php 
+
+						    foreach ($categorias->fetchAll() as $row) {
+							 $id = $row['id'];
+
+							 ?>
+							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+							}
+
+						    ?> 	
 						</select>
 					</label>
-				</p>
-				<p>
+				<br>
 					<label for="descripcion">
 						Descripción:
 						<textarea name="descripcion" required></textarea >
 					</label>	
-				</p>
-				<p>
+				<br>
 					<label for="precio">
 						Precio:
 						<input type="number" name="precio" required>
 					</label>
-				</p>
-				<p>
+				<br>
 					<label for="id_iva">
 						IVA:
 						<select name="id_iva" required>
@@ -237,25 +240,55 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 							<option value="3">Tipo 3</option>
 						</select>
 					</label>
-				</p>
-				<p>
+				<br>
 					<label for="id_proveedor">
-						Proveedor:
+						Categoría:
+
 						<select name="id_proveedor" required>
-							<option value="1">Proveedor A</option>
-							<option value="2">Proveedor B</option>
-							<option value="3">Proveedor C</option>
-							<option value="4">Proveedor D</option>
+							<option value="">Seleccione un proveedor</option>
+						    <?php 
+
+						    foreach ($proveedores2->fetchAll() as $row) {
+							 $id = $row['id'];
+							 echo "hola";
+
+							 ?>
+							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+							}
+
+						    ?> 	
 						</select>
 					</label>
-				</p>
-				<p>
+				<br>
 					<label for="stock">
 						Cantidad:
 						<input type="number" name="stock" required>
 					</label>
-				</p>
-				<p>
+				<br>
+					<label for="primera">Primera imágen
+						<input type="file" class="file-select" name="primera" required/>
+					</label>
+					<br>
+					<label for="primera">Primera imágen miniatura
+						<input type="file" class="file-select" name="primeraMin" required/>
+					</label>
+					<br>
+					<label for="primera">Segunda imágen
+						<input type="file" class="file-select" name="segunda" required/>
+					</label>
+					<br>
+					<label for="primera">Segunda imágen miniatura
+						<input type="file" class="file-select" name="segundaMin" required/>
+					</label>
+					<br>
+					<label for="primera">Tercera imágen
+						<input type="file" class="file-select" name="tercera" required/>
+					</label>
+					<br>
+					<label for="primera">tercera imágen miniatura
+						<input type="file" class="file-select" name="terceraMin" required/>
+					</label>
+					<br>	
 					<input type='hidden' name='insertar' value='insertar'>
 					<button type="submit" id="btn-ingProd">
 						<i class="fas fa-save"></i>
@@ -286,11 +319,21 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 				<p>
 					<label for="id_categoria">
 						Categoría:
+
 						<select name="id_categoria" required>
-			                <option value="1">Robótica</option>
-			                <option value="2">Instrumentos</option>
-			                <option value="3">Componentes</option>
-	                	</select>
+							<option value="<?php echo $producto->getId_categoria()?>">Mantener categoría</option>
+						    <?php 
+
+						    foreach ($categorias2->fetchAll() as $row) {
+							 $id = $row['id'];
+							 echo "hola";
+
+							 ?>
+							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+							}
+
+						    ?> 	
+						</select>
 					</label>
 				</p>
 				<p>
@@ -319,10 +362,18 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					<label for="id_proveedor">
 						Proveedor:
 						<select name="id_proveedor" required>
-							<option value="1">Proveedor A</option>
-							<option value="2">Proveedor B</option>
-							<option value="3">Proveedor C</option>
-							<option value="4">Proveedor D</option>
+							<option value="<?php echo $producto->getId_proveedor()?>">Mantener proveedor</option>
+						    <?php 
+
+						    foreach ($proveedores2->fetchAll() as $row) {
+							 $id = $row['id'];
+							 echo "hola";
+
+							 ?>
+							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+							}
+
+						    ?> 	
 						</select>
 					</label>
 				</p>
@@ -482,25 +533,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 										<?php 
 										$imagenes=$crudI->obtenerImagenes($producto->getId()); ?>
 										<tbody>
-											<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
-												<input type="hidden" name="id_producto" value="<?php echo $producto->getId(); ?>" required/>
-												<br>
-												<input type="file" name="primera" required/>
-												<br>
-												<input type="file" name="primeraMin" required/>
-												<br>
-												<input type="file" name="segunda" required/>
-												<br>
-												<input type="file" name="segundaMin" required/>
-												<br>
-												<input type="file" name="tercera" required/>
-												<br>
-												<input type="file" name="terceraMin" required/>
-												<br>
-												<input type='hidden' name='actualizar' value='actualizar'>
-												<input type="submit" value="Aceptar">
-
-											</form>
 											<tr>
 
 												<td>Primera imágen</td>
