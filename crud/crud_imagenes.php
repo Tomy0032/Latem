@@ -62,16 +62,12 @@ public function obtenerImagenes($id_producto){
 	return $myImagenes;
 }
 
-public function actualizar($imagenes){
+public function actualizar($imagen, $nombre, $id){
 	$db=Db::conectar();
-	$primera=$imagenes->getPrimera();
-	$primeramin=$imagenes->getPrimeraMin();
-	$segunda=$imagenes->getSegunda();
-	$segundamin=$imagenes->getSegundaMin();
-	$tercera=$imagenes->getTercera();
-	$terceramin=$imagenes->getTerceraMin();
-	$actualizar=$db->prepare("UPDATE imagenes SET id_producto=:id_producto, primera='$primera', primeramin='$primeramin', segunda='$segunda', segundamin='$segundamin', tercera='$tercera', terceramin='$terceramin'  WHERE id_producto=:id_producto");
-	$actualizar->bindValue('id_producto',$imagenes->getId_Producto());
+	$insertar=addslashes(file_get_contents($imagen));
+	$columna=$nombre;
+	$actualizar=$db->prepare("UPDATE imagenes SET $columna='$imagen' WHERE id_producto=:id_producto");
+	$actualizar->bindValue('id_producto',$id);
 		$actualizar->execute();
 }
 }

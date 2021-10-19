@@ -407,35 +407,6 @@ header{
 #mostrar .icon{
 	padding: 0 0;
 }
-#mostrar input[type="checkbox"]{
-	display: none;
-}
-.imagenes{
-	width: 100%;
- 	height: 100vh;
- 	position: fixed;
- 	top: 0; left: 0;
- 	background-color: rgba(0,0,0,0.2);
- 	display: none;
- 	transition: all ;
- 	justify-content: center;
- 	align-items: center;
- 	z-index: 100;
-}
-.contenido{
- 	width: 100%;
- 	max-width: 600px;
- 	padding: 10px;
- 	background-color: white;
- 	border: 1px solid #702f8A;
- 	border-radius: 5px;
- 	box-shadow: 1px 10px 25px rgba(0,0,0,0.6);
-}
-.contenido .cerrarImagenes label{
-	font-family: sans-serif;
-	color: green;
-	cursor: pointer;
-}
 #mostrar td a:hover, #mostrar .icon label:hover{
 	background: #702f8a;
 	color:  #ffffff;
@@ -445,6 +416,7 @@ header{
 #buscar-producto{
 	width: 60%;
 	margin: 30px;
+	margin-bottom: 0;
 	display: inline-block;
 }
 #buscador-crud{
@@ -500,23 +472,42 @@ header{
 ====================================*/
 
 
-#contenedor-imagenes{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.4);
+#mostrar input[type="checkbox"]{
 	display: none;
-	justify-content: center;
-	align-items: center;
 }
-#contenido-imagenes{
-	width: 500px;
-	height: 700px;
-	background: #ffffff;
-	border: 1px solid #888B8D;
-	border-radius: 5px;
+.imagenes{
+	width: 100%;
+ 	height: 100vh;
+ 	position: fixed;
+ 	top: 0; 
+ 	left: 0;
+ 	background-color: rgba(0,0,0,0.2);
+ 	display: none;
+ 	transition: all;
+ 	justify-content: center;
+ 	align-items: center;
+ 	z-index: 100;
+}
+.contenido{
+ 	width: 100%;
+ 	max-width: 600px;
+ 	padding: 10px;
+ 	background-color: #FFFFFF;
+ 	border: 1px solid #702F8A;
+ 	border-radius: 5px;
+ 	box-shadow: 1px 10px 25px rgba(0,0,0,0.6);
+}
+.contenido table{
+	margin-left: auto;
+	margin-right: auto;
+}
+.contenido .cerrarImagenes label{
+	font-family: sans-serif;
+	color: green;
+	cursor: pointer;
+}
+.cerrarImagenes{
+	margin-bottom: 7px;
 }
 
 /*=====  End of Ver imágenes  ======*/

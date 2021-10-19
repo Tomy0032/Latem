@@ -532,33 +532,40 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 									<table>
 										<?php 
 										$imagenes=$crudI->obtenerImagenes($producto->getId()); ?>
-										<tbody>
-											<tr>
-
-												<td>Primera imágen</td>
-												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimera())?>"/></td>
-											</tr>
-											<tr>
-												<td>Miniatura primera imágen</td>
-												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimeraMin())?>"/></td>
-											</tr>
-											<tr>
-												<td>Segunda imágen</td>
-												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegunda())?>"/></td>
-											</tr>
-											<tr>
-												<td>Minuatura segunda imágen</td>
-												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegundaMin())?>"/></td>
-											</tr>
-											<tr>
-												<td>Tercera imágen</td>
-												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTercera())?>"/></td>
-											</tr>
-											<tr>
-												<td>Minuatura tercera imágen</td>
-												<td><img height="50px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTerceraMin())?>"/></td>
-											</tr>				
-										</tbody>
+										<tr>
+											<td>Primera imágen</td>
+											<td>
+												<img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimera())?>"/>
+											</td>
+											<td>
+												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+													<input type="file" class="file-select" name="imagen" required/>
+													<input type='hidden' name='actualizar' value='primera'>
+													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
+													<input type="submit">
+												</form>
+											</td>
+										</tr>
+										<tr>
+											<td>Miniatura primera imágen</td>
+											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimeraMin())?>"/></td>
+										</tr>
+										<tr>
+											<td>Segunda imágen</td>
+											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegunda())?>"/></td>
+										</tr>
+										<tr>
+											<td>Minuatura segunda imágen</td>
+											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegundaMin())?>"/></td>
+										</tr>
+										<tr>
+											<td>Tercera imágen</td>
+											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTercera())?>"/></td>
+										</tr>
+										<tr>
+											<td>Minuatura tercera imágen</td>
+											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTerceraMin())?>"/></td>
+										</tr>				
 									</table>
 								</div>
 
