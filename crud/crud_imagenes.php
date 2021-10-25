@@ -64,7 +64,7 @@ public function obtenerImagenes($id_producto){
 
 public function actualizar($imagen, $nombre, $id){
 	$db=Db::conectar();
-	$insertar=addslashes(file_get_contents($imagen));
+	$insertar=$imagen;
 	$columna=$nombre;
 	$actualizar=$db->prepare("UPDATE imagenes SET $columna='$imagen' WHERE id_producto=:id_producto");
 	$actualizar->bindValue('id_producto',$id);

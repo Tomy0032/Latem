@@ -23,11 +23,11 @@ if (isset($_POST['insertar'])) {
 	$crud->insertar($producto);
 
 	$primera=addslashes(file_get_contents($_FILES['primera']['tmp_name']));
-	$primeraMin=addslashes(file_get_contents($_FILES['primeraMin']['tmp_name']));
+	$primeraMin=addslashes(file_get_contents($_FILES['primeramin']['tmp_name']));
 	$segunda=addslashes(file_get_contents($_FILES['segunda']['tmp_name']));
-	$segundaMin=addslashes(file_get_contents($_FILES['segundaMin']['tmp_name']));
+	$segundaMin=addslashes(file_get_contents($_FILES['segundamin']['tmp_name']));
 	$tercera=addslashes(file_get_contents($_FILES['tercera']['tmp_name']));
-	$terceraMin=addslashes(file_get_contents($_FILES['terceraMin']['tmp_name']));
+	$terceraMin=addslashes(file_get_contents($_FILES['terceramin']['tmp_name']));
 
 	$db=Db::conectar();
 	$consulta=$db->query('SELECT * FROM producto order by (id) desc limit 1');

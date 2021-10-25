@@ -26,7 +26,7 @@ if (isset($_POST['insertar'])) {
 
 }
 elseif(isset($_POST['actualizar'])){
-	$imagen=$_FILES['imagen'];
+	$imagen=addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 	$nombre=$_POST['actualizar'];
 	$id=$_POST['id'];
 	$crud->actualizar($imagen, $nombre, $id);

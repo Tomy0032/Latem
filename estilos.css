@@ -7,6 +7,9 @@
  	azul    #006EB3
 
  */
+*{
+	box-sizing: border-box;
+}
 
 body{
 	font-family: 'Roboto', sans-serif;
@@ -266,7 +269,7 @@ header{
 	margin-left: auto;
 	margin-right: auto;
 }
-#login input, #registro input, #ingProd input, #actProd input{
+#login input, #registro input{
 	height: 32px;
 	width: 65%;
 	padding: 0px 10px;
@@ -384,17 +387,16 @@ header{
 	border-spacing: 0;
 	margin: 30px;
 }
-#mostrar td{
+#mostrar td:not(.inp){
 	border: 0.5px solid #702F8A;
+	padding: 10px;
 }
 #mostrar thead{
 	background: #702F8A;
 	color: #FFFFFF;
 }
-#mostrar td{
-	padding: 10px;
-}
-#mostrar a, #mostrar .icon label{
+
+#mostrar a, #mostrar .icon label:not(.contenido label){
 	padding: 8px 25px;
 	color: #702f8a;
 	background: #ffffff;
@@ -407,7 +409,7 @@ header{
 #mostrar .icon{
 	padding: 0 0;
 }
-#mostrar td a:hover, #mostrar .icon label:hover{
+#mostrar td a:hover, #mostrar .icon label:not(.contenido label):hover{
 	background: #702f8a;
 	color:  #ffffff;
 	cursor: pointer;
@@ -475,7 +477,7 @@ header{
 #mostrar input[type="checkbox"]{
 	display: none;
 }
-.imagenes{
+.imagenes, .eliminar{
 	width: 100%;
  	height: 100vh;
  	position: fixed;
@@ -483,14 +485,10 @@ header{
  	left: 0;
  	background-color: rgba(0,0,0,0.2);
  	display: none;
- 	transition: all;
  	justify-content: center;
  	align-items: center;
- 	z-index: 100;
 }
 .contenido{
- 	width: 100%;
- 	max-width: 600px;
  	padding: 10px;
  	background-color: #FFFFFF;
  	border: 1px solid #702F8A;
@@ -498,120 +496,172 @@ header{
  	box-shadow: 1px 10px 25px rgba(0,0,0,0.6);
 }
 .contenido table{
+	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 }
+.contenido td{
+	text-align: center;
+}
+.contenido .cerrarImagenes{
+	margin: 5px 0;
+}
 .contenido .cerrarImagenes label{
 	font-family: sans-serif;
-	color: green;
 	cursor: pointer;
+	color:  #702F8A;
+	padding: 10px 15px;
+	border-radius: 5px;
+	transition: .12s ease all;
+}
+.contenido .cerrarImagenes label:hover{
+	background: #702F8A;
+	color: #FFFFFF;
+}
+.contenido form{
+	margin: 0;
+	padding: 5px;
+}
+.contenido .inp{
+	padding-top: 15px;
+	border: 0.5px solid #702F8A;
 }
 .cerrarImagenes{
 	margin-bottom: 7px;
 }
+.contenido input[type="file"]{
+	display: none;
+}
+.imagenes .contenido .file, .imagenes .contenido input{
+	background: #702F8A;
+	border-radius: 5px;
+	border: 1px solid #702F8A;
+	color: #FFFFFF;
+	font-size: 14px;
+	cursor: pointer;
+	padding: 3px 20px;
+	margin: 10px;
+	transition: .12s ease all;
+}
+.imagenes .contenido .file:hover, .imagenes .contenido input:hover{
+	background: #006EB3;
+	border: 1px solid #006EB3;
+}
 
 /*=====  End of Ver imágenes  ======*/
 
+.contenido .cerrarEliminar{
+	padding: 30px;
+}
+.contenido .cerrarEliminar p{
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+.contenido .cerrarEliminar label{
+	padding: 8px 25px;
+  color: #702f8a;
+  background: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.contenido .cerrarEliminar label:hover{
+	color: #FFFFFF;
+	background: #702f8a;
+}
 
 /*===============================================
 =          Ingresar/Modificar articulo          =
 ===============================================*/
 
+
 #ingProd, #actProd{
-	width: 400px;
-	border-right: 1px solid #888B8D;
-	padding-right: 50px;
-	text-align: center;
-	margin: 30px;
-}
-#ingProd h2, #actProd h2{
-	color: #006EB3;
-}
-#ingProd label, #actProd label{
-	display: flex;
-	justify-content: right;
-	align-items: center;
-}
-#ingProd input, #actProd input{
-	height: 28px;
-	border-color: #006EB3;
-	margin-left: 5px;
-	border-radius: 5px;
-}
-#ingProd input[type="submit"], #actProd input[type="submit"]{
-	color: #ffffff;
-	background: #006EB3; 
-}
-#ingProd input[type="submit"]:hover, #actProd input[type="submit"]:hover{
-	background: #702F8A;
-}
-#ingProd select, #actProd select{
-	width: 65%;
-	margin: 5px;
-	padding: 5px;
-	border-bottom: 1px solid #006EB3;
-	border-right: none;
-	border-left: none;
-	border-top: none;
-	border-radius: 0;
-	outline: none;
-}
-#ingProd textarea, #actProd textarea{
-	width: 65%;
-	height: 90px;
 	border: 1px solid #006EB3;
 	border-radius: 5px;
-	padding: 5px;
-	outline-color: #702F8A;
-	font-family: 'Roboto', sans-serif;
-	margin-left: 5px;
+	margin-top: 30px;
+	height: 820px;
+	width: 510px;
+	text-align: center;
+	padding: 20px 0;
 }
-#ingProd button, #actProd button{
-	color: #ffffff;
-	background: #006EB3;
+#actProd{
+	height: 550px;
+}
+#ingProd h2, #actProd h2{
+	font-size: 26px;
+	color: #006EB3;
+}
+#ingresar, #actualizar{
+	margin: 0 auto;
+	text-align: right;
+}
+#ingresar .inp, #actualizar .inp{
+	text-align: left;
+}
+#ingresar input, #ingresar select, #actualizar input, #actualizar select{
+	border: 1px solid #006EB3;
 	border-radius: 5px;
-	border: none;
-	padding: 10px;
-	font-size: 20px;
-	cursor: pointer;
-	margin-right: -100px;
+	height: 25px;
+	width: 250px;
+	outline: none
 }
-#actProd a{
+#ingresar input[type="number"], #actualizar input[type="number"]{
+	width: 80px;
+}
+#ingresar textarea, #actualizar textarea{
+	border: 1px solid #006EB3;
+	border-radius: 5px;
+	width: 250px;
+	height: 100px;
+}
+#ingresar input[type="file"]{
+	display: none;
+}
+#ingresar label{
+	height: 25px;
+	width: 250px;
+	font-size: 14px;
+	background: #006EB3;
 	color: #FFFFFF;
-	margin: 0 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border: 1px solid #006EB3;
+	border-radius: 5px;
+	transition: .12s ease all;
 }
-#ingProd button:hover, #actProd button:hover{
+#ingresar label:hover{
+	border: 1px solid #702F8A;
 	background: #702F8A;
 }
-.file-select {
-  position: relative;
-  display: inline-block;
+.seleccion::after {
+  content: attr(data-after);
+  white-space: pre;
 }
-
-.file-select::before {
-  background-color: #FFFFFF;
-  width: 106px;
-  color: #006EB3;
-  display: flex;
-  border-right: 1px solid #006EB3;
-  justify-content: center;
-  align-items: center;
-  content: 'Seleccionar';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  cursor: pointer;
-  transition: .12s ease all;
+#ingresar .btn, #actualizar .btn{
+	text-align: center;
 }
-.file-select:hover:before{
-	color: #FFFFFF;
+#ingresar .btn button, #actualizar .btn button{
+	width: 40px;
+	height: 40px;
 	background: #006EB3;
+	border: 1px solid #006EB3;
+	border-radius: 5px;
+	color: #FFFFFF;
+	font-size: 16px;
+	cursor: pointer;
 }
-.file-select input[type="file"] {
-  opacity: 0;
-  width: 200px;
-  height: 32px;
-  display: inline-block;
+#actualizar .btn a{
+	color: #FFFFFF;
+}
+#ingresar .btn button:hover, #actualizar .btn button:hover{
+	background: #702F8A;
+	border: 1px solid #702F8A;
+}
+#ingresar td, #actualizar td{
+	padding: 10px;
 }
 /*=====  End of Ingresar/Modificar articulo  ======*/

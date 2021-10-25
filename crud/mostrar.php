@@ -49,9 +49,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 }
 
 ?>
- 
-
-
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
@@ -190,211 +187,220 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 
 	<div id="crud">
 		<div id="ingProd">
-			<h2>Ingrese los datos del producto</h2>
+			<h2>Ingresar producto</h2>
 
 			<!--=========================================
 			=            Formulario ingresar            =
 			==========================================-->
+			<table id="ingresar">
+				<form action='administrar_producto.php' method='post' enctype="multipart/form-data">
+					<input type='hidden' name='insertar' value='insertar'>	
+					<input type="hidden" name="id">
+					<tr>
+						<td>Nombre:</td>
+						<td class="inp"><input type='text' name='nombre' required></td>
+					</tr>
+					<tr>
+						<td>Categoría:</td>
+						<td class="inp">
+							<select name="id_categoria" required>
+								<option value="">Selecione una categoría</option>
+							    <?php 
 
-			<form action='administrar_producto.php' method='post' enctype="multipart/form-data">
+							    foreach ($categorias->fetchAll() as $row) {
+								 $id = $row['id'];
 
-				<input type="hidden" name="id">
-					<label for="nombre">
-						Nombre Producto:
-						<input type='text' name='nombre' required>
-					</label>
-				<br>
-					<label for="id_categoria">
-						Categoría:
+								 ?>
+								 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+								}
 
-						<select name="id_categoria" required>
-							<option value="">Selecione una categoría</option>
-						    <?php 
+							    ?> 	
+							</select>
+						</td>
+					</tr>	
+					<tr>
+						<td>Descripción:</td>
+						<td class="inp"><textarea name="descripcion" required></textarea ></td>
+					</tr>
+					<tr>
+						<td>Precio:</td>
+						<td class="inp"><input type="number" name="precio" required></td>
+					</tr>
+					<input type="hidden" name="id_iva" value="1">
+					<tr>
+						<td>Proveedor:</td>
+						<td class="inp">
+							<select name="id_proveedor" required>
+								<option value="">Seleccione un proveedor</option>
+							    <?php 
 
-						    foreach ($categorias->fetchAll() as $row) {
-							 $id = $row['id'];
+							    foreach ($proveedores->fetchAll() as $row) {
+								 $id = $row['id'];
+								 echo "hola";
 
-							 ?>
-							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
-							}
+								 ?>
+								 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+								}
 
-						    ?> 	
-						</select>
-					</label>
-				<br>
-					<label for="descripcion">
-						Descripción:
-						<textarea name="descripcion" required></textarea >
-					</label>	
-				<br>
-					<label for="precio">
-						Precio:
-						<input type="number" name="precio" required>
-					</label>
-				<br>
-					<label for="id_iva">
-						IVA:
-						<select name="id_iva" required>
-							<option value="1">Tipo 1</option>
-							<option value="2">Tipo 2</option>
-							<option value="3">Tipo 3</option>
-						</select>
-					</label>
-				<br>
-					<label for="id_proveedor">
-						Categoría:
+							    ?> 	
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Cantidad:</td>
+						<td class="inp"><input type="number" name="stock" required></td>
+					</tr>
+					<tr>
+						<td>Primera imágen:</td>						
+						<td class="inp">
+							<label class="file">
+						        <input type="file" id="file" name="primera" onchange="fileChoose(event,this)" required/>
+						        <span class="seleccion" data-after="Cargar imágen"></span>
+						    </label>
+						</td>
+					</tr>
+					<tr>
+						<td>Primera imágen - Miniatura:</td>
+						<td class="inp">
+							<label class="file">
+						        <input type="file" id="file" name="primeramin" onchange="fileChoose(event,this)" required/>
+						        <span class="seleccion" data-after="Cargar imágen"></span>
+						    </label>
+						</td>
+					</tr>
+					<tr>
+						<td>Segunda imágen:</td>
+						<td class="inp">
+							<label class="file">
+						        <input type="file" id="file" name="segunda" onchange="fileChoose(event,this)" required/>
+						        <span class="seleccion" data-after="Cargar imágen"></span>
+						    </label>
+						</td>
+					</tr>
+					<tr>
+						<td>Segunda imágen - Minuatura:</td>
+						<td class="inp">
+							<label class="file">
+						        <input type="file" id="file" name="segundamin" onchange="fileChoose(event,this)" required/>
+						        <span class="seleccion" data-after="Cargar imágen"></span>
+						    </label>
+						</td>
+					</tr>
+					<tr>
+						<td>Tercera imágen:</td>
+						<td class="inp">
+							<label class="file">
+						        <input type="file" id="file" name="tercera" onchange="fileChoose(event,this)" required/>
+						        <span class="seleccion" data-after="Cargar imágen"></span>
+						    </label>
+						</td>
+					</tr>
+					<tr>
+						<td>Tercera imágen - Miniatura:</td>
+						<td class="inp">
+							<label class="file">
+						        <input type="file" id="file" name="terceramin" onchange="fileChoose(event,this)" required/>
+						        <span class="seleccion" data-after="Cargar imágen"></span>
+						    </label>
+						</td>
+					</tr>
+					<tr>
+						<td class="btn" colspan="2">
+						 	<button type="submit" id="btn-ingProd">
+								<i class="fas fa-save"></i>
+							</button>
+						</td>
+					</tr>
 
-						<select name="id_proveedor" required>
-							<option value="">Seleccione un proveedor</option>
-						    <?php 
-
-						    foreach ($proveedores2->fetchAll() as $row) {
-							 $id = $row['id'];
-							 echo "hola";
-
-							 ?>
-							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
-							}
-
-						    ?> 	
-						</select>
-					</label>
-				<br>
-					<label for="stock">
-						Cantidad:
-						<input type="number" name="stock" required>
-					</label>
-				<br>
-					<label for="primera">Primera imágen
-						<input type="file" class="file-select" name="primera" required/>
-					</label>
-					<br>
-					<label for="primera">Primera imágen miniatura
-						<input type="file" class="file-select" name="primeraMin" required/>
-					</label>
-					<br>
-					<label for="primera">Segunda imágen
-						<input type="file" class="file-select" name="segunda" required/>
-					</label>
-					<br>
-					<label for="primera">Segunda imágen miniatura
-						<input type="file" class="file-select" name="segundaMin" required/>
-					</label>
-					<br>
-					<label for="primera">Tercera imágen
-						<input type="file" class="file-select" name="tercera" required/>
-					</label>
-					<br>
-					<label for="primera">tercera imágen miniatura
-						<input type="file" class="file-select" name="terceraMin" required/>
-					</label>
-					<br>	
-					<input type='hidden' name='insertar' value='insertar'>
-					<button type="submit" id="btn-ingProd">
-						<i class="fas fa-save"></i>
-					</button>
-				</p>				
-			</form> 
+				</form> 
+			</table>
 
 			<!--====  End of Formulario ingresar  ====-->
 			
 		</div>
 
 		<div id="actProd">
-			<h2>Actualizar los datos del producto</h2>
+			<h2>Actualizar producto</h2>
 
 			<!--==========================================
 			=            Formulario modificar            =
 			===========================================-->
 
-			<form action='administrar_producto.php' method='post'>
-
-				<input type='hidden' name='id' value='<?php echo $producto->getId()?>'>
-				<p>
-					<label for="nombre">
-						Nombre del Producto:
-						<input type='text' name='nombre' value='<?php echo $producto->getNombre()?>' required>
-					</label>
-				</p>
-				<p>
-					<label for="id_categoria">
-						Categoría:
-
-						<select name="id_categoria" required>
-							<option value="<?php echo $producto->getId_categoria()?>">Mantener categoría</option>
-						    <?php 
-
-						    foreach ($categorias2->fetchAll() as $row) {
-							 $id = $row['id'];
-							 echo "hola";
-
-							 ?>
-							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
-							}
-
-						    ?> 	
-						</select>
-					</label>
-				</p>
-				<p>
-					<label for="descripcion">
-						Descripción:
-						<textarea name="descripcion" required><?php echo $producto->getDescripcion()?></textarea >
-					</label>
-				</p>
-				<p>
-					<label for="precio">
-						Precio:
-						<input type="number" name="precio" value='<?php echo $producto->getPrecio()?>' required>
-					</label>
-				</p>
-				<p>
-					<label for="id_iva">
-						IVA:
-						<select name="id_iva" required>
-							<option value="1">Tipo 1</option>
-							<option value="2">Tipo 2</option>
-							<option value="3">Tipo 3</option>
-						</select>
-					</label>
-				</p>
-				<p>
-					<label for="id_proveedor">
-						Proveedor:
-						<select name="id_proveedor" required>
-							<option value="<?php echo $producto->getId_proveedor()?>">Mantener proveedor</option>
-						    <?php 
-
-						    foreach ($proveedores2->fetchAll() as $row) {
-							 $id = $row['id'];
-							 echo "hola";
-
-							 ?>
-							 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
-							}
-
-						    ?> 	
-						</select>
-					</label>
-				</p>
-				<p>
-					<label for="stock">
-						Stock:
-						<input type="number" name="stock" value='<?php echo $producto->getStock()?>' required>
-					</label>
-				</p>
+			<table id="actualizar">
+				<form action='administrar_producto.php' method='post'>
 					<input type='hidden' name='actualizar' value='actualizar'>
-				<p>
-					<button type="submit">
-						<i class="fas fa-save"></i>
-					</button>
-					<button>
-						<a href="mostrar.php">
-							<i class="fas fa-times"></i>
-						</a>
-					</button>
-					</p>			
-				</form>
+					<input type="hidden" name="id" value="<?php echo $producto->getId(); ?>">
+					<tr>
+						<td>Nombre:</td>
+						<td class="inp"><input type='text' name='nombre' value="<?php echo $producto->getNombre(); ?>" required></td>
+					</tr>
+					<tr>
+						<td>Categoría:</td>
+						<td class="inp">
+							<select name="id_categoria" required>
+								<option value="<?php echo $producto->getId_categoria()?>">Mantener categoría</option>
+							    <?php 
+
+							    foreach ($categorias2->fetchAll() as $row) {
+								 $id = $row['id'];
+								 echo "hola";
+
+								 ?>
+								 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+								}
+
+							    ?> 	
+							</select>
+						</td>
+					</tr>	
+					<tr>
+						<td>Descripción:</td>
+						<td class="inp"><textarea name="descripcion" required><?php echo $producto->getDescripcion(); ?></textarea ></td>
+					</tr>
+					<tr>
+						<td>Precio:</td>
+						<td class="inp"><input type="number" name="precio" value="<?php echo $producto->getPrecio(); ?>" required></td>
+					</tr>
+					<input type="hidden" name="id_iva" value="1">
+					<tr>
+						<td>Proveedor:</td>
+						<td class="inp">
+							<select name="id_proveedor" required>
+								<option value="<?php echo $producto->getId_proveedor()?>">Mantener proveedor</option>
+							    <?php 
+
+							    foreach ($proveedores2->fetchAll() as $row) {
+								 $id = $row['id'];
+								 echo "hola";
+
+								 ?>
+								 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+								}
+
+							    ?> 	
+							</select>
+
+						</td>
+					</tr>
+					<tr>
+						<td>Cantidad:</td>
+						<td class="inp"><input type="number" name="stock" value="<?php echo $producto->getStock(); ?>" required></td>
+					</tr>
+					<tr>
+						<td class="btn" colspan="2">
+						 	<button type="submit" id="btn-ingProd">
+								<i class="fas fa-save"></i>
+							</button>
+							<button>
+								<a href="mostrar.php">
+									<i class="fas fa-times"></i>
+								</a>
+							</button>
+						</td>
+					</tr>
+
+				</form> 
+			</table>
 
 				<!--====  End of Formulario modificar  ====-->
 		
@@ -478,7 +484,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 							
 							<div class="imagenes">
 								<div class="contenido">
-									
 									<div class="cerrarImagenes">
 										<label for="btnImagenes<?php echo $producto->getId() ?>">
 											<i class="fas fa-times"></i>
@@ -537,9 +542,13 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 											<td>
 												<img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimera())?>"/>
 											</td>
-											<td>
+											<td class="inp">
 												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
-													<input type="file" class="file-select" name="imagen" required/>
+													<label class="file">
+												        <input type="file" id="file" name="imagen" onchange="fileChoose(event,this)" required/>
+												        <span class="seleccion" data-after="Cargar imágen"></span>
+												    </label>
+												    <br>
 													<input type='hidden' name='actualizar' value='primera'>
 													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
 													<input type="submit">
@@ -549,26 +558,85 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 										<tr>
 											<td>Miniatura primera imágen</td>
 											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getPrimeraMin())?>"/></td>
+											<td class="inp">
+												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+													<label class="file">
+												        <input type="file" id="file" name="imagen" onchange="fileChoose(event,this)" required/>
+												        <span class="seleccion" data-after="Cargar imágen"></span>
+												    </label>
+												    <br>
+													<input type='hidden' name='actualizar' value='primeramin'>
+													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
+													<input type="submit">
+												</form>
+											</td>
 										</tr>
 										<tr>
 											<td>Segunda imágen</td>
 											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegunda())?>"/></td>
+											<td class="inp">
+												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+													<label class="file">
+												        <input type="file" id="file" name="imagen" onchange="fileChoose(event,this)" required/>
+												        <span class="seleccion" data-after="Cargar imágen"></span>
+												    </label>
+												    <br>
+													<input type='hidden' name='actualizar' value='segunda'>
+													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
+													<input type="submit">
+												</form>
+											</td>
 										</tr>
 										<tr>
 											<td>Minuatura segunda imágen</td>
 											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getSegundaMin())?>"/></td>
+											<td class="inp">
+												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+													<label class="file">
+												        <input type="file" id="file" name="imagen" onchange="fileChoose(event,this)" required/>
+												        <span class="seleccion" data-after="Cargar imágen"></span>
+												    </label>
+												    <br>
+													<input type='hidden' name='actualizar' value='segundamin'>
+													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
+													<input type="submit">
+												</form>
+											</td>
 										</tr>
 										<tr>
 											<td>Tercera imágen</td>
 											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTercera())?>"/></td>
+											<td class="inp">
+												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+													<label class="file">
+												        <input type="file" id="file" name="imagen" onchange="fileChoose(event,this)" required/>
+												        <span class="seleccion" data-after="Cargar imágen"></span>
+												    </label>
+												    <br>
+													<input type='hidden' name='actualizar' value='tercera'>
+													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
+													<input type="submit">
+												</form>
+											</td>
 										</tr>
 										<tr>
 											<td>Minuatura tercera imágen</td>
 											<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($imagenes->getTerceraMin())?>"/></td>
+											<td class="inp">
+												<form action="administrar_imagenes.php" method="POST" enctype="multipart/form-data">
+													<label class="file">
+												        <input type="file" id="file" name="imagen" onchange="fileChoose(event,this)" required/>
+												        <span class="seleccion" data-after="Cargar imágen"></span>
+												    </label>
+												    <br>
+													<input type='hidden' name='actualizar' value='terceramin'>
+													<input type="hidden" name="id" value="<?php echo $producto->getId() ?>">
+													<input type="submit">
+												</form>
+											</td>
 										</tr>				
 									</table>
 								</div>
-
 							</div>
 							<style>
 								#btnImagenes<?php echo $producto->getId() ?>:checked ~ .imagenes{
@@ -582,7 +650,32 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td><?php echo $producto->getPrecio()?> </td>
 						<td><?php echo $producto->getStock() ?></td>
 						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a"><i class="fas fa-edit"></i></a></td>
-						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=e"><i class="fas fa-trash"></i></a></td>
+						<td  class="icon">
+							<label for="btnEliminar<?php echo $producto->getId() ?>">
+								<i class="fas fa-trash"></i>
+							</label>
+							<input type="checkbox" id="btnEliminar<?php echo $producto->getId() ?>">
+							
+							<div class="eliminar">
+								<div class="contenido">
+									
+									<div class="cerrarEliminar">
+										<p>¿Seguro que desea eliminar el producto  <b><?php echo $producto->getNombre(); ?></b>?</p>
+										<label for="btnEliminar<?php echo $producto->getId() ?>">
+											<i class="fas fa-times"></i>
+										</label>
+										<a  href="administrar_producto.php?id=<?php echo $producto->getId()?>&accion=e">
+											<i class="fas fa-trash"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<style>
+								#btnEliminar<?php echo $producto->getId() ?>:checked ~ .eliminar{
+									display: flex;
+	 							}
+	 						</style>
+						</td>
 					</tr>
 					<?php }
 					}?>
@@ -593,6 +686,14 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			<!--====  End of Mostrar productos  ====-->
 		</div>
 	</div>
+
+	<script>
+		function fileChoose(event, element) {
+    		if (event.target.files.length > 0) {
+       			element.nextElementSibling.setAttribute('data-after', event.target.files[0].name);
+    		}
+		}
+	</script>
 	<link rel="stylesheet" href="/scripts.js">
 </body>
 </html>
