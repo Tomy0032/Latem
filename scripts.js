@@ -81,7 +81,7 @@ function siguiente(){
 
 setInterval(function(){
 	siguiente();
-}, 8000);
+}, 10000);
 
 function anterior(){
 	if (lblradio3.classList.contains('active')) {

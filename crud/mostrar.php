@@ -457,7 +457,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						</tr>
 
 					<?php
-					}elseif (isset($listaProductos) && $listaProductos == null && $_POST['tipo-busqueda'] == 2) {
+					}elseif (isset($_POST['busqueda']) && isset($listaProductos) && $listaProductos == null && $_POST['tipo-busqueda'] == 2) {
 						?>
 						
 						<tr>
