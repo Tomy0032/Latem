@@ -1,8 +1,22 @@
+<?php
+require_once('crud_producto.php');
+
+$db=Db::conectar();
+
+
+$categoria = $_GET['categoria'];
+$descripcionCategoria = $db->query("select * from categoria where nombre = '$categoria'");
+$listaProductos = $db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria'");
+$listaProductos2=$db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria'");
+
+?>
+
+
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+	<title>Robotech</title>
 	<link rel="stylesheet" href="/utu/Latem/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,98 +141,65 @@
 			<!--====  End of Barra de navegación  ====-->
 	</header>
 	
-	<div id="contenedor">
+	<div class="contenedor-catalogo">
+		<?php if ($categoria == 'Sonido' || $categoria == 'Temperatura' || $categoria == 'Humedad' || $categoria == 'Luminosidad'){
+			?> 
+			<h1><?php echo 'Sensores de ' .$categoria ?></h1>
+			<?php 
+		}else{
+		?>
+			<h1><?php echo $categoria ?></h1>
+		<?php  
+		}
+		?>
+		<p>
+			<?php foreach ($descripcionCategoria->fetchAll() as $row){
+				echo $row['descripcion'];
+			}
+			?>
+		</p>
+			
+		<div class="contenedor-productos">
 
-		<!--=====================================
-		=    Navegación Iniciar/Registrar       =
-		======================================-->
-		
-		<nav id="nav_login">
-			<ul>
-				<li id="btn-iniciar" class="click">Iniciar Sesión</li>
-				<li id="btn-registrar" class="">Registrarse</li>
-			</ul>
-		</nav>		
-		
-		<!--====  End of Navegación Iniciar/Registrar  ====-->
-		
-		<!--=====================================
-		=                 Login                 =
-		======================================-->
-		
-		<form action="login.php" id="login" class="" method="post">
-			<p>
-			<label for="ci">
-				<i class="fas fa-address-card"></i>
-				<input type="int" name="ci" placeholder="Cédula de identidad" required>
-			</label>
-			</p>
-			<p>
-			<label for="clave">
-				<i class="fas fa-key"></i>
-				<input type="password" name="clave" placeholder="Contraseña" required>
-			</label>
-			</p>
-			<p class="error --errorLog">Error de autentificación</p>	
-			<p>
-				<input type="submit" value="Ingresar">
-			</p>
-		</form>
-		
-		<!--====  End of Login  ====-->
-		
-		
-		<!--==============================
-		=            Registro            =
-		===============================-->
-		
-		<form action="registro.php" id="registro" class="click" method="post">
-			<p>
-			<label for="ci">
-				<i class="fas fa-address-card"></i>
-				<input type="int" name="ci" placeholder="Cédula de identidad" required>
-			</label>
-			</p>
-			<p>
-			<label for="nombre">
-				<i class="fas fa-user"></i>
-				<input type="text" name="nombre" placeholder="Nombre" required>
-			</label>
-			</p>
-			<p>
-			<label for="apellido">
-				<i class="fas fa-user"></i>
-				<input type="text" name="apellido" placeholder="Apellido" required>
-			</label>
-			</p>
-			<p>
-			<label for="correo">
-				<i class="fas fa-at"></i>
-				<input type="email" name="correo" placeholder="Correo electrónico" required>
-			</label>
-			</p>
-			<p>
-			<label for="clave">
-				<i class="fas fa-key"></i>
-				<input type="password" name="clave" placeholder="Contraseña" required>
-			</label>
-			</p>
-			<p>
-			<label for="confirmarClave">
-				<i class="fas fa-key"></i>
-				<input type="password" name="confirmarClave" placeholder="Confirmar contraseña" required>
-			</label>
-			<p class="error --errorCon">Las contraseñas no coinciden</p>
-			<p class="error --errorCI">Ya hay un usuario registrado con esa Cédula de Identidad</p>
-			</p>
-			<p>
-				<input type="submit" value="Registrarse">
-			</p>
-		</form>
-		
-		<!--====  End of Registro  ====-->
-		
+			<?php 
+			if ($listaProductos->fetchAll() == null) {
+				
+				?>
+					<div class="noProducto">
+						<h2>No se han encontrado productos :(</h2>
+						<br>
+						<p>Esto puede deberse a un problema de nuestro servidor</p>
+						<p>Si es así, no tardaremos en solucionarlo ;)</p>
+					</div>
+				<?php
+			}
+			else{
+				foreach ($listaProductos2->fetchAll() as $row) {
+					?>
+					<a href="">
+						<div class="producto">
+							<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
+							<span>
+								<?php
+								echo $row['nombre'];
+								?>
+							</span>
+							<span style="color: #702F8A; font-weight: bold; font-size: 22px;">
+								<?php
+								echo "$";
+								echo $row['precio'];
+								?>
+							</span>
+							
+						</div>
+					</a>
+					<?php
+				}
+			}			
+			 ?>
+		</div>
 	</div>
+	
 	<script src="/utu/Latem/scripts.js"></script>
 </body>
 </html>

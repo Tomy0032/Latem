@@ -581,6 +581,44 @@ header{
 #buscador-crud input[type="radio"]{
 	border-radius: 0;
 }
+.cambiarPágina{
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+}
+.cambiarPágina a{
+	box-sizing: border-box;
+	height: 35px;
+	text-decoration: none;
+	font-size: 20px;
+	background:  #702F8A;
+	color: #FFFFFF;
+	padding: 6px;
+	border: 1px solid  #702F8A;
+}
+.cambiarPágina .left{
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	margin-right: -1px;
+}
+.cambiarPágina .right{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-left: -1px;
+}
+.cambiarPágina a:hover{
+	background: #FFFFFF;
+	color: #702F8A;
+	
+}
+.cambiarPágina form input{
+	width: 50px;
+	height: 35px;
+	text-align: center;
+	border: 1px solid  #702F8A;
+	border-radius: 0;
+	outline: none;
+}
 /*=====  End of Tabla mostrar  ======*/
 
 
@@ -780,3 +818,72 @@ header{
 	padding: 10px;
 }
 /*=====  End of Ingresar/Modificar articulo  ======*/
+
+/*================================
+=            Catálogo            =
+================================*/
+
+.contenedor-catalogo{
+	margin-top: 100px; 
+	padding: 0 250px;
+	min-height: 200px;
+}
+.contenedor-catalogo h1, .contenedor-catalogo p{
+	margin-left: 20px;
+}
+.contenedor-catalogo h1{
+	color: #702F8A;
+}
+.contenedor-productos{
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	display: table;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+.contenedor-productos a{
+	text-decoration: none;
+}
+.producto{
+	width: 320px;
+	height: 450px;
+	border: 1px solid black;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 55px;
+	text-align: center;
+	color: #000000;
+	background: #FFFFFF;
+	transition: all ease .25s;
+}
+.producto:hover{
+	background: #E4E4E4;
+}
+.producto img{
+	width: 280px;
+	height: 280px;
+	object-fit: cover;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}
+.producto span{
+	display: block;
+	padding: 10px;
+	margin-left: 30px;
+	font-size: 20px;
+	text-align: left;
+}
+.noProducto{
+	box-sizing: border-box;
+	padding: 50px;
+	width: 100%;
+	
+}
+.noProducto h2{
+	color: #006EB3;
+}
+/*=====  End of Catálogo  ======*/
+

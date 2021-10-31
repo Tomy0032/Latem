@@ -47,7 +47,6 @@ function hoverProductos(){
 	abrirProductos.classList.remove('noEncima');
 	abrirProductos.classList.add('encima');
 }
-
 function noHoverProductos(){
 	abrirProductos.classList.remove('encima');
 	abrirProductos.classList.add('noEncima');

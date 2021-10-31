@@ -19,11 +19,10 @@ public function insertar($producto){
  
 }
  
-public function mostrar($pagina){
+public function mostrar(){
 	$db=Db::conectar();
 	$listaProductos=[];
-	$p=$pagina.'0';
-	$select=$db->query("SELECT * FROM producto limit $p,10");
+	$select=$db->query('SELECT * FROM producto');
 	 
 	foreach($select->fetchAll() as $producto){
 	$myProducto= new producto();

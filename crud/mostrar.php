@@ -15,6 +15,16 @@ $categorias=$db->query('select * from categoria');
 $proveedores=$db->query('select * from proveedor');
 $categorias2=$db->query('select * from categoria');
 $proveedores2=$db->query('select * from proveedor');
+$pagina=$_GET['pagina'];
+
+if ($pagina <= 0) {
+	header('Location: mostrar.php?pagina=1');
+}
+if ($crudP->mostrar($pagina-1) == null) {
+	while ($crudP->mostrar($pagina - 1) == null) {
+		$pagina = $pagina - 1;
+	}
+}
 
 if (isset($_POST['busqueda'])) {
 	if ($_POST['tipo-busqueda'] == 1) {
@@ -24,7 +34,7 @@ if (isset($_POST['busqueda'])) {
 	}
 	
 }else{
-	$listaProductos=$crudP->mostrar();
+	$listaProductos=$crudP->mostrar($pagina-1);
 }
 
 if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
@@ -235,11 +245,9 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 							    <?php 
 
 							    foreach ($proveedores->fetchAll() as $row) {
-								 $id = $row['id'];
-								 echo "hola";
 
 								 ?>
-								 <option value="<?php echo $id ?>"><?php echo $row['nombre']; ?></option><?php
+								 <option value="<?php echo $row['id'] ?>"><?php echo $row['nombre']; ?></option><?php
 								}
 
 							    ?> 	
@@ -430,10 +438,39 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						</section>
 					</form>
 					<?php if (isset($_POST['busqueda'])){ ?>
-						<a href="mostrar.php">Eliminar busqueda</a>
+						<a href="mostrar.php?pagina=1">Eliminar busqueda</a>
 					<?php } ?>
-				</div>					
-		
+				</div>		
+			<?php 
+			if (!isset($_POST['busqueda'])) {
+				?>
+				<div class="cambiarPágina">
+					<?php if ($pagina > 1){
+					 ?>
+						<a class="left" href="mostrar.php?pagina=<?php echo $pagina - 1 ?>">
+							<i class="fas fa-chevron-left"></i>
+						</a>
+					<?php 
+					}
+					 ?>
+					<form action="mostrar.php" method=get name="formPagina">
+						<input name="pagina" onkeypress="if (event.keyCode == 13) enviar_formulario()" value="<?php echo $pagina ?>" />
+					</form>
+					<?php 
+					if($crudP->mostrar($pagina) != null){
+					 ?>
+						<a class="right" href="mostrar.php?pagina=<?php echo $pagina + 1 ?>">
+							<i class="fas fa-chevron-right"></i>
+						</a>
+					<?php 
+					}
+					 ?>					
+				</div>
+
+				<?php
+			}
+			 ?>
+			
 			<table id="mostrar">
 				<thead>
 					<td>ID</td>
@@ -682,7 +719,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 				</tbody>
 
 			</table>
-			
 			<!--====  End of Mostrar productos  ====-->
 		</div>
 	</div>
@@ -693,6 +729,10 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
        			element.nextElementSibling.setAttribute('data-after', event.target.files[0].name);
     		}
 		}
+	
+	function enviar_formulario(){
+		document.formPagina.submit()
+	}	
 	</script>
 	<link rel="stylesheet" href="/scripts.js">
 </body>
