@@ -3,7 +3,6 @@
 require_once('crud_producto.php');
 require_once('producto.php');
 require_once('conexion.php');
-require_once('categoria.php');
 require_once('crud_imagenes.php');
 require_once('imagenes.php');
 $db=Db::conectar();
@@ -21,7 +20,7 @@ if ($pagina <= 0) {
 	header('Location: mostrar.php?pagina=1');
 }
 if ($crudP->mostrar($pagina-1) == null) {
-	while ($crudP->mostrar($pagina - 1) == null) {
+	while ($crudP->mostrar($pagina - 1) == null && $pagina > 1) {
 		$pagina = $pagina - 1;
 	}
 }
@@ -259,6 +258,17 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td class="inp"><input type="number" name="stock" required></td>
 					</tr>
 					<tr>
+						<td>Estado:</td>
+						<td>
+							<select name="estado" id="estado" required>
+								<option value="">Seleccione un estado</option>
+								<option value="activo">Activo</option>
+								<option value="inactivo">Inactivo</option>
+								<option value="destacado">Destacado</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<td>Primera imágen:</td>						
 						<td class="inp">
 							<label class="file">
@@ -395,6 +405,17 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td class="inp"><input type="number" name="stock" value="<?php echo $producto->getStock(); ?>" required></td>
 					</tr>
 					<tr>
+						<td>Estado:</td>
+						<td>
+							<select name="estado" id="estado" required>
+								<option value="<?php echo $producto->getEstado() ?>">Mantener estado</option>
+								<option value="activo">Activo</option>
+								<option value="inactivo">Inactivo</option>
+								<option value="destacado">Destacado</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<td class="btn" colspan="2">
 						 	<button type="submit" id="btn-ingProd">
 								<i class="fas fa-save"></i>
@@ -482,6 +503,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					<td>Descripción</td>
 					<td>Precio</td>
 					<td>Stock</td>
+					<td>Estado</td>
 					<td>Modificar</td>
 					<td>Eliminar</td>
 				</thead>
@@ -490,7 +512,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					if (isset($_POST['busqueda']) && $producto->getId() == 0 && $_POST['tipo-busqueda'] == 1){ ?>
 						
 						<tr>
-							<td colspan="11">No se a encontrado el producto</td>
+							<td colspan="12">No se ha encontrado el producto</td>
 						</tr>
 
 					<?php
@@ -498,12 +520,19 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						?>
 						
 						<tr>
-							<td colspan="11">No se a encontrado el producto</td>
+							<td colspan="12">No se ha encontrado el producto</td>
 						</tr>
 
 					<?php
 					}
-					 	
+					if ($pagina == 1 && $crudP->mostrar($pagina - 1) == null){ ?>
+						
+						<tr>
+							<td colspan="12">No se ha cargado ningún producto</td>
+						</tr>
+
+					<?php
+					}
 			
 					elseif (isset($_POST['busqueda']) && $_POST['tipo-busqueda'] == 1){ 
 
@@ -686,7 +715,8 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<td><?php echo $producto->getDescripcion() ?></td>
 						<td><?php echo $producto->getPrecio()?> </td>
 						<td><?php echo $producto->getStock() ?></td>
-						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a"><i class="fas fa-edit"></i></a></td>
+						<td>Activo</td>
+						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a&pagina=<?php echo $pagina ?>"><i class="fas fa-edit"></i></a></td>
 						<td  class="icon">
 							<label for="btnEliminar<?php echo $producto->getId() ?>">
 								<i class="fas fa-trash"></i>

@@ -1,6 +1,4 @@
 <?php
-require_once('crud_producto.php');
-
 $db=Db::conectar();
 
 

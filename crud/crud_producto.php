@@ -7,7 +7,7 @@ public function __construct(){}
  
 public function insertar($producto){
 	$db=Db::conectar();
-	$insert=$db->prepare("insert into producto(id_categoria, id_iva, id_proveedor, nombre, descripcion,precio, stock) values(:id_categoria,:id_iva,:id_proveedor,:nombre,:descripcion,:precio,:stock)");
+	$insert=$db->prepare("insert into producto(id_categoria, id_iva, id_proveedor, nombre, descripcion,precio, stock, estado) values(:id_categoria,:id_iva,:id_proveedor,:nombre,:descripcion,:precio,:stock,:estado)");
 	$insert->bindValue('id_categoria',$producto->getId_categoria());
 	$insert->bindValue('id_iva',$producto->getId_iva());
 	$insert->bindValue('id_proveedor',$producto->getId_proveedor());
@@ -15,6 +15,7 @@ public function insertar($producto){
 	$insert->bindValue('descripcion',$producto->getDescripcion());
 	$insert->bindValue('precio',$producto->getPrecio());
 	$insert->bindValue('stock',$producto->getStock());
+	$insert->bindValue('estado',$producto->getEstado());
 	$insert->execute();
  
 }
@@ -35,6 +36,7 @@ public function mostrar($pagina){
 	$myProducto->setDescripcion($producto['descripcion']);
 	$myProducto->setPrecio($producto['precio']);
 	$myProducto->setStock($producto['stock']);
+	$myProducto->setEstado($producto['estado']);
 	$listaProductos[]=$myProducto;
 	}
 	return $listaProductos;
@@ -67,13 +69,14 @@ public function obtenerProducto($id){
 	$myProducto->setDescripcion($producto['descripcion']);
 	$myProducto->setPrecio($producto['precio']);
 	$myProducto->setStock($producto['stock']);
+	$myProducto->setEstado($producto['estado']);
 	return $myProducto;
 	
 }
 
 public function actualizar($producto){
 	$db=Db::conectar();
-	$actualizar=$db->prepare('UPDATE producto SET id_categoria=:id_categoria,id_iva=:id_iva,id_proveedor=:id_proveedor,nombre=:nombre, descripcion=:descripcion,precio=:precio,stock=:stock  WHERE ID=:id');
+	$actualizar=$db->prepare('UPDATE producto SET id_categoria=:id_categoria,id_iva=:id_iva,id_proveedor=:id_proveedor,nombre=:nombre, descripcion=:descripcion,precio=:precio,stock=:stock, estado=:estado  WHERE ID=:id');
 	$actualizar->bindValue('id',$producto->getId());
 	$actualizar->bindValue('id_categoria',$producto->getId_categoria());
 	$actualizar->bindValue('id_iva',$producto->getId_iva());
@@ -82,6 +85,7 @@ public function actualizar($producto){
 	$actualizar->bindValue('descripcion',$producto->getDescripcion());
 	$actualizar->bindValue('precio',$producto->getPrecio());
 	$actualizar->bindValue('stock',$producto->getStock());
+	$actualizar->bindValue('estado',$producto->getEstado());
 	$actualizar->execute();
 }
 
@@ -100,6 +104,7 @@ public function buscarNombre($nombre){
 	$myProducto->setDescripcion($producto['descripcion']);
 	$myProducto->setPrecio($producto['precio']);
 	$myProducto->setStock($producto['stock']);
+	$myProducto->setEstado($producto['estado']);
 	$listaProductos[]=$myProducto;
 
 	}

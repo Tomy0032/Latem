@@ -19,6 +19,7 @@ if (isset($_POST['insertar'])) {
 	$producto->setDescripcion($_POST['descripcion']);
 	$producto->setPrecio($_POST['precio']);
 	$producto->setStock($_POST['stock']);
+	$producto->setEstado($_POST['estado']);
 	
 	$crud->insertar($producto);
 
@@ -54,6 +55,7 @@ if (isset($_POST['insertar'])) {
 	$producto->setDescripcion($_POST['descripcion']);
 	$producto->setPrecio($_POST['precio']);
 	$producto->setStock($_POST['stock']);
+	$producto->setEstado($_POST['estado']);
 	$crud->actualizar($producto);
 	header('Location: mostrar.php?pagina=1');
 

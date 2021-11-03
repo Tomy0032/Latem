@@ -10,6 +10,7 @@ class Producto{
 	private $descripcion;
 	private $precio;
 	private $stock;
+	private $estado;
 
  
 	function __construct(){}
@@ -85,6 +86,14 @@ class Producto{
  
 	public function setStock($stock){
 		$this->stock = $stock;
+	}
+
+	public function getEstado(){
+		return $this->estado;
+	}
+ 
+	public function SetEstado($estado){
+		$this->estado = $estado;
 	}
 }
 ?>
