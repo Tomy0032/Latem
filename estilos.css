@@ -1,17 +1,13 @@
 /*
 	Colores: 
-
 	violeta #702F8A
-  gris    #888B8D
+	gris    #888B8D
  	gris2   #D6D6D6
  	azul    #006EB3
 
  */
 body{
 	font-family: 'Roboto', sans-serif;
-}
-a:not(#categorias div ul li a), input[type="submit"], button{
-	transition: .12s ease all;
 }
 /*===========================================
 =            Barra de navegación            =
@@ -41,22 +37,22 @@ header{
 #menu nav{
 	float: right;
 }
-#menu ul:not(#menu-productos ul){
+#menu ul:not(#menu-productos ul, #menu-usuario ul){
 	margin: 0;
 }
-#menu ul li:not(#productos, #menu-productos ul li){
+#menu ul li:not(#productos, #menu-productos ul li, #usuario, #menu-usuario ul li){
 	list-style: none;
 	float: left;
 	margin-left: 25px;
 	padding: 25px 0;
 }
-#productos{
+#productos, #usuario{
 	list-style: none;
 	float: left;
 	margin-left: 25px;
 	padding-top: 12px;
 }
-#productos button{
+#productos button, #usuario button{
 	padding: 13px;
 	font-size: 18px;
 	padding-bottom: 26px;
@@ -66,6 +62,13 @@ header{
 	border-top-left-radius: 5px;
 	border: none;
 	cursor: pointer;
+}
+#usuario button{
+	padding-bottom: 30px;
+}
+#usuario button:hover{
+	background: #702F8A;
+	color: #FFFFFF;
 }
 .noEncima{	
 	background: #FFFFFF;
@@ -82,13 +85,16 @@ header{
 #productos button:hover + #menu-productos{
 	visibility: visible;
 }
-#menu ul li a:not(#categorias div ul li a){
+#usuario button:hover + #menu-usuario{
+	visibility: visible;
+}
+#menu ul li a:not(#categorias div ul li a, #menu-usuario ul li a){
 	text-decoration: none;
 	padding: 13px;
 	border-radius: 5px;
 	color: #702F8A;
 }
-#menu ul li a:hover:not(#categorias a:hover) {
+#menu ul li a:hover:not(#categorias a:hover, #menu-usuario a:hover) {
 	background: #702F8A;
 	color: #FFFFFF;
 }
@@ -132,6 +138,7 @@ header{
 	margin: 0 auto;
 	width: 50%;
 	height: 300px;
+	min-width: 900px;
 	background: #FFFFFF;
 	left: 25%;
 	visibility: hidden;
@@ -140,7 +147,38 @@ header{
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 }
-#menu-productos:hover{
+#menu-usuario{
+	position: absolute;
+	background: #FFFFFF;
+	border: 1px solid #702F8A;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-left: -55px;
+	width: 150px;
+	visibility: hidden;
+}
+#menu-usuario ul{
+	list-style: none;
+	padding: 0;
+	text-align: center;
+}
+#menu-usuario ul li a{
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	background: #FFFFFF;
+}
+#menu-usuario ul li.last a{
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px; 
+}
+#menu-usuario ul li a:hover{
+	background: #702F8A;
+	color: #FFFFFF;
+	border-radius: 0;
+}
+
+#menu-productos:hover, #menu-usuario:hover{
 	visibility: visible;
 }
 #categorias{
@@ -368,12 +406,16 @@ header{
 
 /*=====  End of Navegación Login/Registro  ======*/
 
-#contenedor{
+.login{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+#contenedor-login{
 	width: 400px;
 	height: 560px;
-	margin-top: 5%;
-	margin-left: auto;
-	margin-right: auto;
 	border: 1px solid #888B8D;
 	border-radius: 5px;
 }
@@ -434,7 +476,6 @@ header{
 	padding-top: 130px;
 }
 #login input{
-	color: #702F8A;
 	border-color: #006EB3;
 }
 #login input[type="submit"]{
@@ -460,7 +501,6 @@ header{
 	padding-top: 25px;
 }
 #registro input{
-	color: #006EB3;
 	border-color: #702F8A;
 }
 #registro input[type="submit"]{
@@ -887,3 +927,75 @@ header{
 }
 /*=====  End of Catálogo  ======*/
 
+/*=====      Pie de página     ======*/
+
+footer{
+	width: 100%;
+	background: #888B8D;
+	color: #FFFFFF;
+	padding-top: 40px;
+	padding: 40px;
+	box-sizing: border-box;
+
+}
+.contenedor-footer{
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+	padding: 40px;
+}
+.f-body{
+	display: flex;
+	justify-content: space-between;
+}
+.columna1{
+	max-width: 400px;
+}
+.columna1 h2{
+	font-size: 20px;
+}
+.columna1 p{
+	font-size: 14px;
+}
+.columna2{
+	max-width: 400px
+}
+.columna2 h2{
+	font-size: 20px;
+}
+.fila{
+	margin-top: 20px;
+	display: flex;
+}
+.fila img{
+	width: 36px;
+	height: 36px;
+}
+.fila label{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.columna3{
+	max-width: 400px;
+}
+.columna3 h2{
+	font-size: 20px;
+}
+.f-footer{
+	box-sizing: border-box;
+	width: 100%;
+	background: #727272;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+}
+.copyright a{
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.informacion a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+/*=====  End of Pie de página  ======*/

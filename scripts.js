@@ -16,12 +16,13 @@ var cambiarLogin = document.getElementById('btn-iniciar'),
 	contador = 0;
 
 var	abrirProductos = document.getElementById('btn-productos'),
-	menuProductos = document.getElementById('menu-productos');
+	menuProductos = document.getElementById('menu-productos'),
+	abrirUsuario = document.getElementById('btn-usuario'),
+	menuUsuario = document.getElementById('menu-usuario');
 
 var lblradio1 = document.getElementById('lblradio1'),
 	lblradio2 = document.getElementById('lblradio2'),
 	lblradio3 = document.getElementById('lblradio3');
-	
 
 function cambioLogin(){
 	if (contador == 1) {
@@ -51,7 +52,14 @@ function noHoverProductos(){
 	abrirProductos.classList.remove('encima');
 	abrirProductos.classList.add('noEncima');
 }
-
+function hoverUsuario(){
+	abrirUsuario.classList.remove('noEncima');
+	abrirUsuario.classList.add('encima');
+}
+function noHoverUsuario(){
+	abrirUsuario.classList.remove('encima');
+	abrirUsuario.classList.add('noEncima');
+}
 function siguiente(){
 	if (lblradio1.classList.contains('active')) {
 		lblradio1.classList.remove('active');
@@ -145,6 +153,10 @@ if (cambiarRegistro) {
 if (menuProductos) {
 	menuProductos.addEventListener('mouseover', hoverProductos, true);
 	menuProductos.addEventListener('mouseout', noHoverProductos, true);
+}
+if (menuUsuario) {
+	menuUsuario.addEventListener('mouseover', hoverUsuario, true);
+	menuUsuario.addEventListener('mouseout', noHoverUsuario, true);
 }
 if (btnRight){
 	btnRight.addEventListener('click', function(){

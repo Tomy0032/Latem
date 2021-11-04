@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once('crud_producto.php');
 require_once('producto.php');
 require_once('conexion.php');
@@ -10,11 +12,18 @@ $crudP=new CrudProducto();
 $producto= new producto();
 $crudI=new CrudImagenes();
 $imagenes= new Imagenes();
+$usuario=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
+foreach ($usuario->fetchAll() as $row) {
+	if ($row['permiso'] == 0) {
+		header('location: /utu/latem/index.html');
+	}
+}
 $categorias=$db->query('select * from categoria');
 $proveedores=$db->query('select * from proveedor');
 $categorias2=$db->query('select * from categoria');
 $proveedores2=$db->query('select * from proveedor');
 $pagina=$_GET['pagina'];
+
 
 if ($pagina <= 0) {
 	header('Location: mostrar.php?pagina=1');
@@ -78,7 +87,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			<div id="menu">
 
 				<!---Logo--->
-				<a href="">
+				<a href="/utu/latem/">
 					<img src="/utu/Latem/Recursos/RoboTech logo.png" alt="">
 				</a>
 				<!---Logo--->
@@ -259,7 +268,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					</tr>
 					<tr>
 						<td>Estado:</td>
-						<td>
+						<td class="inp">
 							<select name="estado" id="estado" required>
 								<option value="">Seleccione un estado</option>
 								<option value="activo">Activo</option>
@@ -406,7 +415,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					</tr>
 					<tr>
 						<td>Estado:</td>
-						<td>
+						<td class="inp">
 							<select name="estado" id="estado" required>
 								<option value="<?php echo $producto->getEstado() ?>">Mantener estado</option>
 								<option value="activo">Activo</option>
@@ -500,7 +509,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					<td>Proveedor</td>
 					<td>Imágenes</td>
 					<td>Nombre</td>
-					<td>Descripción</td>
 					<td>Precio</td>
 					<td>Stock</td>
 					<td>Estado</td>
@@ -512,7 +520,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					if (isset($_POST['busqueda']) && $producto->getId() == 0 && $_POST['tipo-busqueda'] == 1){ ?>
 						
 						<tr>
-							<td colspan="12">No se ha encontrado el producto</td>
+							<td colspan="11">No se ha encontrado el producto</td>
 						</tr>
 
 					<?php
@@ -520,7 +528,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						?>
 						
 						<tr>
-							<td colspan="12">No se ha encontrado el producto</td>
+							<td colspan="11">No se ha encontrado el producto</td>
 						</tr>
 
 					<?php
@@ -528,14 +536,13 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					if ($pagina == 1 && $crudP->mostrar($pagina - 1) == null){ ?>
 						
 						<tr>
-							<td colspan="12">No se ha cargado ningún producto</td>
+							<td colspan="11">No se ha cargado ningún producto</td>
 						</tr>
 
 					<?php
 					}
 			
 					elseif (isset($_POST['busqueda']) && $_POST['tipo-busqueda'] == 1){ 
-
 					?>
 					<tr>
 						<td><?php echo $producto->getId() ?></td>
@@ -570,7 +577,6 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 	 						</style>
 						</td>
 						<td><?php echo $producto->getNombre() ?></td>
-						<td><?php echo $producto->getDescripcion() ?></td>
 						<td><?php echo $producto->getPrecio()?> </td>
 						<td><?php echo $producto->getStock() ?></td>
 						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a"><i class="fas fa-edit"></i></a></td>
@@ -580,10 +586,21 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 					else{ 
 					?>
 					<?php 
-					foreach ($listaProductos as $producto) {?>
+					foreach ($listaProductos as $producto) {
+						$id_categoria = $producto->getId_categoria();
+						$selCategoria = $db->query("select * from categoria where id='$id_categoria'");
+						?>
+						
 					<tr>
 						<td><?php echo $producto->getId() ?></td>
-						<td><?php echo $producto->getId_categoria() ?></td>
+						<td>
+							<?php  
+							foreach ($selCategoria->fetchAll() as $cate) {
+								echo $cate['nombre'];
+							}
+							?>
+								
+							</td>
 						<td><?php echo $producto->getId_iva() ?></td>
 						<td><?php echo $producto->getId_proveedor() ?></td>
 						<td class="icon">
@@ -712,10 +729,9 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 	 						</style>
 						</td>
 						<td><?php echo $producto->getNombre() ?></td>
-						<td><?php echo $producto->getDescripcion() ?></td>
 						<td><?php echo $producto->getPrecio()?> </td>
 						<td><?php echo $producto->getStock() ?></td>
-						<td>Activo</td>
+						<td><?php echo $producto->getEstado() ?></td>
 						<td  class="icon"><a  href="mostrar.php?id=<?php echo $producto->getId()?>&accion=a&pagina=<?php echo $pagina ?>"><i class="fas fa-edit"></i></a></td>
 						<td  class="icon">
 							<label for="btnEliminar<?php echo $producto->getId() ?>">

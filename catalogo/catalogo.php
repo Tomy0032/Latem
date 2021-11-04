@@ -1,11 +1,13 @@
 <?php
-$db=Db::conectar();
+session_start();
+require_once 'conexion.php';
 
+$db=Db::conectar();
 
 $categoria = $_GET['categoria'];
 $descripcionCategoria = $db->query("select * from categoria where nombre = '$categoria'");
-$listaProductos = $db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria'");
-$listaProductos2=$db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria'");
+$listaProductos = $db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
+$listaProductos2=$db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
 
 ?>
 
@@ -150,13 +152,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 		<?php  
 		}
 		?>
-		<p>
-			<?php foreach ($descripcionCategoria->fetchAll() as $row){
-				echo $row['descripcion'];
-			}
-			?>
-		</p>
-			
+		
 		<div class="contenedor-productos">
 
 			<?php 

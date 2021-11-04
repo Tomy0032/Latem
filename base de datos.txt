@@ -47,8 +47,7 @@ foreign key(ci) references cliente(ci)
 
 create table categoria(
 id int(4) not null auto_increment,
-nombre varchar(20) not null,
-descripcion text not null,
+nombre varchar(50) not null,
 primary key(id)
 );
 create table iva(
@@ -60,7 +59,7 @@ primary key(id)
 
 create table proveedor(
 id int(4) not null auto_increment,
-nombre varchar(20) not null,
+nombre varchar(60) not null,
 correo varchar(30) not null,
 primary key(id)
 );
@@ -86,10 +85,11 @@ id int not null auto_increment,
 id_categoria int(4) not null,
 id_iva int(1) not null,
 id_proveedor int(4) not null,
-nombre varchar(30) not null,
+nombre varchar(80) not null,
 descripcion text not null,
 precio int not null,
 stock int not null,
+estado enum('activo', 'inactivo', 'destacado'),
 primary key(id),
 foreign key(id_categoria) references categoria(id),
 foreign key(id_iva) references iva(id),
@@ -181,14 +181,25 @@ primary key(id_producto),
 foreign key(id_producto) references producto(id)
 );
 
-insert into iva values
-('', 'Común', '0.22');
 
-insert into proveedor values
-('', 'Proveedor A', 'proveedora@gmail.com'),
-('', 'Proveedor B', 'proveedorb@gmail.com');
+insert into iva (nombre, impuesto)values
+('Común', '0.22');
 
-insert into categoria values
-('', 'Herramientas', 'Descripción herramientas'),
-('', 'Robótica', 'Descripción robótica'),
-('', 'Equipo', 'Descripción equipo');
+
+insert into categoria (nombre) values
+('Tarjetas de desarrollo'),
+('Módulos'),
+('Accesorios'),
+('Fuentes de alimentación'),
+('Diodos y Tristores'),
+('Cables y Conectores'),
+('Transistores'),
+('Interruptores y Reles'),
+('Resistivos'),
+('Soldadores y Desoldadores'),
+('Equipamiento antiestático'),
+('Medidores'),
+('Sonido'),
+('Humedad'),
+('Luminosidad'),
+('Temperatura');

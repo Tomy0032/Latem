@@ -1,8 +1,11 @@
+<?php 
+session_start();
+ ?>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+	<title>Robotech</title>
 	<link rel="stylesheet" href="/utu/Latem/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,11 +113,35 @@
 						<li>
 							<a href="">Sobre nosotros</a>
 						</li>
-						<li>
-							<a href="/utu/latem/login/login.html" class="icon">
-								<i class="fas fa-user"></i>
-							</a>
-						</li>
+						<?php if (isset($_SESSION['ci'])) {
+							?>
+							<li id="usuario">
+								<button id="btn-usuario" class="noEncima">
+									<i class="fas fa-user"></i>
+								</button>
+								<div id="menu-usuario" >
+									<ul>
+										<li>
+											<a href="">Mi perfil</a>
+										</li>
+										<li>
+											<a href="">Mis compras</a>
+										</li>
+										<li class="last">
+											<a href="/utu/latem/login/cerrarSesion.php">Cerrar sesión</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<?php
+						}else{
+							?>
+							<li>
+								<a href="/utu/latem/login/login.php" class="icon">
+									<i class="fas fa-user"></i>
+								</a>
+							</li>
+					<?php } ?>
 						<li>
 							<a href="" class="icon">
 								<i class="fas fa-shopping-cart"></i>
@@ -126,99 +153,84 @@
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	
-	<div id="contenedor">
 
-		<!--=====================================
-		=    Navegación Iniciar/Registrar       =
-		======================================-->
-		
-		<nav id="nav_login">
-			<ul>
-				<li id="btn-iniciar" class="click">Iniciar Sesión</li>
-				<li id="btn-registrar" class="">Registrarse</li>
+	<div class="container-slider">
+		<div class="slider" id="slider">
+			<div class="slider__section">
+				<a href="">
+					<img src="recursos/slider/slider1.jpg" alt="" class="slider__img">
+				</a>
+			</div>
+			<div class="slider__section">
+				<a href="">
+					<img src="recursos/slider/slider2.jpg" alt="" class="slider__img">
+
+				</a>
+			</div>
+			<div class="slider__section">
+				<a href="">
+					<img src="recursos/slider/slider3.jpg" alt="" class="slider__img">
+				</a>
+			</div>
+		</div>
+		<ul class="selectores">
+				<li>
+					<div for="radio1" id="lblradio1" class="active"></div>
+				</li>
+				<li>
+					<div for="radio2" id="lblradio2"></div>
+				</li>
+				<li>
+					<div for="radio3" id="lblradio3"></div>
+				</li>
 			</ul>
-		</nav>		
-		
-		<!--====  End of Navegación Iniciar/Registrar  ====-->
-		
-		<!--=====================================
-		=                 Login                 =
-		======================================-->
-		
-		<form action="login.php" id="login" class="" method="post">
-			<p>
-			<label for="ci">
-				<i class="fas fa-address-card"></i>
-				<input type="int" name="ci" placeholder="Cédula de identidad" required>
-			</label>
-			</p>
-			<p>
-			<label for="clave">
-				<i class="fas fa-key"></i>
-				<input type="password" name="clave" placeholder="Contraseña" required>
-			</label>
-			</p>
-			<p class="error --errorLog">Error de autentificación</p>	
-			<p>
-				<input type="submit" value="Ingresar">
-			</p>
-		</form>
-		
-		<!--====  End of Login  ====-->
-		
-		
-		<!--==============================
-		=            Registro            =
-		===============================-->
-		
-		<form action="registro.php" id="registro" class="click" method="post">
-			<p>
-			<label for="ci">
-				<i class="fas fa-address-card"></i>
-				<input type="int" name="ci" placeholder="Cédula de identidad" required>
-			</label>
-			</p>
-			<p>
-			<label for="nombre">
-				<i class="fas fa-user"></i>
-				<input type="text" name="nombre" placeholder="Nombre" required>
-			</label>
-			</p>
-			<p>
-			<label for="apellido">
-				<i class="fas fa-user"></i>
-				<input type="text" name="apellido" placeholder="Apellido" required>
-			</label>
-			</p>
-			<p>
-			<label for="correo">
-				<i class="fas fa-at"></i>
-				<input type="email" name="correo" placeholder="Correo electrónico" required>
-			</label>
-			</p>
-			<p>
-			<label for="clave">
-				<i class="fas fa-key"></i>
-				<input type="password" name="clave" placeholder="Contraseña" required>
-			</label>
-			</p>
-			<p>
-			<label for="confirmarClave">
-				<i class="fas fa-key"></i>
-				<input type="password" name="confirmarClave" placeholder="Confirmar contraseña" required>
-			</label>
-			<p class="error --errorCon">Las contraseñas no coinciden</p>
-			<p class="error --errorCI">Ya hay un usuario registrado con esa Cédula de Identidad</p>
-			</p>
-			<p>
-				<input type="submit" value="Registrarse">
-			</p>
-		</form>
-		
-		<!--====  End of Registro  ====-->
-		
+		<div class="slider__btn slider__btn--left" id="btn--left">
+			<i class="fas fa-chevron-left"></i>
+		</div>
+		<div class="slider__btn slider__btn--right" id="btn--right">
+			<i class="fas fa-chevron-right"></i>
+		</div>
 	</div>
+	<footer>
+		<div class="contenedor-footer">
+			<div class="f-body">
+				<div class="columna1">
+					<h2>Nuestra ubicación</h2>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit distinctio neque, sapiente totam voluptatibus asperiores id explicabo quisquam molestiae fugit et magnam dolorum aut error suscipit ratione eveniet. Ex, dicta?</p>
+				</div>
+				<div class="columna2">
+					<h2>Redes sociales</h2>
+					<div class="fila">
+						<img src="a">
+						<label>Siguenos en Facebook</label>
+					</div>
+					<div class="fila">
+						<img src="a">
+						<label>Siguenos en Instagram</label>
+					</div>
+				</div>
+				<div class="columna3">
+					<h2>Información Contactos</h2>
+					<div class="fila">
+						<img src="a">
+						<label>+598 93 456 789</label>
+					</div>
+					<div class="fila">
+						<img src="a">
+						<label>contacto@robotech.com</label>
+					</div>
+				</div>
+			</div>
+			<div class="f-footer">
+				<div class="copyright">
+					Copyright &copy; 2021 | <a href="">www.latem-uy.com</a> Latem S.R.L.
+				</div>
+				<div class="informacion">
+					<a href="">Información de la empresa</a> | <a href="">Privación y Política</a> | <a href="">Términos y Condiciones</a>
+				</div>
+			</div>
+		</div>		
+	</footer>
 	<script src="/utu/Latem/scripts.js"></script>
 </body>
 </html>
