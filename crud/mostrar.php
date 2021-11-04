@@ -72,12 +72,13 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mostrar Productos</title>
+	<title>Robotech</title>
 	<link rel="stylesheet" href="/utu/Latem/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
+	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
 </head>
 <body>
 	<header>	

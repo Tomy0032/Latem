@@ -9,6 +9,9 @@ if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
 }
 
+$listaProductos = $db->query("select primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
+$listaProductos2=$db->query("select primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
+
  ?>
 <html lang="es">
 <head>
@@ -20,7 +23,7 @@ if (isset($_SESSION['ci'])) {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
-</head>
+	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
 <body>
 	<header>	
 			<!--=====================================
@@ -217,7 +220,47 @@ if (isset($_SESSION['ci'])) {
 			<i class="fas fa-chevron-right"></i>
 		</div>
 	</div>
-	<div class="espacio">
+	<div class="contenedor-index">
+		<div class="destacados">
+			<div class="index-contenedor-productos">
+				<?php 
+			if ($listaProductos->fetchAll() == null) {
+				
+				?>
+					<div class="noProducto">
+						<h2>No se han encontrado productos :(</h2>
+						<br>
+						<p>Esto puede deberse a un problema de nuestro servidor</p>
+						<p>Si es así, no tardaremos en solucionarlo ;)</p>
+					</div>
+				<?php
+			}
+			else{
+				foreach ($listaProductos2->fetchAll() as $row) {
+					?>
+					<a href="">
+						<div class="index-producto">
+							<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
+							<span>
+								<?php
+								echo $row['nombre'];
+								?>
+							</span>
+							<span style="color: #702F8A; font-weight: bold; font-size: 22px;">
+								<?php
+								echo "$";
+								echo $row['precio'];
+								?>
+							</span>
+						</div>
+					</a>
+					<?php
+				}
+			}			
+			 ?>
+			</div>
+		</div>
+	</div>
 	</div>
 	<footer>
 		<div class="contenedor-footer">
@@ -229,11 +272,11 @@ if (isset($_SESSION['ci'])) {
 				<div class="columna2">
 					<h2>Redes sociales</h2>
 					<div class="fila">
-						<a href="">
+						<a href="https://www.facebook.com/Robotech-Uruguay-100867842415629">
 							<i class="fab fa-facebook"></i>
 						</a>
 						<label>
-							<a href="">Siguenos en Facebook</a>
+							<a href="https://www.facebook.com/Robotech-Uruguay-100867842415629">Siguenos en Facebook</a>
 						</label>
 					</div>
 					<div class="fila">

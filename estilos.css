@@ -12,6 +12,7 @@ body{
 	background: url(recursos/fondo.jpg);
 	background-size: 100%;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 /*===========================================
 =            Barra de navegación            =
@@ -351,8 +352,51 @@ header{
  .slider input[type="radio"]:checked ~ a img{ 
 	opacity: 1;
 }
-
-
+.contenedor-index{
+	width: 100%;
+	box-sizing: border-box;
+	margin: 80px 0;
+}
+.destacados{
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	max-width: 1600px;
+}
+.index-contenedor-productos{
+	width: 100%;
+	background: rgba(255, 255, 255, .6);;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	padding: 30px;
+}
+.index-producto{
+	display: inline-grid;
+	background: rgba(255, 255, 255, .6);
+	border-radius: 5px; 
+	text-align: center;
+	padding: 20px;
+	border: 1px solid #000000;
+	border-radius: 5px;
+	font-size: 16px;
+}
+.index-contenedor-productos a{
+	text-decoration: none;
+}
+.index-producto span{
+	font-size: 22px;
+}
+.index-producto img{
+	width: 220px;
+}
+.index-producto:hover{
+	background: #DEDEDE;
+}
 
 
 /*=====     End of Página principal        ======*/
@@ -420,7 +464,6 @@ header{
 	width: 100%;
 }
 #contenedor-login{
-	margin-top: 100px;
 	width: 400px;
 	height: 560px;
 	border: 1px solid #888B8D;
@@ -934,7 +977,6 @@ header{
 	box-sizing: border-box;
 	padding: 50px;
 	width: 100%;
-	
 }
 .noProducto h2{
 	color: #006EB3;
@@ -946,12 +988,13 @@ header{
 ================================*/
 
 footer{
+	margin-top: 50px;
 	width: calc(100% - 19px);
 	background: #888B8D;
 	color: #FFFFFF;
 	box-sizing: border-box;
 	position: absolute;
-	top: 93%;
+	top: 100%;
 }
 .contenedor-footer{
 	width: 100%;

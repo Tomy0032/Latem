@@ -9,12 +9,13 @@ if (isset($_SESSION['ci'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+	<title>Robotech</title>
 	<link rel="stylesheet" href="/utu/Latem/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
+	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
 </head>
 <body>
 	<header>	
@@ -271,6 +272,54 @@ if (isset($_SESSION['ci'])) {
 		
 	</div>
 	</section>
+	<footer>
+		<div class="contenedor-footer">
+			<div class="f-body">
+				<div class="columna1">
+					<h2>Nuestra ubicación</h2>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit distinctio neque, sapiente totam voluptatibus asperiores id explicabo quisquam molestiae fugit et magnam dolorum aut error suscipit ratione eveniet. Ex, dicta?</p>
+				</div>
+				<div class="columna2">
+					<h2>Redes sociales</h2>
+					<div class="fila">
+						<a href="">
+							<i class="fab fa-facebook"></i>
+						</a>
+						<label>
+							<a href="">Siguenos en Facebook</a>
+						</label>
+					</div>
+					<div class="fila">
+						<a href="https://www.instagram.com/robotech.uy/">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<label>
+							<a href="https://www.instagram.com/robotech.uy/">Siguenos en Instagram</a>
+						</label>
+					</div>
+				</div>
+				<div class="columna3">
+					<h2>Información Contactos</h2>
+					<div class="fila">
+						<i class="fas fa-phone-square-alt"></i>
+						<label>+598 93 456 789</label>
+					</div>
+					<div class="fila">
+						<i class="fas fa-envelope"></i>
+						<label>online.robotech@gmail.com</label>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="f-footer">
+			<div class="copyright">
+				Copyright &copy; 2021 | <a href="https://www.latem-uy.com">www.latem-uy.com</a> Latem S.R.L.
+			</div>
+			<div class="informacion">
+				<a href="">Información de la empresa</a> | <a href="">Privación y Política</a> | <a href="">Términos y Condiciones</a>
+			</div>
+		</div>	
+	</footer>
 	<script src="/utu/Latem/scripts.js"></script>
 </body>
 </html>

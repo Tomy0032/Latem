@@ -10,7 +10,6 @@ if (isset($_SESSION['ci'])) {
 
 
 $categoria = $_GET['categoria'];
-$descripcionCategoria = $db->query("select * from categoria where nombre = '$categoria'");
 $listaProductos = $db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
 $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
 
@@ -27,6 +26,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
+	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
 </head>
 <body>
 	<header>	
@@ -238,7 +238,54 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 			 ?>
 		</div>
 	</div>
-	
+	<footer>
+		<div class="contenedor-footer">
+			<div class="f-body">
+				<div class="columna1">
+					<h2>Nuestra ubicación</h2>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit distinctio neque, sapiente totam voluptatibus asperiores id explicabo quisquam molestiae fugit et magnam dolorum aut error suscipit ratione eveniet. Ex, dicta?</p>
+				</div>
+				<div class="columna2">
+					<h2>Redes sociales</h2>
+					<div class="fila">
+						<a href="https://www.facebook.com/Robotech-Uruguay-100867842415629">
+							<i class="fab fa-facebook"></i>
+						</a>
+						<label>
+							<a href="https://www.facebook.com/Robotech-Uruguay-100867842415629">Siguenos en Facebook</a>
+						</label>
+					</div>
+					<div class="fila">
+						<a href="https://www.instagram.com/robotech.uy/">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<label>
+							<a href="https://www.instagram.com/robotech.uy/">Siguenos en Instagram</a>
+						</label>
+					</div>
+				</div>
+				<div class="columna3">
+					<h2>Información Contactos</h2>
+					<div class="fila">
+						<i class="fas fa-phone-square-alt"></i>
+						<label>+598 93 456 789</label>
+					</div>
+					<div class="fila">
+						<i class="fas fa-envelope"></i>
+						<label>online.robotech@gmail.com</label>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="f-footer">
+			<div class="copyright">
+				Copyright &copy; 2021 | <a href="https://www.latem-uy.com">www.latem-uy.com</a> Latem S.R.L.
+			</div>
+			<div class="informacion">
+				<a href="">Información de la empresa</a> | <a href="">Privación y Política</a> | <a href="">Términos y Condiciones</a>
+			</div>
+		</div>	
+	</footer>
 	<script src="/utu/Latem/scripts.js"></script>
 </body>
 </html>
