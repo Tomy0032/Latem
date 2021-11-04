@@ -8,6 +8,10 @@
  */
 body{
 	font-family: 'Roboto', sans-serif;
+	min-height: 100vh;
+	background: url(recursos/fondo.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
 /*===========================================
 =            Barra de navegación            =
@@ -25,10 +29,11 @@ header{
 	z-index: 100;
 	position: fixed;
 }
-#menu {
-	width:  1300px;
+#menu{
+	width:  1400px;
 	margin: 0 auto;
-
+	display: flex;
+	justify-content: space-between;
 }
 #menu img{
 	float: left;
@@ -167,6 +172,7 @@ header{
 	padding: 10px;
 	text-decoration: none;
 	background: #FFFFFF;
+	color: #702F8A;
 }
 #menu-usuario ul li.last a{
 	border-bottom-right-radius: 5px;
@@ -370,7 +376,7 @@ header{
 	letter-spacing: 1px;
 }
 #nav_login li:not(.click):hover{
-	background: #D6D6D6;
+	background: rgba(214, 214, 214, .6);
 	cursor: pointer;
 }
 #btn-iniciar{
@@ -381,7 +387,7 @@ header{
 #btn-iniciar.click{
 	border-right: none;
 	border-bottom: none;
-	background: #ffffff;
+	background: rgba(255, 255, 255, .6);
 	color: #006EB3;
 	font-weight: bold;
 }
@@ -396,7 +402,7 @@ header{
 #btn-registrar.click{
 	border-left: none;
 	border-bottom: none;
-	background: #ffffff;
+	background: rgba(255, 255, 255, .6);
 	color: #702F8A;
 	font-weight: bold;
 }
@@ -414,10 +420,12 @@ header{
 	width: 100%;
 }
 #contenedor-login{
+	margin-top: 100px;
 	width: 400px;
 	height: 560px;
 	border: 1px solid #888B8D;
 	border-radius: 5px;
+	background: rgba(255, 255, 255, .6);
 }
 #login, #registro{
 	text-align: center;
@@ -571,13 +579,12 @@ header{
 
 }
 #buscar-producto{
-	width: 60%;
 	margin: 30px;
 	margin-bottom: 0;
 	display: inline-block;
 }
 #buscador-crud{
-	width: 100%;
+	display: table-cell;
 }
 #buscador-crud #barra{
 	display: table;
@@ -592,6 +599,7 @@ header{
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	outline: none;
+	margin-bottom: 15px;
 }
 #buscador-crud #barra button{
 	height: 32px;
@@ -614,6 +622,7 @@ header{
 }
 #buscador-crud #selectores{
 	padding-top: 6px;
+	margin-bottom: 10px;
 }
 #buscador-crud #selectores input{
 	margin-left: 10px;
@@ -865,8 +874,12 @@ header{
 
 .contenedor-catalogo{
 	margin-top: 100px; 
-	padding: 0 250px;
 	min-height: 200px;
+	width: 70%;
+	min-width: 1000px;
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
 }
 .contenedor-catalogo h1, .contenedor-catalogo p{
 	margin-left: 20px;
@@ -877,11 +890,12 @@ header{
 .contenedor-productos{
 	border: 1px solid #702F8A;
 	border-radius: 5px;
-	display: table;
+	display: block;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
+	background: rgba(255, 255, 255, .6);
 }
 .contenedor-productos a{
 	text-decoration: none;
@@ -891,7 +905,7 @@ header{
 	height: 450px;
 	border: 1px solid black;
 	border-radius: 5px;
-	display: inline-block;
+	display: inline-table;
 	margin: 55px;
 	text-align: center;
 	color: #000000;
@@ -927,16 +941,17 @@ header{
 }
 /*=====  End of Catálogo  ======*/
 
-/*=====      Pie de página     ======*/
+/*================================
+=         Pie de pagina          =
+================================*/
 
 footer{
-	width: 100%;
+	width: calc(100% - 19px);
 	background: #888B8D;
 	color: #FFFFFF;
-	padding-top: 40px;
-	padding: 40px;
 	box-sizing: border-box;
-
+	position: absolute;
+	top: 93%;
 }
 .contenedor-footer{
 	width: 100%;
@@ -947,6 +962,7 @@ footer{
 .f-body{
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 20px;
 }
 .columna1{
 	max-width: 400px;
@@ -967,13 +983,21 @@ footer{
 	margin-top: 20px;
 	display: flex;
 }
-.fila img{
+.fila a{
 	width: 36px;
 	height: 36px;
 }
 .fila label{
-	margin-top: 10px;
+	margin-top: 8px;
 	margin-left: 10px;
+}
+.fila label a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.fila i{
+	font-size: 36px;
+	color: #FFFFFF;
 }
 .columna3{
 	max-width: 400px;
@@ -986,16 +1010,13 @@ footer{
 	width: 100%;
 	background: #727272;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding: 20px;
 }
 .copyright a{
-	text-decoration: none;
 	color: #FFFFFF;
-	font-weight: bold;
 }
 .informacion a{
-	text-decoration: none;
 	color: #FFFFFF;
 }
 /*=====  End of Pie de página  ======*/

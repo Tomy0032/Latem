@@ -12,10 +12,11 @@ $crudP=new CrudProducto();
 $producto= new producto();
 $crudI=new CrudImagenes();
 $imagenes= new Imagenes();
+
 $usuario=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
 foreach ($usuario->fetchAll() as $row) {
 	if ($row['permiso'] == 0) {
-		header('location: /utu/latem/index.html');
+		header('location: /utu/latem/index.php');
 	}
 }
 $categorias=$db->query('select * from categoria');
@@ -85,22 +86,15 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			======================================-->
 			
 			<div id="menu">
-
-				<!---Logo--->
-				<a href="/utu/latem/">
-					<img src="/utu/Latem/Recursos/RoboTech logo.png" alt="">
+				<a href="/utu/Latem/index.php">
+					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
 				</a>
-				<!---Logo--->
-
-				<!---Buscador--->
 				<form action="" id="buscador">
 					<input type="text" placeholder="Buscar" required>
 					<button type="submit" id="btn-buscar">
 						<i class="fas fa-search"></i>
 					</button>
 				</form>
-				<!---Buscador--->
-
 				<nav>
 					<ul>
 						<li id="productos">
@@ -113,16 +107,16 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 										<h4>Robótica</h4>
 										<ul>
 											<li>
-												<a href="">Tarjetas de desarrollo</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
 											</li>
 											<li>
-												<a href="">Módulos</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href="">Accesorios</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
-												<a href="">Fuentes de alimentación</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
 											</li>
 										</ul>
 									</div>
@@ -130,19 +124,19 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 										<h4>Componentes</h4>
 										<ul>
 											<li>
-												<a href="">Diodos y Tristores</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Diodos y Transistores">Diodos y Tristores</a>
 											</li>
 											<li>
-												<a href="">Cables y Conectores</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
 											</li>
 											<li>
-												<a href="">Transistores</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Transistores">Transistores</a>
 											</li>
 											<li>
-												<a href="">Interruptores y Reles</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Interruptores y Reles">Interruptores y Reles</a>
 											</li>
 											<li>
-												<a href="">Resistivos</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Resistivos">Resistivos</a>
 											</li>
 										</ul>
 									</div>
@@ -150,13 +144,13 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 										<h4>Instrumentos</h4>
 										<ul>
 											<li>
-												<a href="">Soldadores y Desoldadores</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Soldadores y desoldadores">Soldadores y Desoldadores</a>
 											</li>
 											<li>
-												<a href="">Equipamiento antiestático</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Equipamiento antiestático">Equipamiento antiestático</a>
 											</li>
 											<li>
-												<a href="">Medidores</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Medidores">Medidores</a>
 											</li>
 										</ul>
 									</div>
@@ -164,16 +158,16 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 										<h4>Sensores</h4>
 										<ul>
 											<li>
-												<a href="">Sonido</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Sonido">Sonido</a>
 											</li>
 											<li>
-												<a href="">Humedad</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Humedad">Humedad</a>
 											</li>
 											<li>
-												<a href="">Luminosidad</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Luminosidad">Luminosidad</a>
 											</li>
 											<li>
-												<a href="">Temperatura</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Temperatura">Temperatura</a>
 											</li>
 										</ul>
 									</div>
@@ -186,16 +180,45 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 						<li>
 							<a href="">Sobre nosotros</a>
 						</li>
-						<li>
-							<a href="login/login.html" class="icon">
-								<i class="fas fa-user"></i>
-							</a>
-						</li>
+						<?php if (isset($_SESSION['ci'])) {
+							?>
+							<li id="usuario">
+								<button id="btn-usuario" class="noEncima">
+									<i class="fas fa-user"></i>
+								</button>
+								<div id="menu-usuario" >
+									<ul>
+										<li>
+											<a href="">Mi perfil</a>
+										</li>
+										<li>
+											<a href="">Mis compras</a>
+										</li>
+										<li class="last">
+											<a href="/utu/latem/login/cerrarSesion.php">Cerrar sesión</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<?php
+						}else{
+							?>
+							<li>
+								<a href="/utu/latem/login/login.php" class="icon">
+									<i class="fas fa-user"></i>
+								</a>
+							</li>
+					<?php } ?>
 						<li>
 							<a href="" class="icon">
 								<i class="fas fa-shopping-cart"></i>
 							</a>
 						</li>
+							<li>
+								<a href="/utu/latem/crud/mostrar.php" class="icon">
+									<i class="fas fa-cogs"></i>
+								</a>
+							</li>					
 					</ul>
 				</nav>
 			</div>
@@ -449,7 +472,7 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 			=            Mostrar productos            =
 			======================================-->
 				<div id="buscar-producto">
-					<form action="mostrar.php" id="buscador-crud" method="POST">
+					<form action="mostrar.php?pagina=1" id="buscador-crud" method="POST">
 						<section id="barra">
 							<button type="submit" id="btn-buscar">
 								<i class="fas fa-search"></i>

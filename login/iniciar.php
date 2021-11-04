@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $ingCI = $_POST['ci'];
 $ingClave = $_POST['clave'];
@@ -28,14 +27,14 @@ if ($datos == null) {
 	$permiso = $datos['permiso'];
 
 	if ($ingCI == $ci && $ingClave == $clave) {
-
+		session_start();
 		$_SESSION['ci'] = $_REQUEST['ci'];
 
 		if ($permiso == 1) {
 
 			header('location: /utu/latem/crud/mostrar.php');
 		}else{
-			header('location: /utu/latem/index.html');
+			header('location: /utu/latem/index.php');
 		}
 
 	}else {

@@ -1,5 +1,14 @@
 <?php 
 session_start();
+
+require_once('conexion.php');
+
+$db=Db::conectar();
+
+if (isset($_SESSION['ci'])) {
+	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
+}
+
  ?>
 <html lang="es">
 <head>
@@ -19,7 +28,7 @@ session_start();
 			======================================-->
 			
 			<div id="menu">
-				<a href="/utu/Latem/index.html">
+				<a href="/utu/Latem/index.php">
 					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
 				</a>
 				<form action="" id="buscador">
@@ -147,6 +156,23 @@ session_start();
 								<i class="fas fa-shopping-cart"></i>
 							</a>
 						</li>
+						<?php 
+						if(isset($_SESSION['ci'])){
+							foreach($permiso->fetchAll() as $row){
+								if ($row['permiso'] == 1) {
+									?>
+									<li>
+										<a href="/utu/latem/crud/mostrar.php" class="icon">
+											<i class="fas fa-cogs"></i>
+										</a>
+									</li>
+									<?php
+								}
+							}
+
+						}
+						 ?>
+						
 					</ul>
 				</nav>
 			</div>
@@ -191,6 +217,8 @@ session_start();
 			<i class="fas fa-chevron-right"></i>
 		</div>
 	</div>
+	<div class="espacio">
+	</div>
 	<footer>
 		<div class="contenedor-footer">
 			<div class="f-body">
@@ -201,35 +229,43 @@ session_start();
 				<div class="columna2">
 					<h2>Redes sociales</h2>
 					<div class="fila">
-						<img src="a">
-						<label>Siguenos en Facebook</label>
+						<a href="">
+							<i class="fab fa-facebook"></i>
+						</a>
+						<label>
+							<a href="">Siguenos en Facebook</a>
+						</label>
 					</div>
 					<div class="fila">
-						<img src="a">
-						<label>Siguenos en Instagram</label>
+						<a href="https://www.instagram.com/robotech.uy/">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<label>
+							<a href="https://www.instagram.com/robotech.uy/">Siguenos en Instagram</a>
+						</label>
 					</div>
 				</div>
 				<div class="columna3">
 					<h2>Información Contactos</h2>
 					<div class="fila">
-						<img src="a">
+						<i class="fas fa-phone-square-alt"></i>
 						<label>+598 93 456 789</label>
 					</div>
 					<div class="fila">
-						<img src="a">
-						<label>contacto@robotech.com</label>
+						<i class="fas fa-envelope"></i>
+						<label>online.robotech@gmail.com</label>
 					</div>
 				</div>
 			</div>
-			<div class="f-footer">
-				<div class="copyright">
-					Copyright &copy; 2021 | <a href="">www.latem-uy.com</a> Latem S.R.L.
-				</div>
-				<div class="informacion">
-					<a href="">Información de la empresa</a> | <a href="">Privación y Política</a> | <a href="">Términos y Condiciones</a>
-				</div>
+		</div>	
+		<div class="f-footer">
+			<div class="copyright">
+				Copyright &copy; 2021 | <a href="https://www.latem-uy.com">www.latem-uy.com</a> Latem S.R.L.
 			</div>
-		</div>		
+			<div class="informacion">
+				<a href="">Información de la empresa</a> | <a href="">Privación y Política</a> | <a href="">Términos y Condiciones</a>
+			</div>
+		</div>	
 	</footer>
 	<script src="/utu/Latem/scripts.js"></script>
 </body>

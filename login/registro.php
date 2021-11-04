@@ -16,11 +16,11 @@ $datos = mysqli_fetch_assoc($buscar);
 if ($datos == null && $_SESSION['clave'] == $_SESSION['confirmarClave']) {
 	$respuesta = mysqli_query($conexion, "insert into usuario values ('$_SESSION[ci]','$_SESSION[nombre]','$_SESSION[apellido]','$_SESSION[correo]','$_SESSION[clave]','0')");
         echo json_encode($respuesta);
-        header('location: /utu/latem/index.html');
+        header('location: /utu/latem/index.php');
 
 }elseif ($_SESSION['clave'] != $_SESSION['confirmarClave']) {
 	
-	include('login.html');
+	include('login.php');
 	?>
 	<style>
 		.--errorCon{
@@ -33,7 +33,7 @@ if ($datos == null && $_SESSION['clave'] == $_SESSION['confirmarClave']) {
 }
 else{
  
-	include('login.html');
+	include('login.php');
 	?>
 	<style>
 		.--errorCI{

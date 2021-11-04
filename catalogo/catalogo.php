@@ -4,6 +4,11 @@ require_once 'conexion.php';
 
 $db=Db::conectar();
 
+if (isset($_SESSION['ci'])) {
+	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
+}
+
+
 $categoria = $_GET['categoria'];
 $descripcionCategoria = $db->query("select * from categoria where nombre = '$categoria'");
 $listaProductos = $db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
@@ -30,7 +35,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 			======================================-->
 			
 			<div id="menu">
-				<a href="/utu/Latem/index.html">
+				<a href="/utu/Latem/index.php">
 					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
 				</a>
 				<form action="" id="buscador">
@@ -124,16 +129,57 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 						<li>
 							<a href="">Sobre nosotros</a>
 						</li>
-						<li>
-							<a href="/utu/latem/login/login.html" class="icon">
-								<i class="fas fa-user"></i>
-							</a>
-						</li>
+						<?php if (isset($_SESSION['ci'])) {
+							?>
+							<li id="usuario">
+								<button id="btn-usuario" class="noEncima">
+									<i class="fas fa-user"></i>
+								</button>
+								<div id="menu-usuario" >
+									<ul>
+										<li>
+											<a href="">Mi perfil</a>
+										</li>
+										<li>
+											<a href="">Mis compras</a>
+										</li>
+										<li class="last">
+											<a href="/utu/latem/login/cerrarSesion.php">Cerrar sesión</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<?php
+						}else{
+							?>
+							<li>
+								<a href="/utu/latem/login/login.php" class="icon">
+									<i class="fas fa-user"></i>
+								</a>
+							</li>
+					<?php } ?>
 						<li>
 							<a href="" class="icon">
 								<i class="fas fa-shopping-cart"></i>
 							</a>
 						</li>
+						<?php 
+						if(isset($_SESSION['ci'])){
+							foreach($permiso->fetchAll() as $row){
+								if ($row['permiso'] == 1) {
+									?>
+									<li>
+										<a href="/utu/latem/crud/mostrar.php" class="icon">
+											<i class="fas fa-cogs"></i>
+										</a>
+									</li>
+									<?php
+								}
+							}
+
+						}
+						 ?>
+						
 					</ul>
 				</nav>
 			</div>
@@ -184,7 +230,6 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 								echo $row['precio'];
 								?>
 							</span>
-							
 						</div>
 					</a>
 					<?php
