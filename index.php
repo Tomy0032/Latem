@@ -9,8 +9,8 @@ if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
 }
 
-$listaProductos = $db->query("select primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
-$listaProductos2=$db->query("select primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
+$listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
+$listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado' limit 6");
 
  ?>
 <html lang="es">
@@ -120,7 +120,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 							</div>
 						</li>
 						<li>
-							<a href="">Cursos</a>
+							<a href="/utu/latem/cursos.php">Cursos</a>
 						</li>
 						<li>
 							<a href="">Sobre nosotros</a>
@@ -155,8 +155,25 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 							</li>
 					<?php } ?>
 						<li>
-							<a href="" class="icon">
+							<a href="/utu/latem/catalogo/carrito.php" class="icon">
 								<i class="fas fa-shopping-cart"></i>
+								<?php
+								$id_sesion=session_id();
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								if ($comprobar->fetch()['count(*)'] > 0) {
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									?>
+									<span>
+										<?php 
+										foreach($comprobar->fetchAll() as $row){
+											echo $row['count(*)'];
+										}
+										?>
+									</span>
+
+									<?php
+								}
+								 ?>
 							</a>
 						</li>
 						<?php 
@@ -182,7 +199,6 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-
 	<div class="container-slider">
 		<div class="slider" id="slider">
 			<div class="slider__section">
@@ -191,7 +207,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 				</a>
 			</div>
 			<div class="slider__section">
-				<a href="">
+				<a href="/utu/latem/cursos.php">
 					<img src="recursos/slider/slider2.jpg" alt="" class="slider__img">
 
 				</a>
@@ -220,45 +236,58 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 			<i class="fas fa-chevron-right"></i>
 		</div>
 	</div>
-	<div class="contenedor-index">
-		<div class="destacados">
-			<div class="index-contenedor-productos">
+	<div class="titulo-destacados">
+		<h2>Productos destacados</h2>
+		<a href="/utu/latem/catalogo/destacados.php">ver más</a>
+	</div>
+	
+	<div class="container-destacados">
+		<div class="destacados" id="destacados">
 				<?php 
-			if ($listaProductos->fetchAll() == null) {
-				
-				?>
-					<div class="noProducto">
-						<h2>No se han encontrado productos :(</h2>
-						<br>
-						<p>Esto puede deberse a un problema de nuestro servidor</p>
-						<p>Si es así, no tardaremos en solucionarlo ;)</p>
-					</div>
-				<?php
-			}
-			else{
-				foreach ($listaProductos2->fetchAll() as $row) {
+				if ($listaProductos->fetchAll() == null) {
 					?>
-					<a href="">
-						<div class="index-producto">
-							<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
-							<span>
-								<?php
-								echo $row['nombre'];
-								?>
-							</span>
-							<span style="color: #702F8A; font-weight: bold; font-size: 22px;">
-								<?php
-								echo "$";
-								echo $row['precio'];
-								?>
-							</span>
+					<div class="destacados__section">
+						<div class="noProducto">
+							<h2>No se han encontrado productos :(</h2>
+							<br>
+							<p>Esto puede deberse a un problema de nuestro servidor</p>
+							<p>Si es así, no tardaremos en solucionarlo ;)</p>
 						</div>
-					</a>
+					</div>
 					<?php
 				}
-			}			
-			 ?>
-			</div>
+				else{
+					foreach ($listaProductos2->fetchAll() as $row) {
+						?>
+						<div class="destacados__section">
+							<a href="/utu/latem/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
+								<div class="index-producto">
+									<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
+									<span>
+										<?php
+										echo $row['nombre'];
+										?>
+									</span>
+									<span style="color: #702F8A; font-weight: bold; font-size: 22px;">
+										<?php
+										echo "$";
+										echo $row['precio'];
+										?>
+									</span>
+								</div>
+							</a>
+						</div>
+						<?php
+					}
+				}			
+				 ?>
+			
+		</div>
+		<div class="destacados__btn destacados__btn--left" id="destacados--btn--left">
+			<i class="fas fa-chevron-left"></i>
+		</div>
+		<div class="destacados__btn destacados__btn--right" id="destacados--btn--right">
+			<i class="fas fa-chevron-right"></i>
 		</div>
 	</div>
 	</div>
@@ -267,7 +296,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 			<div class="f-body">
 				<div class="columna1">
 					<h2>Nuestra ubicación</h2>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit distinctio neque, sapiente totam voluptatibus asperiores id explicabo quisquam molestiae fugit et magnam dolorum aut error suscipit ratione eveniet. Ex, dicta?</p>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.8187681297272!2d-56.234990184249!3d-34.760157873300294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1d2e23830071f%3A0x8a40b54c632f0f11!2sEscuela%20T%C3%A9cnica%20La%20Paz%20UTU!5e0!3m2!1ses-419!2suy!4v1636122441146!5m2!1ses-419!2suy" width="480" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 				</div>
 				<div class="columna2">
 					<h2>Redes sociales</h2>
@@ -289,7 +318,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, i
 					</div>
 				</div>
 				<div class="columna3">
-					<h2>Información Contactos</h2>
+					<h2>Información de contacto</h2>
 					<div class="fila">
 						<i class="fas fa-phone-square-alt"></i>
 						<label>+598 93 456 789</label>

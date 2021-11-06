@@ -16,7 +16,7 @@ if (isset($_POST['insertar'])) {
 	$producto->setId_iva($_POST['id_iva']);
 	$producto->setId_proveedor($_POST['id_proveedor']);
 	$producto->setNombre($_POST['nombre']);
-	$producto->setDescripcion($_POST['descripcion']);
+	$producto->setDescripcion(nl2br($_POST['descripcion']));
 	$producto->setPrecio($_POST['precio']);
 	$producto->setStock($_POST['stock']);
 	$producto->setEstado($_POST['estado']);
@@ -52,7 +52,7 @@ if (isset($_POST['insertar'])) {
 	$producto->setId_iva($_POST['id_iva']);
 	$producto->setId_proveedor($_POST['id_proveedor']);
 	$producto->setNombre($_POST['nombre']);
-	$producto->setDescripcion($_POST['descripcion']);
+	$producto->setDescripcion(nl2br($_POST['descripcion']));
 	$producto->setPrecio($_POST['precio']);
 	$producto->setStock($_POST['stock']);
 	$producto->setEstado($_POST['estado']);

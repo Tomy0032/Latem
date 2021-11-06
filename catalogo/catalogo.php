@@ -10,8 +10,8 @@ if (isset($_SESSION['ci'])) {
 
 
 $categoria = $_GET['categoria'];
-$listaProductos = $db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
-$listaProductos2=$db->query("select primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
+$listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
+$listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, categoria c, imagenes i where p.id_categoria = c.id and i.id_producto = p.id and c.nombre = '$categoria' and estado in ('activo', 'destacado')");
 
 ?>
 
@@ -124,7 +124,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 							</div>
 						</li>
 						<li>
-							<a href="">Cursos</a>
+							<a href="/utu/latem/cursos.php">Cursos</a>
 						</li>
 						<li>
 							<a href="">Sobre nosotros</a>
@@ -216,7 +216,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 			else{
 				foreach ($listaProductos2->fetchAll() as $row) {
 					?>
-					<a href="">
+					<a href="/utu/latem/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
 						<div class="producto">
 							<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
 							<span>
@@ -243,7 +243,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 			<div class="f-body">
 				<div class="columna1">
 					<h2>Nuestra ubicación</h2>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit distinctio neque, sapiente totam voluptatibus asperiores id explicabo quisquam molestiae fugit et magnam dolorum aut error suscipit ratione eveniet. Ex, dicta?</p>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.8187681297272!2d-56.234990184249!3d-34.760157873300294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1d2e23830071f%3A0x8a40b54c632f0f11!2sEscuela%20T%C3%A9cnica%20La%20Paz%20UTU!5e0!3m2!1ses-419!2suy!4v1636122441146!5m2!1ses-419!2suy" width="480" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 				</div>
 				<div class="columna2">
 					<h2>Redes sociales</h2>
@@ -265,7 +265,7 @@ $listaProductos2=$db->query("select primera, p.nombre, precio from producto p, c
 					</div>
 				</div>
 				<div class="columna3">
-					<h2>Información Contactos</h2>
+					<h2>Información de contacto</h2>
 					<div class="fila">
 						<i class="fas fa-phone-square-alt"></i>
 						<label>+598 93 456 789</label>

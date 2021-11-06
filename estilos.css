@@ -8,7 +8,6 @@
  */
 body{
 	font-family: 'Roboto', sans-serif;
-	min-height: 100vh;
 	background: url(recursos/fondo.jpg);
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -22,13 +21,17 @@ header{
 	top: 8px;
 	border: 1px solid #702F8A;
 	border-radius: 5px;
-	background: #FFFFFF;
+	background: rgba(255, 255, 255, 0.7);
 	width: calc(100% - 16px);
 	clear: both;
 	display: table;
 	font-size: 18px;
 	z-index: 100;
 	position: fixed;
+	transition: all ease .4s;
+}
+header:hover{
+	background: #FFFFFF;
 }
 #menu{
 	width:  1400px;
@@ -68,6 +71,7 @@ header{
 	border-top-left-radius: 5px;
 	border: none;
 	cursor: pointer;
+	transition: all ease .2s;
 }
 #usuario button{
 	padding-bottom: 30px;
@@ -77,7 +81,7 @@ header{
 	color: #FFFFFF;
 }
 .noEncima{	
-	background: #FFFFFF;
+	background: none;
 	color: #702F8A;
 }
 .encima{
@@ -99,6 +103,7 @@ header{
 	padding: 13px;
 	border-radius: 5px;
 	color: #702F8A;
+	transition: all ease .2s;
 }
 #menu ul li a:hover:not(#categorias a:hover, #menu-usuario a:hover) {
 	background: #702F8A;
@@ -119,6 +124,7 @@ header{
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	outline: none;
+	background: none;
 }
 #buscador button{
 	height: 32px;
@@ -134,6 +140,7 @@ header{
 	border-bottom-right-radius: 5px;
 	float: right;
 	cursor: pointer;
+	transition: all ease .2s;
 }
 #buscador button:hover{
 	background: #FFFFFF;
@@ -155,7 +162,7 @@ header{
 }
 #menu-usuario{
 	position: absolute;
-	background: #FFFFFF;
+	background: rgba(255, 255, 255, 0.7);
 	border: 1px solid #702F8A;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
@@ -172,8 +179,8 @@ header{
 	display: block;
 	padding: 10px;
 	text-decoration: none;
-	background: #FFFFFF;
 	color: #702F8A;
+	background: #FFFFFF;
 }
 #menu-usuario ul li.last a{
 	border-bottom-right-radius: 5px;
@@ -228,6 +235,22 @@ header{
 #categorias a:hover:after{
 	width: 100%;
 }
+.icon span{
+	background: #006EB3;
+	color: #FFFFFF;
+	font-size: 12px;
+	position: absolute;
+	margin-top: 15px;
+	margin-left: -4px;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	border-radius: 50%;
+}
+.icon:hover > span{
+	background: #FFFFFF;
+	color: #702F8A;
+}
 
 /*=====  End of Barra de navegación  ======*/
 
@@ -235,7 +258,7 @@ header{
 =                Página principal                =
 =================================================*/
 
-.container-slider{
+.container-slider, .container-destacados{
 	margin-top: 100px;
 	width: 90%;
 	max-width: 1600px;
@@ -262,10 +285,10 @@ header{
 	height: 100%;
 	object-fit: cover;
 }
-.slider:hover ~ .slider__btn{
+.slider:hover ~ .slider__btn, .destacados:hover ~ .destacados__btn{
 	opacity: 1;
 }
-.slider__btn{
+.slider__btn, .destacados__btn{
 	position: absolute;
 	padding: 5px;
 	background: rgba(255, 255, 255, 0.7);
@@ -277,16 +300,22 @@ header{
 	opacity: 0;
 	cursor: pointer;
 }
-.slider__btn--right{
+.slider__btn--right, .destacados__btn--right{
 	right: 0;
 }
-.slider__btn--left{
+.slider__btn--left, .destacados__btn--left{
 	left: 0;
 }
-.slider__btn:hover{
+.slider__btn:hover, .destacados__btn:hover{
 	background: #fff;
 	font-size: 40px;
 	opacity: 1;
+}
+.destacados__btn{
+	background: none;
+}
+.destacados__btn:hover{
+	background: none;
 }
 .selectores{
 	margin: 0;
@@ -314,7 +343,6 @@ header{
 	width: 13px;
 	height: 13px;
 }
-
 #banner{
 	margin: 0 auto;
 	width: 1600px;
@@ -334,7 +362,6 @@ header{
 	justify-content: center;
 	align-items: flex-end;
 }
-
 #banner .slider img{
 	position: absolute;
 	top: 0;
@@ -344,38 +371,49 @@ header{
 	opacity: 0;
 	border-radius: 5px;
 }
-
- .slider input[type="radio"]{
+.slider input[type="radio"]{
 	display: none;
 }
-
- .slider input[type="radio"]:checked ~ a img{ 
+.slider input[type="radio"]:checked ~ a img{ 
 	opacity: 1;
 }
-.contenedor-index{
-	width: 100%;
-	box-sizing: border-box;
-	margin: 80px 0;
-}
-.destacados{
-	margin: auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 90%;
-	max-width: 1600px;
-}
-.index-contenedor-productos{
-	width: 100%;
-	background: rgba(255, 255, 255, .6);;
+.titulo-destacados{
+	margin-top: 60px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	padding: 0 10%;
+}
+.titulo-destacados h2, .titulo-destacados a{
+	margin: 0 10px;
+}
+.titulo-destacados h2{
+	color: #702F8A;
+}
+.titulo-destacados a{
+	text-decoration: none;
+	font-size: 18px;
+	color: #646464;
+}
+.titulo-destacados a:hover{
+	text-decoration: underline;
+}
+.container-destacados{
+	margin-top: 10px;
+	background: rgba(255, 255, 255, .6);
 	border: 1px solid #702F8A;
 	border-radius: 5px;
-	padding: 30px;
+}
+.destacados{
+	display: flex;
+	height: 400px;
+	justify-content: center;
+	width: 150%;
+	align-items: center;
+	margin-left: -25%;
 }
 .index-producto{
+	width: 230px;
+	height: 300px;
 	display: inline-grid;
 	background: rgba(255, 255, 255, .6);
 	border-radius: 5px; 
@@ -384,20 +422,29 @@ header{
 	border: 1px solid #000000;
 	border-radius: 5px;
 	font-size: 16px;
+	margin-left: 50px;
+	margin-right: 50px;
 }
-.index-contenedor-productos a{
+.destacados__section{
+	width: 25%;
+}
+.destacados__section a{
 	text-decoration: none;
 }
 .index-producto span{
 	font-size: 22px;
+	color: #000000;
 }
 .index-producto img{
 	width: 220px;
 }
 .index-producto:hover{
-	background: #DEDEDE;
+	box-shadow: 0px 7px 15px #000000;
+	transition: all .2s ease;
 }
-
+.destacados__btn{
+	color: #702F8A;
+}
 
 /*=====     End of Página principal        ======*/
 
@@ -427,6 +474,7 @@ header{
 	border-right: 1px solid #888B8D;
 	border-bottom: 1px solid #888B8D;
 	border-top-left-radius: 5px;
+	transition: all ease .2s;
 }
 #btn-iniciar.click{
 	border-right: none;
@@ -442,6 +490,7 @@ header{
 	border-left: 1px solid #888B8D;
 	border-bottom: 1px solid #888B8D;
 	border-top-right-radius: 5px;
+	transition: all ease .2s;
 }
 #btn-registrar.click{
 	border-left: none;
@@ -510,12 +559,13 @@ header{
 	color: #FF0000;
 	visibility: hidden;
 }
-#login input[type="submit"], #registro input[type="submit"], #ingProd input[type="submit"], #actProd input[type="submit"]{
+#login input[type="submit"], #registro input[type="submit"]{
 	border-radius: 5px;
 	border: none;
 	padding: 10px;
 	font-size: 14px;
 	cursor: pointer;
+	transition: all ease .2s;
 }
 
 /*=============================
@@ -610,7 +660,7 @@ header{
 	font-size: 16px;
 	border-radius: 5px;
 	border: none;
-	transition: .12s ease all;
+	transition: all ease .2s;
 }
 #mostrar .icon{
 	padding: 0 0;
@@ -823,6 +873,7 @@ header{
 
 
 #ingProd, #actProd{
+	background: rgba(255, 255, 255, 0.7);
 	border: 1px solid #006EB3;
 	border-radius: 5px;
 	margin-top: 30px;
@@ -876,7 +927,7 @@ header{
 	cursor: pointer;
 	border: 1px solid #006EB3;
 	border-radius: 5px;
-	transition: .12s ease all;
+	transition: all ease .2s;
 }
 #ingresar label:hover{
 	border: 1px solid #702F8A;
@@ -898,9 +949,11 @@ header{
 	color: #FFFFFF;
 	font-size: 16px;
 	cursor: pointer;
+	transition: all ease .2s;
 }
 #actualizar .btn a{
 	color: #FFFFFF;
+	transition: all ease .2s;
 }
 #ingresar .btn button:hover, #actualizar .btn button:hover{
 	background: #702F8A;
@@ -953,10 +1006,11 @@ header{
 	text-align: center;
 	color: #000000;
 	background: #FFFFFF;
-	transition: all ease .25s;
+	transition: all ease .2s;
 }
 .producto:hover{
-	background: #E4E4E4;
+	box-shadow: 0px 7px 15px #000000;
+	transition: all .2s ease;
 }
 .producto img{
 	width: 280px;
@@ -983,6 +1037,188 @@ header{
 }
 /*=====  End of Catálogo  ======*/
 
+/*===============================================
+=                     Cursos                   =
+===============================================*/
+
+#contenedor-cursos{
+	width: 90%;
+	min-width: 1200px;
+	margin-top: 100px;
+	padding: 50px 0;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #006EB3;
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	background: rgba(255, 255, 255, 0.7);
+	text-align: center;
+}
+#contenedor-cursos .contenedor{
+	padding: 50px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+#curso{
+	text-align: center;
+	width: 320px;
+	height: 490px;
+	border: 1px solid #888B8D;
+	border-radius: 5px;
+	padding: 20px 0;
+	margin: 20px 30px;
+}
+#curso h2{
+	color: #006EB3;
+}
+#curso #img{
+	height: 200px;
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+#curso #img img{
+	border-radius: 5px;
+}
+#curso #contenido ul{
+	font-size: 20px;
+	text-align: left;
+	margin-left: 12%;
+}
+#curso #contenido ul li{
+	margin: 8px 0;
+}
+#curso #contenido ul li ul, #curso #contenido ul li ul li{
+	margin-left: 0;
+}
+#contenedor-cursos .info{
+	margin-top: 10px;
+}
+/*=====           End of Cursos          ======*/
+
+/*=========================================
+=            Vista de producto            =
+=========================================*/
+
+.contenedor-vista-producto{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 100px;
+}
+.vista-producto{
+	width: 1184px;
+	padding: 50px 0;
+	border: 1px solid;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.6);
+}
+.vista-producto .fila1{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
+	margin: auto;
+}
+.vista-producto .fila1 .columna1{
+	display: flex;
+}
+.vista-producto .fila1 .columna1 .miniaturas{
+	margin: auto;
+}
+.vista-producto .fila1 .columna1 .miniaturas img{
+	border-radius: 5px;
+	border: 1px solid #006EB3;
+	margin: 10px;
+	cursor: pointer;
+}
+img.active{
+	outline: solid #006EB3;
+}
+img.hidden{
+	display: none;
+}
+.vista-producto .fila1 .columna2{
+	text-align: center;
+	width: 400px;
+}
+.vista-producto .fila1 .columna2 h1{
+	color: #702F8A;
+}
+.vista-producto .fila1 .columna2 span{
+	font-size: 22px;
+}
+.vista-producto .fila1 .columna2 form{
+	margin: 50px 10px;
+}
+.vista-producto .fila1 .columna2 form input[type="number"]{
+	width: 65px;
+	height: 30px;
+	padding: 5px;
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	font-size: 18px;
+	margin: 5px;
+}
+.vista-producto .fila1 .columna2 form label{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.vista-producto .fila1 .columna2 form button{
+	width: 80px;
+	margin: 10px;
+	padding: 10px 0;
+	border: none;
+	border-radius: 5px;
+	background: #702F8A;
+	color: #FFFFFF;
+	font-size: 20px;
+	cursor: pointer;
+	transition: all .2s ease;
+	text-align: center;
+}
+.vista-producto .fila1 .columna2 form span{
+	font-size: 12px;
+	color: #686868;
+}
+.vista-producto .fila1 .columna2 form button:hover{
+	background: #006EB3;
+}
+.vista-producto .fila2 .columna1{
+	text-align: left;
+	width: 80%;
+	margin: auto;
+}
+
+/*=====  End of Vista de producto  ======*/
+
+/*===============================
+=            Carrito            =
+===============================*/
+
+.contenedor-carrito{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 120px;
+}
+.carrito{
+	width: 70%;
+	height: 500px;
+	border: 1px solid;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+/*=====  End of Carrito  ======*/
+
+
 /*================================
 =         Pie de pagina          =
 ================================*/
@@ -993,8 +1229,6 @@ footer{
 	background: #888B8D;
 	color: #FFFFFF;
 	box-sizing: border-box;
-	position: absolute;
-	top: 100%;
 }
 .contenedor-footer{
 	width: 100%;
@@ -1007,46 +1241,49 @@ footer{
 	justify-content: space-between;
 	margin-bottom: 20px;
 }
-.columna1{
+footer .columna1{
 	max-width: 400px;
 }
-.columna1 h2{
-	font-size: 20px;
+footer .columna1 h2{
+	font-size: 22px;
+	font-weight: normal;
 }
-.columna1 p{
+footer .columna1 p{
 	font-size: 14px;
 }
-.columna2{
+footer .columna2{
 	max-width: 400px
 }
-.columna2 h2{
-	font-size: 20px;
+footer .columna2 h2{
+	font-size: 22px;
+	font-weight: normal;
 }
-.fila{
+footer .fila{
 	margin-top: 20px;
 	display: flex;
 }
-.fila a{
+footer .fila a{
 	width: 36px;
 	height: 36px;
 }
-.fila label{
+footer .fila label{
 	margin-top: 8px;
 	margin-left: 10px;
 }
-.fila label a{
+footer .fila label a{
 	color: #FFFFFF;
 	text-decoration: none;
 }
-.fila i{
+footer .fila i{
 	font-size: 36px;
 	color: #FFFFFF;
 }
-.columna3{
+footer .columna3{
 	max-width: 400px;
 }
-.columna3 h2{
-	font-size: 20px;
+footer .columna3 h2{
+	font-size: 22px;
+	font-weight: normal;
 }
 .f-footer{
 	box-sizing: border-box;
@@ -1056,10 +1293,10 @@ footer{
 	justify-content: space-around;
 	padding: 20px;
 }
-.copyright a{
+footer  .copyright a{
 	color: #FFFFFF;
 }
-.informacion a{
+footer .informacion a{
 	color: #FFFFFF;
 }
 /*=====  End of Pie de página  ======*/
