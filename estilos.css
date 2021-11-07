@@ -238,7 +238,6 @@ header:hover{
 .icon span{
 	background: #006EB3;
 	color: #FFFFFF;
-	font-size: 12px;
 	position: absolute;
 	margin-top: 15px;
 	margin-left: -4px;
@@ -247,9 +246,13 @@ header:hover{
 	text-align: center;
 	border-radius: 50%;
 }
-.icon:hover > span{
-	background: #FFFFFF;
-	color: #702F8A;
+.icon span div{
+	width: 15px;
+	height: 15px;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /*=====  End of Barra de navegación  ======*/
@@ -1210,10 +1213,59 @@ img.hidden{
 }
 .carrito{
 	width: 70%;
-	height: 500px;
 	border: 1px solid;
 	border-radius: 5px;
 	background: rgba(255, 255, 255, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.carrito table{
+	margin: 0;
+	padding: 0;
+	width: 75%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	margin: 50px 30px;
+}
+.carrito table tr td{
+	text-align: center;
+	padding: 20px;
+	height: 20px;
+}
+.carrito .talba .first{
+	text-align: left;
+}
+.carrito .tabla button{
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+	border: none;
+	background: #006EB3;
+	color: #FFFFFF;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.carrito .tabla button:hover{
+	background: #702F8A;
+}
+.carrito .tabla thead{
+	border-bottom: 1px solid #006EB3;
+	color: #006EB3;
+}
+.carrito thead th{
+	text-align: center;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+}
+.carrito .resumen{
+	background: background: rgba(255, 255, 255, 0.6);
+	border: 1px solid;
+	border-radius: 5px;
+	height: 20px;
+	width: 20px;
 }
 
 /*=====  End of Carrito  ======*/

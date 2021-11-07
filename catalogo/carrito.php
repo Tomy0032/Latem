@@ -10,7 +10,8 @@ if (isset($_SESSION['ci'])) {
 }
 
 $id_Sesion=session_id();
-$lista=$db->query("select * from lista_productos where id_sesion='$id_Sesion'");
+$lista=$db->query("select * from lista_productos where id_sesion='$id_Sesion' and cantidad > 0");
+$lista2=$db->query("select * from lista_productos l, producto p, imagenes i where l.id_producto = p.id and i.id_producto = p.id and id_sesion='$id_Sesion' and cantidad > 0");
 
  ?>
 <html lang="es">
@@ -155,8 +156,28 @@ $lista=$db->query("select * from lista_productos where id_sesion='$id_Sesion'");
 							</li>
 					<?php } ?>
 						<li>
-							<a href="" class="icon">
+							<a href="/utu/latem/catalogo/carrito.php" class="icon">
 								<i class="fas fa-shopping-cart"></i>
+								<?php
+								$id_sesion=session_id();
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								if ($comprobar->fetch()['count(*)'] > 0) {
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									?>
+									<span>
+										<div>
+											<?php 
+										foreach($comprobar->fetchAll() as $row){
+											echo $row['count(*)'];
+										}
+										?>	
+										</div>
+									
+									</span>
+
+									<?php
+								}
+								 ?>
 							</a>
 						</li>
 						<?php 
@@ -172,27 +193,72 @@ $lista=$db->query("select * from lista_productos where id_sesion='$id_Sesion'");
 									<?php
 								}
 							}
-
 						}
 						 ?>
-						
 					</ul>
 				</nav>
 			</div>
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	
 	<div class="contenedor-carrito">
 		<div class="carrito">
 			<?php 
 			if ($lista->fetch() == null) {
-				echo "No se han agregado productos al carrito";
+				?>
+				<div>
+					<?php 
+						echo "No se han agregado productos al carrito";
+					 ?>
+				</div>
+				<?php
+				
+			}else{
+				?>
+				<div class="tabla">
+					<table >
+						<thead>
+							<tr>
+								<th colspan="2" class="first">Producto</th>
+								<th>Cantidad</th>
+								<th>Precio</th>
+								<th>Subtotal</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+							foreach ($lista2->fetchAll() as $row) {
+								?>
+								<tr>
+									<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>" id="primera"/></td>
+									<td><?php echo $row['nombre'] ?></td>
+									<td><?php echo $row['cantidad'] ?></td>
+									<td><?php echo "$ ".$row['precio'] ?></td>
+									<td><?php echo "$ ".($row['cantidad'] * $row['precio']) ?></td>
+									<td>
+										<form action="eliminar_carrito.php" method="POST">
+											<input type="hidden" name="id_producto" value="<?php echo $row['id'] ?>">
+											<button class="submit"><i class="fas fa-trash"></i></button></td>
+										</form>
+										
+								</tr>
+								<?php 
+							}
+
+							 ?>
+						</tbody>
+					</table>	
+				</div>
+				<div class="contenedor-resumen">
+					<div class="resumen">
+						
+					</div>
+				</div>
+				<?php
 			}
-			 ?>
+			?>
 		</div>
 	</div>
-
 	<footer>
 		<div class="contenedor-footer">
 			<div class="f-body">

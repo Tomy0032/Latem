@@ -164,11 +164,14 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
 									?>
 									<span>
-										<?php 
+										<div>
+											<?php 
 										foreach($comprobar->fetchAll() as $row){
 											echo $row['count(*)'];
 										}
-										?>
+										?>	
+										</div>
+									
 									</span>
 
 									<?php
