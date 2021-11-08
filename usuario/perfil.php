@@ -241,11 +241,11 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 				</table>
 			</div>
 			<div class="ubicación">
-				<h2>Mi ubicación</h2>
+				<h2>Mi dirección</h2>
 				<?php 
 				if ($ubiUs->fetch() == null) {
 					?>
-					<button id="agregar-ubicacion">Agregar ubicación</button>
+					<button id="agregar-ubicacion">Agregar dirección</button>
 					<form action="agregar_direccion.php" method="POST" class="noVisible" id="form-ubicacion">
 						<input type="hidden" name="ci" value="<?php echo $ci ?>">
 						<input type="text" id="calle" name="calle" placeholder="Calle">
