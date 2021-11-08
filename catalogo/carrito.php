@@ -135,7 +135,7 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 								<div id="menu-usuario" >
 									<ul>
 										<li>
-											<a href="">Mi perfil</a>
+											<a href="/utu/latem/usuario/perfil.php">Mi perfil</a>
 										</li>
 										<li>
 											<a href="">Mis compras</a>
@@ -193,8 +193,10 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 									<?php
 								}
 							}
+
 						}
 						 ?>
+						
 					</ul>
 				</nav>
 			</div>
@@ -206,7 +208,7 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 			<?php 
 			if ($lista->fetch() == null) {
 				?>
-				<div>
+				<div class="nada">
 					<?php 
 						echo "No se han agregado productos al carrito";
 					 ?>
@@ -227,7 +229,11 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 						</thead>
 						<tbody>
 							<?php 
+							$subtotal=0;
 							foreach ($lista2->fetchAll() as $row) {
+								$subtotal=($subtotal + ($row['cantidad'] * $row['precio']));
+								$iva=($subtotal * 0.22);
+								$total=($subtotal + $iva)
 								?>
 								<tr>
 									<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>" id="primera"/></td>
@@ -251,7 +257,23 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 				</div>
 				<div class="contenedor-resumen">
 					<div class="resumen">
-						
+						<table>
+							<tr>
+								<th>Subtotal</th>
+								<td><?php echo "$ ".$subtotal ?></td>
+							</tr>
+							<tr>
+								<th>IVA</th>
+								<td><?php echo "$ ".round($iva) ?></td>
+							</tr>
+							<tr>
+								<th>Total</th>
+								<td><b><?php echo "$ ".round($total) ?></b></td>
+							</tr>
+						</table>
+						<div class="continuar-compra">
+							<a href="">Continuar</a>
+						</div>
 					</div>
 				</div>
 				<?php

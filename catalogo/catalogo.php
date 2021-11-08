@@ -138,7 +138,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 								<div id="menu-usuario" >
 									<ul>
 										<li>
-											<a href="">Mi perfil</a>
+											<a href="/utu/latem/usuario/perfil.php">Mi perfil</a>
 										</li>
 										<li>
 											<a href="">Mis compras</a>
@@ -159,8 +159,28 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 							</li>
 					<?php } ?>
 						<li>
-							<a href="" class="icon">
+							<a href="/utu/latem/catalogo/carrito.php" class="icon">
 								<i class="fas fa-shopping-cart"></i>
+								<?php
+								$id_sesion=session_id();
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								if ($comprobar->fetch()['count(*)'] > 0) {
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									?>
+									<span>
+										<div>
+											<?php 
+										foreach($comprobar->fetchAll() as $row){
+											echo $row['count(*)'];
+										}
+										?>	
+										</div>
+									
+									</span>
+
+									<?php
+								}
+								 ?>
 							</a>
 						</li>
 						<?php 
@@ -185,8 +205,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			</div>
 			
 			<!--====  End of Barra de navegación  ====-->
-	</header>
-	
+	</header>	
 	<div class="contenedor-catalogo">
 		<?php if ($categoria == 'Sonido' || $categoria == 'Temperatura' || $categoria == 'Humedad' || $categoria == 'Luminosidad'){
 			?> 

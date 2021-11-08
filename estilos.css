@@ -1213,20 +1213,22 @@ img.hidden{
 }
 .carrito{
 	width: 70%;
+	min-width: 1200px;
 	border: 1px solid;
 	border-radius: 5px;
 	background: rgba(255, 255, 255, 0.6);
 	display: flex;
 	justify-content: center;
-	align-items: center;
 }
 .carrito table{
 	margin: 0;
 	padding: 0;
-	width: 75%;
 	border-collapse: collapse;
 	table-layout: fixed;
 	margin: 50px 30px;
+}
+.carrito table img{
+	border-radius: 5px;
 }
 .carrito table tr td{
 	text-align: center;
@@ -1264,12 +1266,125 @@ img.hidden{
 	background: background: rgba(255, 255, 255, 0.6);
 	border: 1px solid;
 	border-radius: 5px;
-	height: 20px;
-	width: 20px;
+	height: 350px;
+	width: 250px;
+	margin: 50px 10px;
+}
+.carrito .resumen table{
+	font-size: 20px;
+	text-align: right;
+	margin: 30px auto;
+}
+.carrito .resumen table th{
+	color: #702F8A;
+}
+.carrito .resumen table td{
+	color: #006EB3;
+}
+.carrito .resumen .continuar-compra{
+	padding: 30px;
+}
+.carrito .resumen .continuar-compra a{
+	padding: 10px;
+	background: #702F8A;
+	color: #FFFFFF;
+	text-decoration: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.carrito .resumen .continuar-compra a:hover{
+	background: #006EB3;
+}
+.carrito .nada{
+	margin: 15%;
 }
 
 /*=====  End of Carrito  ======*/
 
+/*=================================
+=            Mi perfil            =
+=================================*/
+
+.contenedor-perfil{
+	display: flex;
+	justify-content: center;
+	margin-top: 120px;
+}
+.perfil{
+	background: rgba(255, 255, 255, 0.6);
+	width: 70%;
+	border: 1px solid;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding: 90px 0;
+}
+.perfil table{
+	margin-right: 100px;
+	font-size: 20px;
+	text-align: left;
+}
+.perfil th{
+	padding: 10px 30px;
+}
+.perfil h2{
+	text-align: center;
+	font-size: 25px;
+	color: #006EB3;
+	margin-bottom: 50px;
+}
+.perfil .ubicación{
+	width: 300px;
+}
+.perfil .ubicación button{
+	background: #702F8A;
+	padding: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.perfil .ubicación button:hover{
+	background: #006EB3;
+}
+.perfil .ubicación #numero{
+	width: 80px;
+}
+.perfil .ubicación input:not(.perfil .ubicación input[type="submit"]){
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	height: 25px;
+	outline: none;
+	margin: 5px;
+	padding-left: 8px;
+}
+.perfil .ubicación input[type="submit"]{
+	background: #702F8A;
+	padding: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.perfil .ubicación input[type="submit"]:hover{
+	background: #006EB3;
+}
+.visible{
+	display: block;
+}
+.noVisible{
+	display: none;
+}
+.perfil .ubicación{
+	font-size: 20px;
+}
+/*=====  End of Mi perfil  ======*/
 
 /*================================
 =         Pie de pagina          =

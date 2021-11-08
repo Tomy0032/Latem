@@ -43,6 +43,9 @@ var primeraMin = document.getElementById('primeramin'),
 	segunda = document.getElementById('segunda'),
 	tercera = document.getElementById('tercera');
 
+var agregarUbicacion = document.getElementById('agregar-ubicacion'),
+	formUbicacion = document.getElementById('form-ubicacion');
+
 function cambioLogin(){
 	if (contador == 1) {
 		registro.classList.add('click');
@@ -220,6 +223,13 @@ function hoverTercera(){
 	tercera.classList.remove('hidden');
 }
 
+function mostrarForm(){
+	formUbicacion.classList.remove('noVisible');
+	formUbicacion.classList.add('visible');
+	agregarUbicacion.classList.add('noVisible')
+}
+
+
 if (cambiarLogin) {
 	cambiarLogin.addEventListener('click', cambioLogin, true);
 }
@@ -284,4 +294,8 @@ if (segundaMin) {
 
 if (terceraMin) {
 	terceraMin.addEventListener('mouseover', hoverTercera, true);
+}
+
+if (agregarUbicacion) {
+	agregarUbicacion.addEventListener('click', mostrarForm, true);
 }

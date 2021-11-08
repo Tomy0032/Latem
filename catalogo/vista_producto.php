@@ -142,7 +142,7 @@ if (isset($_SESSION['ci'])) {
 								<div id="menu-usuario" >
 									<ul>
 										<li>
-											<a href="">Mi perfil</a>
+											<a href="/utu/latem/usuario/perfil.php">Mi perfil</a>
 										</li>
 										<li>
 											<a href="">Mis compras</a>

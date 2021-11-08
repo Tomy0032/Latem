@@ -7,7 +7,15 @@ $db=Db::conectar();
 
 if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
+}else{
+	header('location: /utu/latem/');
 }
+$infoUs=$db->query("select * from usuario where ci = '$_SESSION[ci]'");
+$infoUs2=$db->query("select * from usuario where ci = '$_SESSION[ci]'");
+$ubiUs=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
+$ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
+
+$ci=($infoUs2->fetch())['ci'];
 
 $listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
 $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado' limit 6");
@@ -202,97 +210,75 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	<div class="container-slider">
-		<div class="slider" id="slider">
-			<div class="slider__section">
-				<a href="">
-					<img src="recursos/slider/slider1.jpg" alt="" class="slider__img">
-				</a>
-			</div>
-			<div class="slider__section">
-				<a href="/utu/latem/cursos.php">
-					<img src="recursos/slider/slider2.jpg" alt="" class="slider__img">
-
-				</a>
-			</div>
-			<div class="slider__section">
-				<a href="">
-					<img src="recursos/slider/slider3.jpg" alt="" class="slider__img">
-				</a>
-			</div>
-		</div>
-		<ul class="selectores">
-				<li>
-					<div for="radio1" id="lblradio1" class="active"></div>
-				</li>
-				<li>
-					<div for="radio2" id="lblradio2"></div>
-				</li>
-				<li>
-					<div for="radio3" id="lblradio3"></div>
-				</li>
-			</ul>
-		<div class="slider__btn slider__btn--left" id="btn--left">
-			<i class="fas fa-chevron-left"></i>
-		</div>
-		<div class="slider__btn slider__btn--right" id="btn--right">
-			<i class="fas fa-chevron-right"></i>
-		</div>
-	</div>
-	<div class="titulo-destacados">
-		<h2>Productos destacados</h2>
-		<a href="/utu/latem/catalogo/destacados.php">ver más</a>
-	</div>
-	
-	<div class="container-destacados">
-		<div class="destacados" id="destacados">
-				<?php 
-				if ($listaProductos->fetchAll() == null) {
+	<div class="contenedor-perfil">
+		<div class="perfil">
+			<div class="info">
+				<table>
+					<?php foreach ($infoUs->fetchAll() as $row){
 					?>
-					<div class="destacados__section">
-						<div class="noProducto">
-							<h2>No se han encontrado productos :(</h2>
-							<br>
-							<p>Esto puede deberse a un problema de nuestro servidor</p>
-							<p>Si es así, no tardaremos en solucionarlo ;)</p>
-						</div>
-					</div>
-					<?php
-				}
-				else{
-					foreach ($listaProductos2->fetchAll() as $row) {
-						?>
-						<div class="destacados__section">
-							<a href="/utu/latem/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
-								<div class="index-producto">
-									<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
-									<span>
-										<?php
-										echo $row['nombre'];
-										?>
-									</span>
-									<span style="color: #702F8A; font-weight: bold; font-size: 22px;">
-										<?php
-										echo "$";
-										echo $row['precio'];
-										?>
-									</span>
-								</div>
-							</a>
-						</div>
-						<?php
+						<tr>
+							<td colspan="2"><h2>Mis datos</h2></td>
+						</tr>
+						<tr>
+							<th>Nombre:</td>
+							<td><?php echo $row['nombre'] ?></td>
+						</tr>
+						<tr>
+							<th>Apellido:</td>
+							<td><?php echo $row['apellido'] ?></td>
+						</tr>
+						<tr>
+							<th>Cédula de indentidad:</td>
+							<td><?php echo $row['ci'] ?></td>
+						</tr>
+						<tr>
+							<th>Correo:</td>
+							<td><?php echo $row['correo'] ?></td>
+						</tr>
+					<?php 
 					}
-				}			
+					 ?>
+				</table>
+			</div>
+			<div class="ubicación">
+				<h2>Mi ubicación</h2>
+				<?php 
+				if ($ubiUs->fetch() == null) {
+					?>
+					<button id="agregar-ubicacion">Agregar ubicación</button>
+					<form action="agregar_direccion.php" method="POST" class="noVisible" id="form-ubicacion">
+						<input type="hidden" name="ci" value="<?php echo $ci ?>">
+						<input type="text" id="calle" name="calle" placeholder="Calle">
+						<input type="number" id="numero" name="numero" placeholder="Número">
+						<br>
+						<input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
+						<br>
+						<input type="submit" value="Agregar">
+					</form>
+					<?php
+				}else{
+					foreach($ubiUs2->fetchAll() as $row){
+						echo $row['calle']." ".$row['numero'].", ".$row['ciudad'];
 				 ?>
-			
+				 <br>
+				 <br>
+				 <button id="agregar-ubicacion">Editar ubicación</button>
+				 <form action="editar_direccion.php" method="POST" class="noVisible" id="form-ubicacion">
+					<input type="hidden" name="ci" value="<?php echo $ci ?>">
+					<input type="text" id="calle" name="calle" value="<?php echo $row['calle'] ?>" required>
+					<input type="number" id="numero" name="numero"  value="<?php echo $row['numero'] ?>" required>
+					<br>
+					<input type="text" id="ciudad" name="ciudad" value="<?php echo $row['ciudad'] ?>" required>
+					<br>
+					<input type="submit" value="Actualizar">
+					<?php
+					}
+
+				}
+				 ?>
+				</form>
+			</div>
 		</div>
-		<div class="destacados__btn destacados__btn--left" id="destacados--btn--left">
-			<i class="fas fa-chevron-left"></i>
-		</div>
-		<div class="destacados__btn destacados__btn--right" id="destacados--btn--right">
-			<i class="fas fa-chevron-right"></i>
-		</div>
-	</div>
 	</div>
 	<footer>
 		<div class="contenedor-footer">
