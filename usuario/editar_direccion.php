@@ -12,7 +12,7 @@ $ciudad=$_POST['ciudad'];
 
 $db->query("update dir_cli set ciudad='$ciudad', calle='$calle', numero='$numero' where ci='$ci'");
 
-header("location: /utu/latem/usuario/perfil.php");
+header("location: /usuario/perfil.php");
 
 
  ?>

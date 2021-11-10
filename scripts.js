@@ -46,6 +46,13 @@ var primeraMin = document.getElementById('primeramin'),
 var agregarUbicacion = document.getElementById('agregar-ubicacion'),
 	formUbicacion = document.getElementById('form-ubicacion');
 
+var agregarTelefono = document.getElementById('agregar-telefono'),
+	formTelefono = document.getElementById('form-telefono');
+
+var btnContinuarCompra = document.getElementById('btn-continuar-compra'),
+	continuarCompra = document.getElementById('continuar-compra'),
+	envio = document.getElementById('envio'); 
+
 function cambioLogin(){
 	if (contador == 1) {
 		registro.classList.add('click');
@@ -226,9 +233,21 @@ function hoverTercera(){
 function mostrarForm(){
 	formUbicacion.classList.remove('noVisible');
 	formUbicacion.classList.add('visible');
-	agregarUbicacion.classList.add('noVisible')
+	agregarUbicacion.classList.add('noVisible');
 }
 
+function mostrarFormTel(){
+	formTelefono.classList.remove('noVisible');
+	formTelefono.classList.add('visible');
+	agregarTelefono.classList.add('noVisible');
+}
+
+function mostrarFormEnvio(){
+	envio.classList.remove('noVisible');
+	envio.classList.add('visible');
+	btnContinuarCompra.classList.add('noVisible');
+	continuarCompra.classList.add('noVisible');
+}
 
 if (cambiarLogin) {
 	cambiarLogin.addEventListener('click', cambioLogin, true);
@@ -298,4 +317,12 @@ if (terceraMin) {
 
 if (agregarUbicacion) {
 	agregarUbicacion.addEventListener('click', mostrarForm, true);
+}
+
+if (agregarTelefono) {
+	agregarTelefono.addEventListener('click', mostrarFormTel, true);
+}
+
+if (btnContinuarCompra) {
+	btnContinuarCompra.addEventListener('click', mostrarFormEnvio, true);
 }

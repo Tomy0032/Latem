@@ -1,20 +1,30 @@
-<?php
+<?php 
 session_start();
-require_once 'conexion.php';
+
+require_once('conexion.php');
 
 $db=Db::conectar();
 
+$subtotal=$_POST['subtotal'];
+$iva=$_POST['iva'];
+$manejo=260;
+
+
 if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
+}else{
+	header('location: /index.php');
 }
 
+$id_Sesion=session_id();
+$agencia=$db->query("select * from agencia where id='$_POST[agencia]'");
+$envio=$agencia->fetch()['costo'];
+$metodo=$db->query("select * from metodo_pago");
+$metodo2=$db->query("select * from metodo_pago");
+$total=($subtotal + $iva + $manejo + $envio);
 
-$listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado in ('destacado')");
-$listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado in ('destacado')");
 
-?>
-
-
+ ?>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
@@ -26,7 +36,6 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
 	<link rel="shortcut icon" href="/recursos/favicon.png">
-</head>
 <body>
 	<header>	
 			<!--=====================================
@@ -61,7 +70,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 												<a href="/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href=/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
+												<a href="/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
@@ -72,7 +81,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 										<h4>Componentes</h4>
 										<ul>
 											<li>
-												<a href="/catalogo/catalogo.php?categoria=Diodos y Tristores">Diodos y Tristores</a>
+												<a href="/catalogo/catalogo.php?categoria=Diodos y Tiristores">Diodos y Tiristores</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
@@ -204,46 +213,61 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			</div>
 			
 			<!--====  End of Barra de navegación  ====-->
-	</header>	
-	<div class="contenedor-catalogo">
-		<h1>Productos destacados</h1>
-		<div class="contenedor-productos">
-
-			<?php 
-			if ($listaProductos->fetchAll() == null) {
-				
-				?>
-					<div class="noProducto">
-						<h2>No se han encontrado productos :(</h2>
-						<br>
-						<p>Esto puede deberse a un problema de nuestro servidor</p>
-						<p>Si es así, no tardaremos en solucionarlo ;)</p>
-					</div>
-				<?php
-			}
-			else{
-				foreach ($listaProductos2->fetchAll() as $row) {
-					?>
-					<a href="/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
-						<div class="producto">
-							<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
-							<span>
-								<?php
-								echo $row['nombre'];
-								?>
-							</span>
-							<span style="color: #702F8A; font-weight: bold; font-size: 22px;">
-								<?php
-								echo "$";
-								echo $row['precio'];
-								?>
-							</span>
-						</div>
-					</a>
+	</header>
+	<div class="contenedor-pago">
+		<div class="pago">
+			<div class="contenedor-metodo">
+				<div class="metodo-pago">
+					
 					<?php
-				}
-			}			
-			 ?>
+					foreach($metodo->fetchAll() as $row){
+
+						?>
+						<div class="metodo">
+							<input type="radio" name="metodo" id="metodo<?php echo $row['id'] ?>" required>
+							<label for="metodo<?php echo $row['id'] ?>">
+								<img height="40px" src="/recursos/<?php echo $row['tipo'] ?>.jpg" alt="">
+							</label>
+							<?php 
+							if ($row['id'] == 1) {
+								echo "Pago en el local o al recibir el paquete";
+							}
+							 ?>
+						</div>
+
+						<?php 
+
+				
+					}
+					?>
+				</div>
+			</div>
+			<div class="contenedor-resumen">
+				<div class="resumen">
+					<table>
+						<tr>
+							<th>Subtotal</th>
+							<td><?php echo "$ ".$subtotal ?></td>
+						</tr>
+						<tr>
+							<th>IVA</th>
+							<td><?php echo "$ ".round($iva) ?></td>
+						</tr>
+						<tr>
+							<th>Empaque y manejo</th>
+							<td><?php echo "$ ".$manejo ?></td>
+						</tr>
+						<tr>
+							<th>Envío</th>
+							<td><?php echo "$ ".$envio ?></td>
+						</tr>
+						<tr>
+							<th>Total</th>
+							<td><b><?php echo "$ ".round($total) ?></b></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 	<footer>
@@ -273,7 +297,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 					</div>
 				</div>
 				<div class="columna3">
-					<h2>Información Contactos</h2>
+					<h2>Información de contacto</h2>
 					<div class="fila">
 						<i class="fas fa-phone-square-alt"></i>
 						<label>+598 93 456 789</label>

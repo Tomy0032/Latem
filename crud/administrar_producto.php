@@ -44,7 +44,7 @@ if (isset($_POST['insertar'])) {
 	
 	$crudI->insertar($imagenes);
 
-	header('Location: mostrar.php?pagina=1');
+	header('Location: /crud/mostrar.php?pagina=1');
 
 }elseif(isset($_POST['actualizar'])){
 	$producto->setId($_POST['id']);
@@ -57,11 +57,11 @@ if (isset($_POST['insertar'])) {
 	$producto->setStock($_POST['stock']);
 	$producto->setEstado($_POST['estado']);
 	$crud->actualizar($producto);
-	header('Location: mostrar.php?pagina=1');
+	header('Location: /crud/mostrar.php?pagina=1');
 
 }elseif ($_GET['accion']=='e') {
 	$crud->eliminar($_GET['id']);
-	header('Location: mostrar.php?pagina=1');
+	header('Location: /crud/mostrar.php?pagina=1');
 
 }
 ?>

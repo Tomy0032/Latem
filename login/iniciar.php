@@ -2,6 +2,7 @@
 
 $ingCI = $_POST['ci'];
 $ingClave = $_POST['clave'];
+$carrito = $_POST['carrito'];
 require("conexion.php");
 $conexion = retornarConexion();
 
@@ -29,12 +30,13 @@ if ($datos == null) {
 	if ($ingCI == $ci && $ingClave == $clave) {
 		session_start();
 		$_SESSION['ci'] = $_REQUEST['ci'];
-
-		if ($permiso == 1) {
-
-			header('location: /utu/latem/crud/mostrar.php');
+		if($carrito == 1){
+			header('location: /catalogo/carrito.php');
+		}
+		elseif ($permiso == 1) {
+			header('location: /crud/mostrar.php');
 		}else{
-			header('location: /utu/latem/index.php');
+			header('location: /index.php');
 		}
 
 	}else {
@@ -50,4 +52,5 @@ if ($datos == null) {
 		 <?php
 	}
 }
+
 ?>

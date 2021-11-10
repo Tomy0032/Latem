@@ -5,7 +5,7 @@ class  Db{
      
     public static function conectar(){
         $pdo_options[PDO::ATTR_ERRMODE]=PDO::ERRMODE_EXCEPTION;
-        self::$conexion= new PDO('mysql:host=localhost;dbname=robotech','root','',$pdo_options);
+        self::$conexion= new PDO('mysql:host=localhost;dbname=robotech','root','4448f69B/',$pdo_options);
         return self::$conexion;
     }
 }

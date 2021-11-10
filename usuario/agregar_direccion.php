@@ -12,7 +12,7 @@ $ciudad=$_POST['ciudad'];
 
 $db->query("insert into dir_cli values ('$ci', '$ciudad', '$calle', '$numero')");
 
-header("location: /utu/latem/usuario/perfil.php");
+header("location: /usuario/perfil.php");
 
 
  ?>

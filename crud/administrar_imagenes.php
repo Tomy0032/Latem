@@ -22,7 +22,7 @@ if (isset($_POST['insertar'])) {
 	$imagenes->setTerceraMin($terceraMin);
 	
 	$crud->insertar($imagenes);
-	header('Location: mostrar.php?pagina=1');
+	header('Location: /crud/mostrar.php?pagina=1');
 
 }
 elseif(isset($_POST['actualizar'])){
@@ -30,5 +30,5 @@ elseif(isset($_POST['actualizar'])){
 	$nombre=$_POST['actualizar'];
 	$id=$_POST['id'];
 	$crud->actualizar($imagen, $nombre, $id);
-	header('Location: mostrar.php?pagina=1');
+	header('Location: /crud/mostrar.php?pagina=1');
 }

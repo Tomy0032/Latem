@@ -18,12 +18,12 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Robotech</title>
-	<link rel="stylesheet" href="/utu/Latem/estilos.css">
+	<link rel="stylesheet" href="/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
-	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
+	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
+	<link rel="shortcut icon" href="/recursos/favicon.png">
 <body>
 	<header>	
 			<!--=====================================
@@ -31,8 +31,8 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			======================================-->
 			
 			<div id="menu">
-				<a href="/utu/Latem/index.php">
-					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
+				<a href="/index.php">
+					<img src="/recursos/RoboTech logo.png" alt="">
 				</a>
 				<form action="" id="buscador">
 					<input type="text" placeholder="Buscar" required>
@@ -52,16 +52,16 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 										<h4>Robótica</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
+												<a href="/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
+												<a href="/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
+												<a href=/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
+												<a href="/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
 											</li>
 										</ul>
 									</div>
@@ -69,19 +69,19 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 										<h4>Componentes</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Diodos y Transistores">Diodos y Tristores</a>
+												<a href="/catalogo/catalogo.php?categoria=Diodos y Tiristores">Diodos y Tiristores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
+												<a href="/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Transistores">Transistores</a>
+												<a href="/catalogo/catalogo.php?categoria=Transistores">Transistores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Interruptores y Reles">Interruptores y Reles</a>
+												<a href="/catalogo/catalogo.php?categoria=Interruptores y Reles">Interruptores y Reles</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Resistivos">Resistivos</a>
+												<a href="/catalogo/catalogo.php?categoria=Resistivos">Resistivos</a>
 											</li>
 										</ul>
 									</div>
@@ -89,13 +89,13 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 										<h4>Instrumentos</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Soldadores y desoldadores">Soldadores y Desoldadores</a>
+												<a href="/catalogo/catalogo.php?categoria=Soldadores y desoldadores">Soldadores y Desoldadores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Equipamiento antiestático">Equipamiento antiestático</a>
+												<a href="/catalogo/catalogo.php?categoria=Equipamiento antiestático">Equipamiento antiestático</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Medidores">Medidores</a>
+												<a href="/catalogo/catalogo.php?categoria=Medidores">Medidores</a>
 											</li>
 										</ul>
 									</div>
@@ -103,16 +103,16 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 										<h4>Sensores</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Sonido">Sonido</a>
+												<a href="/catalogo/catalogo.php?categoria=Sonido">Sonido</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Humedad">Humedad</a>
+												<a href="/catalogo/catalogo.php?categoria=Humedad">Humedad</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Luminosidad">Luminosidad</a>
+												<a href="/catalogo/catalogo.php?categoria=Luminosidad">Luminosidad</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Temperatura">Temperatura</a>
+												<a href="/catalogo/catalogo.php?categoria=Temperatura">Temperatura</a>
 											</li>
 										</ul>
 									</div>
@@ -120,7 +120,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 							</div>
 						</li>
 						<li>
-							<a href="/utu/latem/cursos.php">Cursos</a>
+							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
 							<a href="">Sobre nosotros</a>
@@ -134,13 +134,13 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 								<div id="menu-usuario" >
 									<ul>
 										<li>
-											<a href="/utu/latem/usuario/perfil.php">Mi perfil</a>
+											<a href="/usuario/perfil.php">Mi perfil</a>
 										</li>
 										<li>
 											<a href="">Mis compras</a>
 										</li>
 										<li class="last">
-											<a href="/utu/latem/login/cerrarSesion.php">Cerrar sesión</a>
+											<a href="/login/cerrarSesion.php">Cerrar sesión</a>
 										</li>
 									</ul>
 								</div>
@@ -149,13 +149,13 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 						}else{
 							?>
 							<li>
-								<a href="/utu/latem/login/login.php" class="icon">
+								<a href="/login/login.php" class="icon">
 									<i class="fas fa-user"></i>
 								</a>
 							</li>
 					<?php } ?>
 						<li>
-							<a href="/utu/latem/catalogo/carrito.php" class="icon">
+							<a href="/catalogo/carrito.php" class="icon">
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
@@ -185,7 +185,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 								if ($row['permiso'] == 1) {
 									?>
 									<li>
-										<a href="/utu/latem/crud/mostrar.php" class="icon">
+										<a href="/crud/mostrar.php" class="icon">
 											<i class="fas fa-cogs"></i>
 										</a>
 									</li>
@@ -206,18 +206,18 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 		<div class="slider" id="slider">
 			<div class="slider__section">
 				<a href="">
-					<img src="recursos/slider/slider1.jpg" alt="" class="slider__img">
+					<img src="/recursos/slider/slider1.jpg" alt="" class="slider__img">
 				</a>
 			</div>
 			<div class="slider__section">
-				<a href="/utu/latem/cursos.php">
-					<img src="recursos/slider/slider2.jpg" alt="" class="slider__img">
+				<a href="/cursos.php">
+					<img src="/recursos/slider/slider2.jpg" alt="" class="slider__img">
 
 				</a>
 			</div>
 			<div class="slider__section">
 				<a href="">
-					<img src="recursos/slider/slider3.jpg" alt="" class="slider__img">
+					<img src="/recursos/slider/slider3.jpg" alt="" class="slider__img">
 				</a>
 			</div>
 		</div>
@@ -241,7 +241,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 	</div>
 	<div class="titulo-destacados">
 		<h2>Productos destacados</h2>
-		<a href="/utu/latem/catalogo/destacados.php">ver más</a>
+		<a href="/catalogo/destacados.php">ver más</a>
 	</div>
 	
 	<div class="container-destacados">
@@ -263,7 +263,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 					foreach ($listaProductos2->fetchAll() as $row) {
 						?>
 						<div class="destacados__section">
-							<a href="/utu/latem/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
+							<a href="/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
 								<div class="index-producto">
 									<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
 									<span>
@@ -342,6 +342,6 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			</div>
 		</div>	
 	</footer>
-	<script src="/utu/Latem/scripts.js"></script>
+	<script src="/scripts.js"></script>
 </body>
 </html>

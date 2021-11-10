@@ -235,7 +235,7 @@ header:hover{
 #categorias a:hover:after{
 	width: 100%;
 }
-.icon span{
+header .icon span{
 	background: #006EB3;
 	color: #FFFFFF;
 	position: absolute;
@@ -334,17 +334,15 @@ header:hover{
 	z-index: 50;
 	margin: 10px;
 	display: block;
-	width: 8px;
-	height: 8px;
+	width: 10px;
+	height: 10px;
 	background: #FFFFFF;
 	border-radius: 15px;
 	cursor: pointer;
-	transition: all 200ms ease;
+	transition: all .4s ease;
 }
 .selectores div.active{
-	margin: 7px;
-	width: 13px;
-	height: 13px;
+	width: 25px;
 }
 #banner{
 	margin: 0 auto;
@@ -416,7 +414,7 @@ header:hover{
 }
 .index-producto{
 	width: 230px;
-	height: 300px;
+	height: 320px;
 	display: inline-grid;
 	background: rgba(255, 255, 255, .6);
 	border-radius: 5px; 
@@ -1266,8 +1264,7 @@ img.hidden{
 	background: background: rgba(255, 255, 255, 0.6);
 	border: 1px solid;
 	border-radius: 5px;
-	height: 350px;
-	width: 250px;
+	min-width: 250px;
 	margin: 50px 10px;
 }
 .carrito .resumen table{
@@ -1284,23 +1281,139 @@ img.hidden{
 .carrito .resumen .continuar-compra{
 	padding: 30px;
 }
-.carrito .resumen .continuar-compra a{
+.carrito .resumen .continuar-compra button, .carrito .resumen .continuar-compra a, .carrito .resumen input[type="submit"]{
 	padding: 10px;
 	background: #702F8A;
 	color: #FFFFFF;
 	text-decoration: none;
+	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: all ease .2s;
 }
-.carrito .resumen .continuar-compra a:hover{
+.carrito .resumen .continuar-compra button:hover, .carrito .resumen .continuar-compra a:hover, .carrito .resumen input[type="submit"]:hover{
 	background: #006EB3;
 }
 .carrito .nada{
 	margin: 15%;
 }
+.carrito .envio form select{
+	height: 30px;
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	margin: 10px;
+	outline: none;
+}
+.carrito .envio h3{
+	margin-bottom: 3px;
+	color: #702F8A;
+}
+
+.carrito .envio form h3{
+	margin-bottom: 3px;
+	margin-top: 40px;
+}
+.carrito .envio button{
+	background: #702F8A;
+	padding: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.carrito .envio button:hover{
+	background: #006EB3;
+}
+.carrito .envio #numero{
+	width: 80px;
+}
+.carrito .envio input:not(.carrito .envio input[type="submit"]){
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	height: 25px;
+	outline: none;
+	margin: 5px;
+	padding-left: 8px;
+}
+.carrito .envio input[type="submit"]{
+	background: #702F8A;
+	padding: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.carrito .envio input[type="submit"]:hover{
+	background: #006EB3;
+}
 
 /*=====  End of Carrito  ======*/
+
+/*============================
+=            Pago            =
+============================*/
+
+.contenedor-pago{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 120px;
+}
+.pago{
+	width: 70%;
+	min-width: 1200px;
+	border: 1px solid;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.6);
+	display: flex;
+	justify-content: center;
+}
+.pago .resumen{
+	background: background: rgba(255, 255, 255, 0.6);
+	border: 1px solid;
+	border-radius: 5px;
+	min-width: 250px;
+	margin: 50px 10px;
+}
+.pago .resumen table{
+	font-size: 20px;
+	text-align: right;
+	margin: 30px auto;
+}
+.pago .resumen table th{
+	color: #702F8A;
+}
+.pago .resumen table td{
+	color: #006EB3;
+}
+.pago .resumen .continuar-compra{
+	padding: 30px;
+}
+.pago .resumen .continuar-compra button, .carrito .resumen .continuar-compra a, .carrito .resumen input[type="submit"]{
+	padding: 10px;
+	background: #702F8A;
+	color: #FFFFFF;
+	text-decoration: none;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.pago .resumen .continuar-compra button:hover, .carrito .resumen .continuar-compra a:hover, .carrito .resumen input[type="submit"]:hover{
+	background: #006EB3;
+}
+.pago .metodo{
+	display: flex;
+	text-align: center;
+	align-items: center;
+}
+
+/*=====  End of Pago  ======*/
+
 
 /*=================================
 =            Mi perfil            =
@@ -1338,7 +1451,7 @@ img.hidden{
 .perfil .ubicación{
 	width: 300px;
 }
-.perfil .ubicación button{
+.perfil .ubicación button, .perfil .info button{
 	background: #702F8A;
 	padding: 10px;
 	font-size: 14px;
@@ -1348,13 +1461,13 @@ img.hidden{
 	cursor: pointer;
 	transition: all ease .2s;
 }
-.perfil .ubicación button:hover{
+.perfil .ubicación button:hover, .perfil .info button:hover{
 	background: #006EB3;
 }
 .perfil .ubicación #numero{
 	width: 80px;
 }
-.perfil .ubicación input:not(.perfil .ubicación input[type="submit"]){
+.perfil .ubicación input:not(.perfil .ubicación input[type="submit"]), .perfil .info input:not(.perfil .info input[type="submit"]){
 	border: 1px solid #702F8A;
 	border-radius: 5px;
 	height: 25px;
@@ -1362,7 +1475,7 @@ img.hidden{
 	margin: 5px;
 	padding-left: 8px;
 }
-.perfil .ubicación input[type="submit"]{
+.perfil .ubicación input[type="submit"], .perfil .info input[type="submit"]{
 	background: #702F8A;
 	padding: 10px;
 	font-size: 14px;
@@ -1372,7 +1485,7 @@ img.hidden{
 	cursor: pointer;
 	transition: all ease .2s;
 }
-.perfil .ubicación input[type="submit"]:hover{
+.perfil .ubicación input[type="submit"]:hover, .perfil .info input[type="submit"]:hover{
 	background: #006EB3;
 }
 .visible{
@@ -1384,6 +1497,10 @@ img.hidden{
 .perfil .ubicación{
 	font-size: 20px;
 }
+.perfil .info input{
+	width: 140px;
+}
+
 /*=====  End of Mi perfil  ======*/
 
 /*================================

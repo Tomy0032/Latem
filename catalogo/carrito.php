@@ -10,8 +10,14 @@ if (isset($_SESSION['ci'])) {
 }
 
 $id_Sesion=session_id();
-$lista=$db->query("select * from lista_productos where id_sesion='$id_Sesion' and cantidad > 0");
-$lista2=$db->query("select * from lista_productos l, producto p, imagenes i where l.id_producto = p.id and i.id_producto = p.id and id_sesion='$id_Sesion' and cantidad > 0");
+$lista=$db->query("select * from lista_productos where id_sesion='$id_Sesion' and cantidad > 0 and estado = 'espera'");
+$lista2=$db->query("select * from lista_productos l, producto p, imagenes i where l.id_producto = p.id and i.id_producto = p.id and id_sesion='$id_Sesion' and cantidad > 0 and l.estado = 'espera' ");
+$agencias=$db->query("select * from agencia");
+
+$infoUs=$db->query("select * from usuario where ci = '$_SESSION[ci]'");
+$infoUs2=$db->query("select * from usuario where ci = '$_SESSION[ci]'");
+$ubiUs=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
+$ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 
  ?>
 <html lang="es">
@@ -19,12 +25,12 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Robotech</title>
-	<link rel="stylesheet" href="/utu/Latem/estilos.css">
+	<link rel="stylesheet" href="/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
-	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
+	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
+	<link rel="shortcut icon" href="/recursos/favicon.png">
 <body>
 	<header>	
 			<!--=====================================
@@ -32,8 +38,8 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 			======================================-->
 			
 			<div id="menu">
-				<a href="/utu/Latem/index.php">
-					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
+				<a href="/index.php">
+					<img src="/recursos/RoboTech logo.png" alt="">
 				</a>
 				<form action="" id="buscador">
 					<input type="text" placeholder="Buscar" required>
@@ -53,16 +59,16 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 										<h4>Robótica</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
+												<a href="/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
+												<a href="/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
+												<a href="/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
+												<a href="/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
 											</li>
 										</ul>
 									</div>
@@ -70,19 +76,19 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 										<h4>Componentes</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Diodos y Transistores">Diodos y Tristores</a>
+												<a href="/catalogo/catalogo.php?categoria=Diodos y Tiristores">Diodos y Tiristores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
+												<a href="/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Transistores">Transistores</a>
+												<a href="/catalogo/catalogo.php?categoria=Transistores">Transistores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Interruptores y Reles">Interruptores y Reles</a>
+												<a href="/catalogo/catalogo.php?categoria=Interruptores y Reles">Interruptores y Reles</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Resistivos">Resistivos</a>
+												<a href="/catalogo/catalogo.php?categoria=Resistivos">Resistivos</a>
 											</li>
 										</ul>
 									</div>
@@ -90,13 +96,13 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 										<h4>Instrumentos</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Soldadores y desoldadores">Soldadores y Desoldadores</a>
+												<a href="/catalogo/catalogo.php?categoria=Soldadores y desoldadores">Soldadores y Desoldadores</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Equipamiento antiestático">Equipamiento antiestático</a>
+												<a href="/catalogo/catalogo.php?categoria=Equipamiento antiestático">Equipamiento antiestático</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Medidores">Medidores</a>
+												<a href="/catalogo/catalogo.php?categoria=Medidores">Medidores</a>
 											</li>
 										</ul>
 									</div>
@@ -104,16 +110,16 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 										<h4>Sensores</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Sonido">Sonido</a>
+												<a href="/catalogo/catalogo.php?categoria=Sonido">Sonido</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Humedad">Humedad</a>
+												<a href="/catalogo/catalogo.php?categoria=Humedad">Humedad</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Luminosidad">Luminosidad</a>
+												<a href="/catalogo/catalogo.php?categoria=Luminosidad">Luminosidad</a>
 											</li>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Temperatura">Temperatura</a>
+												<a href="/catalogo/catalogo.php?categoria=Temperatura">Temperatura</a>
 											</li>
 										</ul>
 									</div>
@@ -121,7 +127,7 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 							</div>
 						</li>
 						<li>
-							<a href="/utu/latem/cursos.php">Cursos</a>
+							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
 							<a href="">Sobre nosotros</a>
@@ -135,13 +141,13 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 								<div id="menu-usuario" >
 									<ul>
 										<li>
-											<a href="/utu/latem/usuario/perfil.php">Mi perfil</a>
+											<a href="/usuario/perfil.php">Mi perfil</a>
 										</li>
 										<li>
 											<a href="">Mis compras</a>
 										</li>
 										<li class="last">
-											<a href="/utu/latem/login/cerrarSesion.php">Cerrar sesión</a>
+											<a href="/login/cerrarSesion.php">Cerrar sesión</a>
 										</li>
 									</ul>
 								</div>
@@ -150,13 +156,13 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 						}else{
 							?>
 							<li>
-								<a href="/utu/latem/login/login.php" class="icon">
+								<a href="/login/login.php" class="icon">
 									<i class="fas fa-user"></i>
 								</a>
 							</li>
 					<?php } ?>
 						<li>
-							<a href="/utu/latem/catalogo/carrito.php" class="icon">
+							<a href="/catalogo/carrito.php" class="icon">
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
@@ -186,7 +192,7 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 								if ($row['permiso'] == 1) {
 									?>
 									<li>
-										<a href="/utu/latem/crud/mostrar.php" class="icon">
+										<a href="/crud/mostrar.php" class="icon">
 											<i class="fas fa-cogs"></i>
 										</a>
 									</li>
@@ -271,8 +277,59 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 								<td><b><?php echo "$ ".round($total) ?></b></td>
 							</tr>
 						</table>
-						<div class="continuar-compra">
-							<a href="">Continuar</a>
+						<div id="continuar-compra" class="continuar-compra">
+							<?php if (isset($_SESSION['ci'])) {
+								?>
+								<button id="btn-continuar-compra">Continuar</button>
+								<?php
+							}else{ ?>
+							<a href="/login/login.php?carrito=carrito">Continuar</a>
+							<?php 
+							} ?>
+						</div>
+
+						<div class="envio">
+							<div id="envio" class="noVisible"  >
+								
+							
+							<?php
+							if ($ubiUs->fetch() == null) {
+								?>
+								<button id="agregar-ubicacion">Agregar dirección</button>
+								<form action="agregar_direccion.php" method="POST" id="form-ubicacion">
+									<input type="hidden" name="ci" value="<?php echo $ci ?>">
+									<input type="hidden" name="carrito" value="carrito">
+									<input type="text" id="calle" name="calle" placeholder="Calle">
+									<input type="number" id="numero" name="numero" placeholder="Número">
+									<br>
+									<input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
+									<br>
+									<input type="submit" value="Agregar">
+								</form>
+								<?php
+							}else{
+								foreach($ubiUs2->fetchAll() as $row){
+									echo "<h3>Dirección</h3><br>";
+									echo $row['calle']." ".$row['numero'].", ".$row['ciudad'];
+								}
+							}
+							 ?>
+							<form action="pago.php" method="POST">
+								<input type="hidden" name="subtotal" value="<?php echo $subtotal ?>">
+								<input type="hidden" name="iva" value="<?php echo $iva ?>">
+								<input type="hidden" name="total" value="<?php echo $total ?>">
+								<h3>Método de envío</h3>
+								<select name="agencia">
+									<option value="">Seleccione una opción de envío</option>
+									<?php foreach ($agencias->fetchAll() as $row) {
+										?>
+										<option value="<?php echo $row['id'] ?>"><?php echo $row['nombre']." $".$row['costo'] ?></option>
+										<?php
+									} ?>
+								</select>
+								<br>
+								<input type="submit" value="Continuar">
+							</form></div>
 						</div>
 					</div>
 				</div>
@@ -329,6 +386,6 @@ $lista2=$db->query("select * from lista_productos l, producto p, imagenes i wher
 			</div>
 		</div>	
 	</footer>
-	<script src="/utu/Latem/scripts.js"></script>
+	<script src="/scripts.js"></script>
 </body>
 </html>

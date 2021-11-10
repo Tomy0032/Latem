@@ -2,20 +2,27 @@
 session_start();
 
 if (isset($_SESSION['ci'])) {
-	header('location: /utu/latem/');
+	header('location: /index.php');
 }
+
+if (isset($_GET['carrito'])) {
+	$carrito = 1;
+}else{
+	$carrito = 0;
+}
+
  ?>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Robotech</title>
-	<link rel="stylesheet" href="/utu/Latem/estilos.css">
+	<link rel="stylesheet" href="/estilos.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/utu/Latem/recursos/iconos/css/all.min.css">
-	<link rel="shortcut icon" href="/utu/Latem/recursos/favicon.png">
+	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
+	<link rel="shortcut icon" href="/recursos/favicon.png">
 </head>
 <body>
 	<header>	
@@ -24,8 +31,8 @@ if (isset($_SESSION['ci'])) {
 			======================================-->
 			
 			<div id="menu">
-				<a href="/utu/Latem/index.php">
-					<img src="/utu/Latem/recursos/RoboTech logo.png" alt="">
+				<a href="/index.php">
+					<img src="/recursos/RoboTech logo.png" alt="">
 				</a>
 				<form action="" id="buscador">
 					<input type="text" placeholder="Buscar" required>
@@ -45,7 +52,7 @@ if (isset($_SESSION['ci'])) {
 										<h4>Robótica</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
+												<a href="/catalogo/catalogo.php?categoria=Tarjetas de desarrollo">Tarjetas de desarrollo</a>
 											</li>
 											<li>
 												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
@@ -62,7 +69,7 @@ if (isset($_SESSION['ci'])) {
 										<h4>Componentes</h4>
 										<ul>
 											<li>
-												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Diodos y Transistores">Diodos y Tristores</a>
+												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Diodos y Tiristores">Diodos y Tiristores</a>
 											</li>
 											<li>
 												<a href="/utu/Latem/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
@@ -198,8 +205,9 @@ if (isset($_SESSION['ci'])) {
 		=                 Login                 =
 		======================================-->
 		
-		<form action="iniciar.php" id="login" class="" method="post">
+		<form action="iniciar.php" id="login" method="post">
 			<p>
+				<input type="hidden" name='carrito' value="<?php echo $carrito ?>">
 			<label for="ci">
 				<i class="fas fa-address-card"></i>
 				<input type="int" name="ci" placeholder="Cédula de identidad" required>
@@ -320,6 +328,6 @@ if (isset($_SESSION['ci'])) {
 			</div>
 		</div>	
 	</footer>
-	<script src="/utu/Latem/scripts.js"></script>
+	<script src="/scripts.js"></script>
 </body>
 </html>
