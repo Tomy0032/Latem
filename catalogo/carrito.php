@@ -166,9 +166,9 @@ $ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>
@@ -298,7 +298,6 @@ $ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 								<button id="agregar-ubicacion">Agregar dirección</button>
 								<form action="agregar_direccion.php" method="POST" id="form-ubicacion">
 									<input type="hidden" name="ci" value="<?php echo $ci ?>">
-									<input type="hidden" name="carrito" value="carrito">
 									<input type="text" id="calle" name="calle" placeholder="Calle">
 									<input type="number" id="numero" name="numero" placeholder="Número">
 									<br>

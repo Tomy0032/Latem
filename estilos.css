@@ -1377,7 +1377,8 @@ img.hidden{
 	border: 1px solid;
 	border-radius: 5px;
 	min-width: 250px;
-	margin: 50px 10px;
+	margin: 50px 20px;
+	padding: 20px;
 }
 .pago .resumen table{
 	font-size: 20px;
@@ -1406,14 +1407,89 @@ img.hidden{
 .pago .resumen .continuar-compra button:hover, .carrito .resumen .continuar-compra a:hover, .carrito .resumen input[type="submit"]:hover{
 	background: #006EB3;
 }
-.pago .metodo{
+.pago .contenedor-metodo{
 	display: flex;
 	text-align: center;
 	align-items: center;
 }
+.pago .contenedor-metodo .container input{
+	border: 1px solid #702F8A;
+	border-radius: 5px;
+	height: 25px;
+	outline: none;
+	margin: 5px;
+	padding-left: 8px;
+}
+.pago .contenedor-metodo .container button{
+	padding: 10px;
+	background: #702F8A;
+	color: #FFFFFF;
+	text-decoration: none;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.pago .contenedor-metodo .container button:hover{
+	background: #006EB3;
+}
+.pago .contenedor-metodo .container td.derecha{
+	text-align: right;
+}
+.pago .contenedor-metodo .container{
+	margin: 50px;
+	display: none;
+}
+.pago .contenedor-metodo .container .card-errors{
+	color: #E93535;
+}
+.pago .contenedor-metodo .tarjeta:checked + span + .container{
+	display: block;
+}
+.pago .contenedor-metodo .tarjeta:checked + span{
+	display: none;
+}
+.pago .contenedor-metodo input[type="radio"]{
+	display: none;
+}
+.pago .contenedor-metodo .seleccionar-metodo h4{
+	margin: 10px 30px;
+	cursor: pointer;
+	color: #702F8A;
+	border: 1px solid #702F8A;
+	padding: 10px;
+	font-weight: normal;
+	border-radius: 5px;
+	transition: all ease .2s;
+}
+.pago .contenedor-metodo p{
+	color: #000000;
+}
+.pago .contenedor-metodo .seleccionar-metodo h4:hover{
+	background: #702F8A;
+	color: #FFFFFF;
+}
+.pago .completar-efectivo{
+	display: none;
+}
+.pago .completar-efectivo button{
+	padding: 10px;
+	background: #702F8A;
+	color: #FFFFFF;
+	text-decoration: none;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.pago .completar-efectivo button:hover{
+	background: #006EB3;
+}
+.pago .contenedor-metodo .efectivo:checked + span + form{
+	display: block;
+}
 
 /*=====  End of Pago  ======*/
-
 
 /*=================================
 =            Mi perfil            =

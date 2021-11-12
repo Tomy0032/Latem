@@ -109,19 +109,12 @@ costo int not null,
 primary key(id)
 );
 
-create table envio(
-id int not null auto_increment,
-id_agencia int(1) not null,
-despacho date not null,
-primary key(id),
-foreign key(id_agencia) references agencia(id)
-);
-
 create table lista_productos(
 id int not null auto_increment,
 id_sesion varchar(255) not null,
 id_producto int not null,
 cantidad int not null,
+estado enum('espera', 'terminado'),
 primary key(id),
 foreign key(id_producto) references producto(id)
 );
@@ -129,14 +122,13 @@ foreign key(id_producto) references producto(id)
 create table pedido(
 id int not null auto_increment,
 ci_cliente int(8) not null,
-id_lista int not null,
 id_envio int not null,
 id_pago int(1) not null,
+id_sesion varchar(255) not null,
 fecha date not null,
 primary key(id),
 foreign key(ci_cliente) references cliente(ci),
-foreign key(id_lista) references lista_productos(id),
-foreign key(id_envio) references envio(id),
+foreign key(id_envio) references agencia(id),
 foreign key(id_pago) references metodo_pago(id)
 );
 
@@ -189,7 +181,7 @@ insert into categoria (nombre) values
 ('Módulos'),
 ('Accesorios'),
 ('Fuentes de alimentación'),
-('Diodos y Tristores'),
+('Diodos y Tiristores'),
 ('Cables y Conectores'),
 ('Transistores'),
 ('Interruptores y Reles'),
@@ -209,3 +201,21 @@ insert into usuario (ci, nombre, apellido, contraseña, permiso, correo) values
 ('53719385' ,'Tomás', 'González', '1234', '1', 'tomas.com9@gmail.com');
 
 insert into administrador values ('53719385');
+
+insert into cliente values ('53719385');
+
+set global max_allowed_packet=524288000;
+
+insert into agencia (nombre, costo) values
+('Retiro en el local', '0'),
+('DAC', '260'),
+('Correo uruguayo', '270'),
+('Mirtrans', '250');
+
+insert into metodo_pago (tipo, descuento) values
+('efectivo', '0'),
+('mastercard', '0'),
+('visa', '0');
+
+insert into garantia (detalles, expiracion) values 
+('Detalles de la garantía', '2030-10-10');

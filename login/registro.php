@@ -1,24 +1,28 @@
 <?php
-session_start();
-$_SESSION['ci'] = $_REQUEST['ci'];
-$_SESSION['nombre'] = $_REQUEST['nombre'];
-$_SESSION['apellido'] = $_REQUEST['apellido'];
-$_SESSION['correo'] = $_REQUEST['correo'];
-$_SESSION['clave'] = $_REQUEST['clave'];
-$_SESSION['confirmarClave'] = $_REQUEST['confirmarClave'];
+
+$ci = $_REQUEST['ci'];
+$nombre = $_REQUEST['nombre'];
+$apellido = $_REQUEST['apellido'];
+$correo = $_REQUEST['correo'];
+$clave = $_REQUEST['clave'];
+$confirmarClave = $_REQUEST['confirmarClave'];
 
 require("conexion.php");
 $conexion = retornarConexion();
 
-$buscar = mysqli_query($conexion, "select * from usuario where ci='$_SESSION[ci]'");
+$buscar = mysqli_query($conexion, "select * from usuario where ci='$ci'");
 $datos = mysqli_fetch_assoc($buscar);
 
-if ($datos == null && $_SESSION['clave'] == $_SESSION['confirmarClave']) {
-	$respuesta = mysqli_query($conexion, "insert into usuario values ('$_SESSION[ci]','$_SESSION[nombre]','$_SESSION[apellido]','$_SESSION[correo]','$_SESSION[clave]','0')");
+if ($datos == null && $clave == $confirmarClave) {
+	$respuesta = mysqli_query($conexion, "insert into usuario values ('$ci','$nombre','$apellido','$correo','$clave','0')");
         echo json_encode($respuesta);
+        $respuesta2 = mysqli_query($conexion, "insert into cliente values ('$ci')");
+        echo json_encode($respuesta2);
+        session_start();
+        $_SESSION['ci'] = $_REQUEST['ci'];
         header('location: /index.php');
 
-}elseif ($_SESSION['clave'] != $_SESSION['confirmarClave']) {
+}elseif ($clave != $confirmarClave) {
 	
 	include('login.php');
 	?>

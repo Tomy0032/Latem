@@ -159,9 +159,9 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>

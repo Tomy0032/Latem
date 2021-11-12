@@ -5,24 +5,12 @@ require_once('conexion.php');
 
 $db=Db::conectar();
 
-$subtotal=$_POST['subtotal'];
-$iva=$_POST['iva'];
-$manejo=260;
-
-
 if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
-}else{
-	header('location: /index.php');
 }
 
-$id_Sesion=session_id();
-$agencia=$db->query("select * from agencia where id='$_POST[agencia]'");
-$envio=$agencia->fetch()['costo'];
-$metodo=$db->query("select * from metodo_pago");
-$metodo2=$db->query("select * from metodo_pago");
-$total=($subtotal + $iva + $manejo + $envio);
-
+$listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
+$listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado' limit 6");
 
  ?>
 <html lang="es">
@@ -36,8 +24,6 @@ $total=($subtotal + $iva + $manejo + $envio);
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
 	<link rel="shortcut icon" href="/recursos/favicon.png">
-	<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <body>
 	<header>	
 			<!--=====================================
@@ -72,7 +58,7 @@ $total=($subtotal + $iva + $manejo + $envio);
 												<a href="/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href="/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
+												<a href=/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
@@ -173,9 +159,9 @@ $total=($subtotal + $iva + $manejo + $envio);
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>
@@ -216,116 +202,7 @@ $total=($subtotal + $iva + $manejo + $envio);
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	<div class="contenedor-pago">
-		<div class="pago">
-			<div class="contenedor-metodo">
-				<label>
-					<input type="radio" name="metodo" class="efectivo" checked>
-					<span class="seleccionar-metodo">
-						<h4>Pagar en efectivo</h4>
-						Pagar en local o al recibir el paquete
-					</span>
-					<form action="cobro_efectivo.php" class="completar-efectivo" method="post">
-						<input type="hidden" name="total" value="<?php echo round($total) ?>">
-						<input type="hidden" name="subtotal" value="<?php echo $subtotal ?>">
-						<input type="hidden" name="iva" value="<?php echo round($iva) ?>">
-						<input type="hidden" name="metodo" value="efectivo">
-						<input type="hidden" name="agencia" value="<?php echo $_POST['agencia'] ?>">						<br>
-						<br>
-						<button type="submit">Completar pago</button>
-					</form>
-					
-				</label>
-				<label>
-					<input type="radio" name="metodo" class="tarjeta">
-					<span class="seleccionar-metodo"><h4>Pagar con tarjeta</h4><br><br><br></span>
-					<div class="container">
-						<form action="cobro.php" method="POST" id="card-form">
-							<input type="hidden" name="total" value="<?php echo round($total) ?>">
-						<input type="hidden" name="subtotal" value="<?php echo $subtotal ?>">
-						<input type="hidden" name="iva" value="<?php echo round($iva) ?>">
-						<input type="hidden" name="agencia" value="<?php echo $_POST['agencia'] ?>">
-							<b>Ingrese los datos de la tarjeta</b>
-							<br>
-							<br>
-							<span class="card-errors"></span>
-							<br>
-							<table>
-								<tr>
-									<td class="derecha">
-										<label for="card[name]">
-											<span>Nombre del propietario</span>
-										</label>
-									</td>
-									<td><input class="form-control" size="20" id="card[name]" data-conekta="card[name]" type="text"></td>
-								</tr>
-								<tr>
-									<td class="derecha">
-										<label for="card[number]">
-											<span>Número de tarjeta de crédito</span>
-										</label>
-									</td>
-									<td><input class="form-control" size="20" id="card[number]" data-conekta="card[number]" type="text"></td>
-								</tr>
-								<tr>
-									<td class="derecha">
-										<label for="card[cvc]">
-											<span>CVC</span>
-										</label>
-									</td>
-									<td><input class="form-control" size="4" id="card[cvc]" data-conekta="card[cvc]" type="text"></td>
-								</tr>
-								<tr>
-									<td class="derecha">
-										<label for="card[exp_month]">
-											<span>Fecha de expiración (MM/AAAA)</span>
-										</label>
-										
-									</td>
-									<td>
-										<input size="2" id="card[exp_month]" data-conekta="card[exp_month]" type="text">
-										<label>
-											<span>/</span>
-											<input  size="4" data-conekta="card[exp_year]" type="text">
-										</label>
-									</td>
-								</tr>
-							</table>
-							<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-							<br>
-							<button class="btn btn-primary" type="submit">Completar pago</button>
-						</form>
-					</div>
-				</label>
-			</div>
-			<div class="contenedor-resumen">
-				<div class="resumen">
-					<table>
-						<tr>
-							<th>Subtotal</th>
-							<td><?php echo "$ ".$subtotal ?></td>
-						</tr>
-						<tr>
-							<th>IVA</th>
-							<td><?php echo "$ ".round($iva) ?></td>
-						</tr>
-						<tr>
-							<th>Empaque y manejo</th>
-							<td><?php echo "$ ".$manejo ?></td>
-						</tr>
-						<tr>
-							<th>Envío</th>
-							<td><?php echo "$ ".$envio ?></td>
-						</tr>
-						<tr>
-							<th>Total</th>
-							<td><b><?php echo "$ ".round($total) ?></b></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<footer>
 		<div class="contenedor-footer">
 			<div class="f-body">
@@ -374,33 +251,6 @@ $total=($subtotal + $iva + $manejo + $envio);
 			</div>
 		</div>	
 	</footer>
-
-<script type="text/javascript" >
-  Conekta.setPublicKey('key_Cf6xwVgweFHiqVvzixk5VEQ');
-
-  var conektaSuccessResponseHandler = function(token) {
-    var $form = $("#card-form");
-
-     $form.append($('<input name="conektaTokenId" id="conektaTokenId" type="hidden">').val(token.id));
-    $form.get(0).submit();
-  };
-  var conektaErrorResponseHandler = function(response) {
-    var $form = $("#card-form");
-    $form.find(".card-errors").text(response.message_to_purchaser);
-    $form.find("button").prop("disabled", false);
-  };
-
-
-  $(function () {
-    $("#card-form").submit(function(event) {
-      var $form = $(this);
-
-      $form.find("button").prop("disabled", true);
-      Conekta.Token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
-      return false;
-    });
-  });
-</script>
 	<script src="/scripts.js"></script>
 </body>
 </html>
