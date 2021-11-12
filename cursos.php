@@ -120,7 +120,7 @@ if (isset($_SESSION['ci'])) {
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -156,9 +156,9 @@ if (isset($_SESSION['ci'])) {
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado ='espera' ");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado = 'espera'");
 									?>
 									<span>
 										<div>

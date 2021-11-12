@@ -11,6 +11,10 @@ if (isset($_SESSION['ci'])) {
 
 $listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
 $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado' limit 6");
+$sesion=session_id();
+$ci=$_SESSION['ci'];
+
+$selectFactura = $db->query("select * from buscarFactura where sesion='$sesion' and ci='$ci' order by id desc limit 1");
 
  ?>
 <html lang="es">
@@ -123,7 +127,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -202,7 +206,74 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	
+	<div class="contenedor-terminada">
+		<div class="terminada">
+			<div class="contenido">
+				<?php 
+			foreach ($selectFactura->fetchAll() as $row) {
+			}
+			 ?>
+				<h1>¡Gracias por su compra!</h1>
+				<h3>Agradecemos mucho su preferencia :)</h3>
+				<br>
+				<span>
+					Se le enviara la factura por su correo electrónico asociado
+					<br>
+					Si tiene un número de celular registrado, también le llegará por Whatsapp
+					<br>
+					<br>
+					La factura está lista para ser impresa
+					<br>
+				</span>
+				<div class="enlaces">
+					<a href="/index.php"><i class="fas fa-home"></i></a>
+					<a href=""><i class="fas fa-file-download"></i></a>
+				</div>
+			</div>
+			<div class="container-destacados">
+				<div class="titulo-destacados">
+					<h2>Productos destacados</h2>
+					<a href="/catalogo/destacados.php">ver más</a>
+				</div>
+				<div class="destacados" id="destacados">
+						<?php 
+						if ($listaProductos->fetchAll() == null) {
+							?>
+							<div class="destacados__section">
+								<div class="noProducto">
+									<h2>No se han encontrado productos :(</h2>
+									<br>
+									<p>Esto puede deberse a un problema de nuestro servidor</p>
+									<p>Si es así, no tardaremos en solucionarlo ;)</p>
+								</div>
+							</div>
+							<?php
+						}
+						else{
+							foreach ($listaProductos2->fetchAll() as $row) {
+								?>
+								<div class="destacados__section">
+									<a href="/catalogo/vista_producto.php?id=<?php echo $row['id']?>">
+										<div class="index-producto">
+											<img src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>"/>
+										</div>
+									</a>
+								</div>
+								<?php
+							}
+						}			
+						 ?>
+					
+				</div>
+				<div class="destacados__btn destacados__btn--left" id="destacados--btn--left">
+					<i class="fas fa-chevron-left"></i>
+				</div>
+				<div class="destacados__btn destacados__btn--right" id="destacados--btn--right">
+					<i class="fas fa-chevron-right"></i>
+				</div>
+			</div>
+		</div>
+	</div>
 	<footer>
 		<div class="contenedor-footer">
 			<div class="f-body">

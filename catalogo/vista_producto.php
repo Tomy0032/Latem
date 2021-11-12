@@ -17,7 +17,7 @@ $producto=$crudP->obtenerProducto($id);
 $imagenes=$crudI->obtenerImagenes($id);
 
 if (isset($_SESSION['ci'])) {
-	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
+	$permiso=$db->query("select * from usuario where ci='$_SESSION[ci]'");
 }
 
  ?>
@@ -31,7 +31,7 @@ if (isset($_SESSION['ci'])) {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/recursos/iconos/css/all.min.css">
-	<link rel="shortcut icon" href="/recursos/favicon.png">
+	<link rel="shortcut icon" href="/recursos/favicon.jpg">
 <body>
 	<header>	
 			<!--=====================================
@@ -131,7 +131,7 @@ if (isset($_SESSION['ci'])) {
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -167,9 +167,9 @@ if (isset($_SESSION['ci'])) {
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>

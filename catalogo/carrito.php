@@ -65,7 +65,7 @@ $ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 												<a href="/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href="/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
+												<a href=/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
@@ -130,7 +130,7 @@ $ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -244,7 +244,12 @@ $ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 								<tr>
 									<td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($row['primera'])?>" id="primera"/></td>
 									<td><?php echo $row['nombre'] ?></td>
-									<td><?php echo $row['cantidad'] ?></td>
+									<td>
+										<?php 
+										$cantidad =  $row['cantidad'];
+										echo $cantidad;
+										?>
+									</td>
 									<td><?php echo "$ ".$row['precio'] ?></td>
 									<td><?php echo "$ ".($row['cantidad'] * $row['precio']) ?></td>
 									<td>
@@ -317,6 +322,7 @@ $ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
 								<input type="hidden" name="subtotal" value="<?php echo $subtotal ?>">
 								<input type="hidden" name="iva" value="<?php echo $iva ?>">
 								<input type="hidden" name="total" value="<?php echo $total ?>">
+								<input type="hidden" name="cantidad" value="<?php echo $cantidad ?>">
 								<h3>Método de envío</h3>
 								<select name="agencia">
 									<option value="">Seleccione una opción de envío</option>

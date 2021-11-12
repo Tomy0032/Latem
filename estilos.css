@@ -379,7 +379,7 @@ header .icon span{
 	opacity: 1;
 }
 .titulo-destacados{
-	margin-top: 60px;
+	margin-top: 30px;
 	display: flex;
 	align-items: center;
 	padding: 0 10%;
@@ -399,7 +399,7 @@ header .icon span{
 	text-decoration: underline;
 }
 .container-destacados{
-	margin-top: 10px;
+	margin-top: 50px;
 	background: rgba(255, 255, 255, .6);
 	border: 1px solid #702F8A;
 	border-radius: 5px;
@@ -420,7 +420,7 @@ header .icon span{
 	border-radius: 5px; 
 	text-align: center;
 	padding: 20px;
-	border: 1px solid #000000;
+	border: 1px solid #888B8D;
 	border-radius: 5px;
 	font-size: 16px;
 	margin-left: 50px;
@@ -784,25 +784,25 @@ header .icon span{
  	justify-content: center;
  	align-items: center;
 }
-.contenido{
+#mostrar .contenido{
  	padding: 10px;
  	background-color: #FFFFFF;
  	border: 1px solid #702F8A;
  	border-radius: 5px;
  	box-shadow: 1px 10px 25px rgba(0,0,0,0.6);
 }
-.contenido table{
+#mostrar .contenido table{
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 }
-.contenido td{
+#mostrar .contenido td{
 	text-align: center;
 }
-.contenido .cerrarImagenes{
+#mostrar .contenido .cerrarImagenes{
 	margin: 5px 0;
 }
-.contenido .cerrarImagenes label{
+#mostrar .contenido .cerrarImagenes label{
 	font-family: sans-serif;
 	cursor: pointer;
 	color:  #702F8A;
@@ -810,22 +810,22 @@ header .icon span{
 	border-radius: 5px;
 	transition: .12s ease all;
 }
-.contenido .cerrarImagenes label:hover{
+#mostrar .contenido .cerrarImagenes label:hover{
 	background: #702F8A;
 	color: #FFFFFF;
 }
-.contenido form{
+#mostrar .contenido form{
 	margin: 0;
 	padding: 5px;
 }
-.contenido .inp{
+#mostrar .contenido .inp{
 	padding-top: 15px;
 	border: 0.5px solid #702F8A;
 }
 .cerrarImagenes{
 	margin-bottom: 7px;
 }
-.contenido input[type="file"]{
+#mostrar .contenido input[type="file"]{
 	display: none;
 }
 .imagenes .contenido .file, .imagenes .contenido input{
@@ -846,14 +846,14 @@ header .icon span{
 
 /*=====  End of Ver imágenes  ======*/
 
-.contenido .cerrarEliminar{
+#mostrar .contenido .cerrarEliminar{
 	padding: 30px;
 }
-.contenido .cerrarEliminar p{
+#mostrar .contenido .cerrarEliminar p{
 	margin-bottom: 20px;
 	font-size: 20px;
 }
-.contenido .cerrarEliminar label{
+#mostrar.contenido .cerrarEliminar label{
 	padding: 8px 25px;
   color: #702f8a;
   background: #ffffff;
@@ -863,7 +863,7 @@ header .icon span{
   border: none;
   cursor: pointer;
 }
-.contenido .cerrarEliminar label:hover{
+#mostrar .contenido .cerrarEliminar label:hover{
 	color: #FFFFFF;
 	background: #702f8a;
 }
@@ -1000,7 +1000,7 @@ header .icon span{
 .producto{
 	width: 320px;
 	height: 450px;
-	border: 1px solid black;
+	border: 1px solid #888B8D;
 	border-radius: 5px;
 	display: inline-table;
 	margin: 55px;
@@ -1049,7 +1049,7 @@ header .icon span{
 	padding: 50px 0;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid #006EB3;
+	border: 1px solid #888B8D;
 	border-radius: 5px;
 	margin-left: auto;
 	margin-right: auto;
@@ -1115,7 +1115,7 @@ header .icon span{
 .vista-producto{
 	width: 1184px;
 	padding: 50px 0;
-	border: 1px solid;
+	border: 1px solid #888B8D;
 	border-radius: 5px;
 	background: rgba(255, 255, 255, 0.6);
 }
@@ -1212,7 +1212,7 @@ img.hidden{
 .carrito{
 	width: 70%;
 	min-width: 1200px;
-	border: 1px solid;
+	border: 1px solid #888B8D;
 	border-radius: 5px;
 	background: rgba(255, 255, 255, 0.6);
 	display: flex;
@@ -1366,7 +1366,7 @@ img.hidden{
 .pago{
 	width: 70%;
 	min-width: 1200px;
-	border: 1px solid;
+	border: 1px solid #888B8D;
 	border-radius: 5px;
 	background: rgba(255, 255, 255, 0.6);
 	display: flex;
@@ -1491,6 +1491,104 @@ img.hidden{
 
 /*=====  End of Pago  ======*/
 
+/*=====================================
+=            Terminar compra            =
+=====================================*/
+
+.contenedor-terminada{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 120px;
+}
+.terminada{
+	width: 70%;
+	min-width: 1200px;
+	border: 1px solid #888B8D;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.6);
+
+	padding: 100px;
+}
+.terminada h1{
+	color: #006EB3;
+}
+.terminada h3{
+	color: #006EB3;
+	font-weight: normal;
+}
+.terminada .enlaces{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.terminada .enlaces a{
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	background: #702F8A;
+	color: #FFFFFF;
+	cursor: pointer;
+	transition: all ease .2s;
+	margin: 10px;
+}
+.terminada .enlaces a:hover{
+	background: #006EB3;
+}
+.terminada .container-destacados{
+	margin-top: 100px;
+}
+
+.terminada .destacados{
+	display: flex;
+	justify-content: center;
+	width: 150%;
+	align-items: center;
+	margin-left: -25%;
+	height: 300px;
+}
+.terminada .index-producto{
+	height: 200px;
+	width: 200px;
+	display: inline-grid;
+	background: rgba(255, 255, 255, .6);
+	border-radius: 5px; 
+	text-align: center;
+	padding: 20px;
+	border: 1px solid #888B8D;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.terminada .destacados__section{
+	width: 25%;
+}
+.terminada .destacados__section a{
+	text-decoration: none;
+}
+.terminada .index-producto span{
+	font-size: 22px;
+	color: #000000;
+}
+.terminada .index-producto img{
+	width: 165px;
+	margin: auto;
+}
+.terminada .index-producto:hover{
+	box-shadow: 0px 7px 15px #000000;
+	transition: all .2s ease;
+}
+.terminada .destacados__btn{
+	color: #702F8A;
+}
+.terminada .titulo-destacados{
+	margin-top: 30px;
+}
+/*=====  End of Terminar compra  ======*/
+
+
 /*=================================
 =            Mi perfil            =
 =================================*/
@@ -1578,6 +1676,59 @@ img.hidden{
 }
 
 /*=====  End of Mi perfil  ======*/
+
+/*======================================
+=            Sobre nosotros            =
+======================================*/
+
+.contenedor-nosotros{
+	display: flex;
+	justify-content: center;
+	margin-top: 120px;
+}
+.nosotros{
+	background: rgba(255, 255, 255, 0.6);
+	width: 70%;
+	border: 1px solid;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding: 90px 0;
+}
+.nosotros .columna2{
+	width: 600px;
+	margin-left: 60px;
+	display: ;
+}
+.nosotros .columna2 h2{
+	color: #006EB3;
+}
+.nosotros .columna2 p{
+	text-align: left;
+}
+.nosotros .fila{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.nosotros .fila a{
+	width: 36px;
+	height: 36px;
+	text-decoration: none;
+}
+.nosotros .fila label{
+	margin: 10px;
+}
+.nosotros .fila label a{
+	color: #006EB3;
+	text-decoration: none;
+}
+.nosotros .fila i{
+	font-size: 36px;
+	color: #006EB3;
+}
+/*=====  End of Sobre nosotros  ======*/
 
 /*================================
 =         Pie de pagina          =

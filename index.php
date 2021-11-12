@@ -123,7 +123,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -239,12 +239,11 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			<i class="fas fa-chevron-right"></i>
 		</div>
 	</div>
-	<div class="titulo-destacados">
-		<h2>Productos destacados</h2>
-		<a href="/catalogo/destacados.php">ver más</a>
-	</div>
-	
 	<div class="container-destacados">
+		<div class="titulo-destacados">
+			<h2>Productos destacados</h2>
+			<a href="/catalogo/destacados.php">ver más</a>
+		</div>
 		<div class="destacados" id="destacados">
 				<?php 
 				if ($listaProductos->fetchAll() == null) {

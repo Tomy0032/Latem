@@ -72,7 +72,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 										<h4>Componentes</h4>
 										<ul>
 											<li>
-												<a href="/catalogo/catalogo.php?categoria=Diodos y Tristores">Diodos y Tristores</a>
+												<a href="/catalogo/catalogo.php?categoria=Diodos y Tiristores">Diodos y Tiristores</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
@@ -126,7 +126,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -162,9 +162,9 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>

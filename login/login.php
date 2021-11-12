@@ -123,7 +123,7 @@ if (isset($_GET['carrito'])) {
 							<a href="/utu/latem/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -134,7 +134,7 @@ if (isset($_GET['carrito'])) {
 								<div id="menu-usuario" >
 									<ul>
 										<li>
-											<a href="">Mi perfil</a>
+											<a href="/usuario/perfil.php">Mi perfil</a>
 										</li>
 										<li>
 											<a href="">Mis compras</a>

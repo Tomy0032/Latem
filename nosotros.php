@@ -7,17 +7,7 @@ $db=Db::conectar();
 
 if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
-}else{
-	header('location: /utu/latem/');
 }
-$infoUs=$db->query("select * from usuario where ci = '$_SESSION[ci]'");
-$infoUs2=$db->query("select * from usuario where ci = '$_SESSION[ci]'");
-$ubiUs=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
-$ubiUs2=$db->query("select * from dir_cli where ci = '$_SESSION[ci]'");
-$telUs=$db->query("select * from tel_cli where ci = '$_SESSION[ci]'");
-$telUs2=$db->query("select * from tel_cli where ci = '$_SESSION[ci]'");
-
-$ci=($infoUs2->fetch())['ci'];
 
 $listaProductos = $db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado'");
 $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from producto p, imagenes i where i.id_producto = p.id and estado = 'destacado' limit 6");
@@ -85,7 +75,7 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 												<a href="/catalogo/catalogo.php?categoria=Cables y Conectores">Cables y Conectores</a>
 											</li>
 											<li>
-												<a href="/catalogo/catalogo.php?categoria=Tranistores">Transistores</a>
+												<a href="/catalogo/catalogo.php?categoria=Transistores">Transistores</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Interruptores y Reles">Interruptores y Reles</a>
@@ -169,9 +159,9 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>
@@ -212,94 +202,36 @@ $listaProductos2=$db->query("select p.id, primera, p.nombre, precio from product
 			
 			<!--====  End of Barra de navegación  ====-->
 	</header>
-	<div class="contenedor-perfil">
-		<div class="perfil">
-			<div class="info">
-				<table>
-					<?php foreach ($infoUs->fetchAll() as $row){
-					?>
-						<tr>
-							<td colspan="2"><h2>Mis datos</h2></td>
-						</tr>
-						<tr>
-							<th>Nombre:</td>
-							<td><?php echo $row['nombre'] ?></td>
-						</tr>
-						<tr>
-							<th>Apellido:</td>
-							<td><?php echo $row['apellido'] ?></td>
-						</tr>
-						<tr>
-							<th>Cédula de indentidad:</td>
-							<td><?php echo $row['ci'] ?></td>
-						</tr>
-						<tr>
-							<th>Correo:</td>
-							<td><?php echo $row['correo'] ?></td>
-						</tr>
-						<?php 
-						if ($telUs->fetch() != null) {
-						 ?>
-						<tr>
-							<th>Teléfono</th>
-							<td><?php echo "0".$telUs2->fetch()['telefono'] ?></td>
-						</tr>
-						<?php 
-						}
-						 ?>
-						<tr>
-							<th>Teléfono</th>
-							<td>
-								<button id="agregar-telefono">Agregar teléfono</button>
-								<form action="agregar_telefono.php" method="POST" class="noVisible" id="form-telefono">
-									<input type="hidden" name="ci" value="<?php echo $ci ?>">
-									<input type="number" id="telefono" name="telefono" placeholder="Ingrese su número">
-									<input type="submit" value="Agregar">
-								</form>
-							</td>
-						</tr>
-					<?php 
-					}
-					 ?>
-				</table>
+	<div class="contenedor-nosotros">
+		<div class="nosotros">
+			<div class="columna1">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.8187681297272!2d-56.234990184249!3d-34.760157873300294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1d2e23830071f%3A0x8a40b54c632f0f11!2sEscuela%20T%C3%A9cnica%20La%20Paz%20UTU!5e0!3m2!1ses-419!2suy!4v1636122441146!5m2!1ses-419!2suy" width="380" height="480" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 			</div>
-			<div class="ubicación">
-				<h2>Mi dirección</h2>
-				<?php 
-				if ($ubiUs->fetch() == null) {
-					?>
-					<button id="agregar-ubicacion">Agregar dirección</button>
-					<form action="agregar_direccion.php" method="POST" class="noVisible" id="form-ubicacion">
-						<input type="hidden" name="ci" value="<?php echo $ci ?>">
-						<input type="text" id="calle" name="calle" placeholder="Calle">
-						<input type="number" id="numero" name="numero" placeholder="Número">
-						<br>
-						<input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
-						<br>
-						<input type="submit" value="Agregar">
-					</form>
-					<?php
-				}else{
-					foreach($ubiUs2->fetchAll() as $row){
-						echo $row['calle']." ".$row['numero'].", ".$row['ciudad'];
-				 ?>
-				 <br>
-				 <br>
-				 <button id="agregar-ubicacion">Editar ubicación</button>
-				 <form action="editar_direccion.php" method="POST" class="noVisible" id="form-ubicacion">
-					<input type="hidden" name="ci" value="<?php echo $ci ?>">
-					<input type="text" id="calle" name="calle" value="<?php echo $row['calle'] ?>" required>
-					<input type="number" id="numero" name="numero"  value="<?php echo $row['numero'] ?>" required>
-					<br>
-					<input type="text" id="ciudad" name="ciudad" value="<?php echo $row['ciudad'] ?>" required>
-					<br>
-					<input type="submit" value="Actualizar">
-					<?php
-					}
-
-				}
-				 ?>
-				</form>
+			<div class="columna2">
+				<h2>Sobre nosotros</h2>
+				<div class="fila">
+					<p>
+						Robotech es una empresa uruguaya, dedicada a la venta de componentes electrónicos en todo el territorio uruguayo a través de internet.<br><br>Nos caracterizamos por brindar los mejores precios del mercado, gracias a la red de proveedores en Asia, Europa y América. Al ser importadores directos logramos tener un contacto directo con los fabricantes, obteniendo así una amplia variedad de productos con la mejor relación precio-calidad.<br><br>Ofrecemos productos con la más alta calidad, información de nuestros productos y eficiencia en las entregas.<br><br>La tienda web electronica.uy existe para agilizar y facilitar la compra del usuario. Es por eso que los precios de la página web, son exclusivos de ésta y pueden variar con respecto a otros medios de venta. No aceptamos pago en la oficina comercial.
+					</p>
+				</div>
+				<br>
+				<br>
+				<div class="fila">
+					<a href="https://www.facebook.com/Robotech-Uruguay-100867842415629">
+						<i class="fab fa-facebook"></i>
+					</a>
+					<label>
+						<a href="https://www.facebook.com/Robotech-Uruguay-100867842415629">Siguenos en Facebook</a>
+					</label>
+				</div>
+				<div class="fila">
+					<a href="https://www.instagram.com/robotech.uy/">
+						<i class="fab fa-instagram"></i>
+					</a>
+					<label>
+						<a href="https://www.instagram.com/robotech.uy/">Siguenos en Instagram</a>
+					</label>
+				</div>
 			</div>
 		</div>
 	</div>

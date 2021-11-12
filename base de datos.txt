@@ -114,9 +114,11 @@ id int not null auto_increment,
 id_sesion varchar(255) not null,
 id_producto int not null,
 cantidad int not null,
+id_pedido int,
 estado enum('espera', 'terminado'),
 primary key(id),
-foreign key(id_producto) references producto(id)
+foreign key(id_producto) references producto(id),
+foreign key(id_pedido) references pedido(id)
 );
 
 create table pedido(
@@ -219,3 +221,8 @@ insert into metodo_pago (tipo, descuento) values
 
 insert into garantia (detalles, expiracion) values 
 ('Detalles de la garantía', '2030-10-10');
+
+create or replace view buscarFactura as
+select f.id as id, p.id as idPedido, p.ci_cliente as ci, p.id_sesion as sesion
+from factura f, pedido p
+where f.id_pedido = p.id;

@@ -8,7 +8,7 @@ $db=Db::conectar();
 $subtotal=$_POST['subtotal'];
 $iva=$_POST['iva'];
 $manejo=260;
-
+$cantidad=$_POST['cantidad'];
 
 if (isset($_SESSION['ci'])) {
 	$permiso=$db->query("select permiso from usuario where ci='$_SESSION[ci]'");
@@ -72,7 +72,7 @@ $total=($subtotal + $iva + $manejo + $envio);
 												<a href="/catalogo/catalogo.php?categoria=Módulos">Módulos</a>
 											</li>
 											<li>
-												<a href="/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
+												<a href=/catalogo/catalogo.php?categoria=Acessorios">Accesorios</a>
 											</li>
 											<li>
 												<a href="/catalogo/catalogo.php?categoria=Fuentes de alimentación">Fuentes de alimentación</a>
@@ -137,7 +137,7 @@ $total=($subtotal + $iva + $manejo + $envio);
 							<a href="/cursos.php">Cursos</a>
 						</li>
 						<li>
-							<a href="">Sobre nosotros</a>
+							<a href="/nosotros.php">Sobre nosotros</a>
 						</li>
 						<?php if (isset($_SESSION['ci'])) {
 							?>
@@ -173,9 +173,9 @@ $total=($subtotal + $iva + $manejo + $envio);
 								<i class="fas fa-shopping-cart"></i>
 								<?php
 								$id_sesion=session_id();
-								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+								$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 								if ($comprobar->fetch()['count(*)'] > 0) {
-									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0");
+									$comprobar=$db->query("select count(*) from lista_productos where id_sesion = '$id_sesion' and cantidad > 0 and estado='espera'");
 									?>
 									<span>
 										<div>
@@ -226,6 +226,7 @@ $total=($subtotal + $iva + $manejo + $envio);
 						Pagar en local o al recibir el paquete
 					</span>
 					<form action="cobro_efectivo.php" class="completar-efectivo" method="post">
+						<input type="hidden" name="cantidad" value="<?php echo $cantidad ?>">
 						<input type="hidden" name="total" value="<?php echo round($total) ?>">
 						<input type="hidden" name="subtotal" value="<?php echo $subtotal ?>">
 						<input type="hidden" name="iva" value="<?php echo round($iva) ?>">
@@ -241,6 +242,7 @@ $total=($subtotal + $iva + $manejo + $envio);
 					<span class="seleccionar-metodo"><h4>Pagar con tarjeta</h4><br><br><br></span>
 					<div class="container">
 						<form action="cobro.php" method="POST" id="card-form">
+							<input type="hidden" name="cantidad" value="<?php echo $cantidad ?>">
 							<input type="hidden" name="total" value="<?php echo round($total) ?>">
 						<input type="hidden" name="subtotal" value="<?php echo $subtotal ?>">
 						<input type="hidden" name="iva" value="<?php echo round($iva) ?>">
