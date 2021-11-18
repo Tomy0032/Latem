@@ -90,8 +90,8 @@ if (isset ($_GET['accion']) && $_GET['accion'] == 'a') {
 				<a href="/index.php">
 					<img src="/recursos/RoboTech logo.png" alt="">
 				</a>
-				<form action="" id="buscador">
-					<input type="text" placeholder="Buscar" required>
+				<form action="/busqueda.php" id="buscador" method="post">
+					<input type="text" name="busqueda" placeholder="Buscar" required>
 					<button type="submit" id="btn-buscar">
 						<i class="fas fa-search"></i>
 					</button>

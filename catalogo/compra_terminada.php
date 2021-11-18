@@ -217,9 +217,6 @@ $selectFactura = $db->query("select * from buscarFactura where sesion='$sesion' 
 				<h3>Agradecemos mucho su preferencia :)</h3>
 				<br>
 				<span>
-					Se le enviara la factura por su correo electrónico asociado
-					<br>
-					Si tiene un número de celular registrado, también le llegará por Whatsapp
 					<br>
 					<br>
 					La factura está lista para ser impresa
@@ -227,7 +224,7 @@ $selectFactura = $db->query("select * from buscarFactura where sesion='$sesion' 
 				</span>
 				<div class="enlaces">
 					<a href="/index.php"><i class="fas fa-home"></i></a>
-					<a href=""><i class="fas fa-file-download"></i></a>
+					<a href="/catalogo/pdf.php"><i class="fas fa-file-download"></i></a>
 				</div>
 			</div>
 			<div class="container-destacados">
